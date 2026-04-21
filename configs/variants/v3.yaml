@@ -1,0 +1,20 @@
+# V3: fine-tune only the FM on top of the new V2-loggrad deterministic branch.
+# Loss is unchanged: mini-batch OT conditional Flow Matching on the residual HR - mu.
+variant: v3
+use_cno: true
+cno_mode: residual
+fm_condition: [mu]
+fm_in_channels: 10
+
+training:
+  fm:
+    lr: 5.0e-5
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 50
+    warmup_epochs: 2
+    precision: bf16-mixed
+
+loss:
+  var_weights: [1.5, 1.0, 1.0, 2.0, 2.0]

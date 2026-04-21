@@ -1,0 +1,6 @@
+# V1: mu = CNO(LR), FM cond = [x_t, mu, LR, mask]
+variant: v1
+use_cno: true
+cno_mode: direct        # mu = CNO(LR)
+fm_condition: [mu, lr, mask]
+fm_in_channels: 16       # 5 x_t + 5 mu + 5 lr + 1 mask

@@ -1,0 +1,36 @@
+# V4: CNO residual with log-gradient loss, then FM residual on top of mu.
+# CNO target: HR - LR_up
+# mu = LR_up + CNO_residual
+# FM condition: [mu]
+# FM target: HR - mu
+variant: v4
+use_cno: true
+cno_mode: residual
+fm_condition: [mu]
+fm_in_channels: 10       # 5 x_t + 5 mu
+
+training:
+  cno:
+    lr: 3.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 150
+    warmup_epochs: 5
+    precision: bf16-mixed
+  fm:
+    lr: 5.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 200
+    warmup_epochs: 5
+    precision: bf16-mixed
+
+loss:
+  var_weights: [1.5, 1.0, 1.0, 2.0, 2.0]
+  log_gradient:
+    enabled: true
+    variables: [thetao]
+    weight: 0.05
+    eps: 1.0e-6

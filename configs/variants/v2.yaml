@@ -1,0 +1,6 @@
+# V2: mu = LR + CNO(LR), FM cond = [x_t, mu]
+variant: v2
+use_cno: true
+cno_mode: residual       # mu = LR + CNO(LR)
+fm_condition: [mu]
+fm_in_channels: 10       # 5 x_t + 5 mu
