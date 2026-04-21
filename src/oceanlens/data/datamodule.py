@@ -24,6 +24,7 @@ class GlorysDataset(Dataset):
         self.index = []
         self.hr_files = {}
         self.lr_files = {}
+        self._datasets = {}
 
         for year in years:
             hr_path = os.path.join(raw_dir, f"glorys12_surface_{year}.nc")
@@ -48,14 +49,30 @@ class GlorysDataset(Dataset):
     def __len__(self):
         return len(self.index)
 
+    def close(self):
+        """Close cached xarray datasets."""
+        for ds in self._datasets.values():
+            ds.close()
+        self._datasets.clear()
+
+    def __del__(self):
+        self.close()
+
+    def _dataset(self, filepath):
+        ds = self._datasets.get(filepath)
+        if ds is None:
+            ds = xr.open_dataset(filepath)
+            self._datasets[filepath] = ds
+        return ds
+
     def _load_snapshot(self, filepath, time_idx):
+        ds = self._dataset(filepath)
         arrays = []
-        with xr.open_dataset(filepath) as ds:
-            for var in self.variables:
-                data = ds[var].isel(time=time_idx)
-                if "depth" in data.dims:
-                    data = data.isel(depth=0)
-                arrays.append(data.values)
+        for var in self.variables:
+            data = ds[var].isel(time=time_idx)
+            if "depth" in data.dims:
+                data = data.isel(depth=0)
+            arrays.append(data.values)
         return np.stack(arrays, axis=0).astype(np.float32)
 
     def _normalize(self, data):
@@ -107,9 +124,10 @@ class OceanDataModule(pl.LightningDataModule):
         self.stats = None
 
         stats_path = cfg.paths.norm_stats
-        if os.path.exists(stats_path):
-            with open(stats_path) as handle:
-                self.stats = json.load(handle)
+        if not os.path.exists(stats_path):
+            raise FileNotFoundError(f"Missing normalization stats: {stats_path}")
+        with open(stats_path) as handle:
+            self.stats = json.load(handle)
 
     def setup(self, stage=None):
         patch = (self.cfg.data.patch_size, self.cfg.data.patch_size)

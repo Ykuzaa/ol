@@ -2,6 +2,7 @@
 
 import argparse
 import pytorch_lightning as pl
+import torch
 from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 from pytorch_lightning.loggers import TensorBoardLogger
 from pathlib import Path
@@ -45,6 +46,7 @@ def main():
 
     # Seed
     seed_everything(cfg.seed)
+    torch.set_float32_matmul_precision("high")
 
     # Set GPU (skip if already set by launcher script)
     if "CUDA_VISIBLE_DEVICES" not in os.environ:
