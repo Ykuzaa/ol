@@ -131,12 +131,13 @@ class FlowMatchingUNet(nn.Module):
             self.encoder_skips.append(nn.Sequential(*[ResBlock(hidden_channels[i], time_dim) for _ in range(n_res)]))
             self.encoders.append(DownBlock(hidden_channels[i], hidden_channels[i + 1], time_dim, n_res))
 
-        self.bottleneck = nn.ModuleList([
-            ResBlock(hidden_channels[-1], time_dim),
-            SelfAttention(hidden_channels[-1], n_heads=attn_heads),
-            ResBlock(hidden_channels[-1], time_dim),
-            SelfAttention(hidden_channels[-1], n_heads=attn_heads),
-        ])
+        bottleneck_blocks = [ResBlock(hidden_channels[-1], time_dim)]
+        if attn_heads > 0:
+            bottleneck_blocks.append(SelfAttention(hidden_channels[-1], n_heads=attn_heads))
+        bottleneck_blocks.append(ResBlock(hidden_channels[-1], time_dim))
+        if attn_heads > 0:
+            bottleneck_blocks.append(SelfAttention(hidden_channels[-1], n_heads=attn_heads))
+        self.bottleneck = nn.ModuleList(bottleneck_blocks)
 
         self.decoders = nn.ModuleList()
         for i in range(len(hidden_channels) - 1, 0, -1):

@@ -18,8 +18,7 @@ from oceanlens.data.datamodule import OceanDataModule
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--variant", type=str, required=True,
-                        choices=["v1", "v2", "v2_loggrad", "v3", "v4", "v5", "ablation"])
+    parser.add_argument("--variant", type=str, required=True)
     parser.add_argument("--phase", type=str, required=True,
                         choices=["cno", "fm"])
     parser.add_argument("--gpu", type=int, default=0)
@@ -30,6 +29,8 @@ def main():
     parser.add_argument("--config_dir", type=str, default=None)
     parser.add_argument("--resume", type=str, default=None,
                         help="Resume training from checkpoint")
+    parser.add_argument("--fast_dev_run", type=int, default=0,
+                        help="Run a short Lightning smoke test when > 0")
     args = parser.parse_args()
 
     # Load config
@@ -96,6 +97,9 @@ def main():
         logger=logger,
         deterministic=True,
         precision=tcfg.precision,
+        gradient_clip_val=1.0,
+        gradient_clip_algorithm="norm",
+        fast_dev_run=args.fast_dev_run,
     )
 
     trainer.fit(model, dm, ckpt_path=args.resume)

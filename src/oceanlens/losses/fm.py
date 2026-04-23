@@ -55,10 +55,22 @@ def _match_minibatch_ot(x0, x1, mask=None):
     return x0.index_select(0, order)
 
 
+def _sample_time(batch_size, device, cfg=None):
+    fm_cfg = getattr(cfg, "fm", {}) if cfg is not None else {}
+    mode = getattr(fm_cfg, "t_sampling", "uniform")
+    eps = float(getattr(fm_cfg, "t_eps", 1.0e-5))
+
+    if mode == "uniform":
+        return torch.rand(batch_size, device=device) * (1.0 - 2.0 * eps) + eps
+    if mode == "logit_normal":
+        return torch.sigmoid(torch.randn(batch_size, device=device)).clamp(eps, 1.0 - eps)
+    raise ValueError(f"Unknown FM t_sampling: {mode}")
+
+
 def flow_matching_loss(fm_model, x1, condition, mask=None, cfg=None):
     """Compute linear conditional Flow Matching on ocean pixels."""
     batch_size = x1.shape[0]
-    t = torch.rand(batch_size, device=x1.device)
+    t = _sample_time(batch_size, x1.device, cfg=cfg)
     x0 = torch.randn_like(x1)
     coupling = getattr(getattr(cfg, "fm", {}), "coupling", "independent") if cfg is not None else "independent"
     if coupling == "minibatch_ot":
