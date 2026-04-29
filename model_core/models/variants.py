@@ -1,5 +1,7 @@
 """Variant-specific routing."""
 
+from __future__ import annotations
+
 import torch
 
 
@@ -19,6 +21,11 @@ def _thetao_gradient(field: torch.Tensor, mask: torch.Tensor | None = None) -> t
 
     grad = torch.sqrt(grad_x.square() + grad_y.square() + 1.0e-12)
     if mask is not None:
+        mask = mask.to(device=grad.device, dtype=grad.dtype)
+        denom = mask.sum(dim=(2, 3), keepdim=True).clamp(min=1.0)
+        mean = (grad * mask).sum(dim=(2, 3), keepdim=True) / denom
+        var = ((grad - mean).square() * mask).sum(dim=(2, 3), keepdim=True) / denom
+        grad = (grad - mean) / (var.sqrt() + 1.0e-6)
         grad = grad * mask
     return grad
 

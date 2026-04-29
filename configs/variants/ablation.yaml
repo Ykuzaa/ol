@@ -1,6 +1,0 @@
-# Ablation: no CNO, FM cond = [x_t, LR]
-variant: ablation
-use_cno: false
-cno_mode: null
-fm_condition: [lr]
-fm_in_channels: 10       # 5 x_t + 5 lr
