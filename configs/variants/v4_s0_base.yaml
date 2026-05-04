@@ -1,0 +1,25 @@
+# S0: stable v4 FM baseline.
+variant: v4_s0_base
+use_cno: true
+cno_mode: residual
+fm_condition: [mu]
+fm_in_channels: 10
+
+fm:
+  coupling: minibatch_ot
+  t_sampling: uniform
+  t_eps: 1.0e-5
+  attn_heads: 8
+
+training:
+  fm:
+    lr: 1.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 30
+    warmup_epochs: 5
+    precision: bf16-mixed
+
+loss:
+  var_weights: [1.5, 1.0, 1.0, 2.0, 2.0]

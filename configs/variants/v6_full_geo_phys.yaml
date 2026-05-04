@@ -1,0 +1,64 @@
+# V6: full FM retrain on top of frozen v2_loggrad CNO.
+# Goal: keep the CNO large-scale mean, then learn a physically guided residual
+# with explicit geography and progressive conservation/spectral/front losses.
+variant: v6_full_geo_phys
+
+use_cno: true
+cno_mode: residual
+fm_condition: [mu, lr, mask, siconc, dist_coast, region_id]
+fm_in_channels: 22
+fm_target: residual_mu
+
+data:
+  patch_sampling:
+    enabled: true
+    mode: weighted
+    num_candidates: 32
+    weights:
+      open_ocean: 1.0
+      coastal: 2.0
+      mediterranean: 5.0
+      black_sea: 8.0
+      arctic_ice: 4.0
+      arctic_open: 3.0
+      antarctic: 2.0
+
+fm:
+  coupling: independent
+  t_sampling: logit_normal
+  t_eps: 1.0e-5
+  attn_heads: 8
+  cond_dropout_p: 0.0
+  num_inference_steps: 25
+
+training:
+  fm:
+    lr: 1.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 150
+    warmup_epochs: 5
+    precision: bf16-mixed
+    gradient_clip_val: 1.0
+    gradient_clip_algorithm: norm
+
+loss:
+  var_weights: [1.5, 0.3, 1.0, 1.5, 1.5]
+  recoarsen:
+    enabled: true
+    weight: 0.05
+    factor: 3
+    target: lr_native
+    warmup_epochs: 5
+    min_ocean_fraction: 0.5
+  spectral:
+    enabled: true
+    weight: 0.02
+    warmup_epochs: 15
+    log_power: true
+  gradient:
+    enabled: true
+    weight: 0.01
+    variables: [thetao]
+    warmup_epochs: 25

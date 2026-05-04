@@ -1,0 +1,74 @@
+variant: v9a_songunet_edm
+
+use_cno: true
+cno_mode: residual
+fm_target: residual_mu
+fm_condition: [mu, lr, mask, dist_coast, lat]
+fm_in_channels: 18
+
+data:
+  patch_size: 256
+
+fm:
+  arch: song_unet
+  objective: edm_denoising
+  x_channels: 5
+  out_channels: 5
+  time_dim: 256
+  attn_heads: 8
+  num_inference_steps: 18
+
+model:
+  condition_channels: 13
+  backbone: SongUNetPosEmbd
+  img_resolution: 256
+  model_channels: 128
+  channel_mult: [1, 2, 2, 2]
+  channel_mult_emb: 4
+  num_blocks: 4
+  attn_resolutions: [16, 32]
+  gridtype: learnable
+  N_grid_channels: 4
+
+edm:
+  preconditioning: edm
+  sigma_data: 0.5
+  sigma_min: 0.002
+  sigma_max: 80.0
+  rho: 7.0
+  P_mean: -1.2
+  P_std: 1.2
+
+training:
+  fm:
+    lr: 2.0e-4
+    weight_decay: 0.0
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 100
+    warmup_epochs: 10
+    precision: bf16-mixed
+    gradient_clip_val: 1.0
+    gradient_clip_algorithm: norm
+
+loss:
+  var_weights: [1.5, 0.3, 1.0, 1.5, 1.5]
+  recoarsen:
+    enabled: true
+    weight: 0.05
+    warmup_epochs: 0
+    min_ocean_fraction: 0.5
+  spectral:
+    enabled: true
+    weight: 0.01
+    warmup_epochs: 30
+    log_power: true
+
+sampler:
+  type: edm_stochastic
+  num_steps: 18
+  S_churn: 40.0
+  S_min: 0.0
+  S_max: 50.0
+  S_noise: 1.003
+  ensemble_members: 32

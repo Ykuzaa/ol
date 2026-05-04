@@ -1,0 +1,34 @@
+# Full retrain variant: S1 with explicit ocean mask conditioning plus regional sampling.
+variant: v4_s1_logit_t_mu_mask_regional
+use_cno: true
+cno_mode: residual
+fm_condition: [mu, mask]
+fm_in_channels: 11
+
+data:
+  patch_sampling:
+    enabled: true
+    num_candidates: 32
+    default_weight: 1.0
+    med_black_weight: 5.0
+    arctic_weight: 3.0
+    min_region_ocean_fraction: 0.3
+
+fm:
+  coupling: minibatch_ot
+  t_sampling: logit_normal
+  t_eps: 1.0e-5
+  attn_heads: 8
+
+training:
+  fm:
+    lr: 1.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 100
+    warmup_epochs: 5
+    precision: bf16-mixed
+
+loss:
+  var_weights: [1.5, 1.0, 1.0, 2.0, 2.0]

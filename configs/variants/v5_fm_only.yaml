@@ -1,0 +1,26 @@
+# V5 FM-only baseline: no CNO, FM learns HR - LR_up directly.
+variant: v5_fm_only
+use_cno: false
+cno_mode: null
+fm_condition: [lr]
+fm_in_channels: 10
+fm_target: residual_lr
+
+fm:
+  coupling: independent
+  t_sampling: uniform
+  t_eps: 1.0e-5
+  attn_heads: 8
+
+training:
+  fm:
+    lr: 1.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 120
+    warmup_epochs: 5
+    precision: bf16-mixed
+
+loss:
+  var_weights: [1.5, 1.0, 1.0, 2.0, 2.0]

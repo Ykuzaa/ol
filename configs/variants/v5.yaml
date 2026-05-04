@@ -1,0 +1,10 @@
+# V5: no CNO, FM learns a residual correction directly on top of LR_up.
+# FM condition: [LR_up]
+# FM target: HR - LR_up
+# prediction: LR_up + FM_residual
+variant: v5
+use_cno: false
+cno_mode: null
+fm_condition: [lr]
+fm_in_channels: 10       # 5 x_t + 5 lr
+fm_target: residual_lr

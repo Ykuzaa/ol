@@ -1,0 +1,31 @@
+{
+  "date": "2019-09-27",
+  "year": 2019,
+  "day_index": 269,
+  "variant": "v3",
+  "mode": "cno_fm",
+  "variables": [
+    "thetao",
+    "so",
+    "zos",
+    "uo",
+    "vo"
+  ],
+  "n_steps": 20,
+  "solver": "euler",
+  "ensemble_members": 1,
+  "tile_size": 128,
+  "tile_overlap": 16,
+  "model_upsample_mode": "nearest",
+  "baseline_upsample_mode": "nearest",
+  "raw_dir": "/scratch/emboulaalam/OceanLens/data/raw",
+  "coarsened_dir": "/scratch/emboulaalam/OceanLens/data/coarsened/coarsened15",
+  "norm_stats": "/scratch/emboulaalam/OceanLens/configs/norm_stats.json",
+  "cno_ckpt": "/scratch/emboulaalam/OceanLens_git/runs/v2_loggrad/cno/checkpoints/last.ckpt",
+  "fm_ckpt": "/scratch/emboulaalam/OceanLens_git/runs/v3/fm/checkpoints/last.ckpt",
+  "cno_parameters": 19511301,
+  "fm_parameters": 37522565,
+  "inference_seconds": 98.2990493150428,
+  "peak_gpu_allocated_mb": 309.015625,
+  "npz": "/scratch/emboulaalam/OceanLens_git/results/v3_minimal_day_index_269/day_2019-09-27.npz"
+}

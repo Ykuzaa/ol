@@ -1,0 +1,32 @@
+{
+  "date": "2004-01-01",
+  "year": 2004,
+  "day_index": 0,
+  "variant": "v6_full_geo_phys",
+  "mode": "cno_fm",
+  "variables": [
+    "thetao",
+    "so",
+    "zos",
+    "uo",
+    "vo"
+  ],
+  "n_steps": 25,
+  "solver": "heun",
+  "ensemble_members": 1,
+  "noise_sigma": 1.0,
+  "tile_size": 512,
+  "tile_overlap": 128,
+  "model_upsample_mode": "nearest",
+  "baseline_upsample_mode": "nearest",
+  "raw_dir": "/scratch/emboulaalam/OceanLens/data/raw",
+  "coarsened_dir": "/scratch/emboulaalam/OceanLens/data/coarsened/coarsened15",
+  "norm_stats": "/scratch/emboulaalam/OceanLens/configs/norm_stats.json",
+  "cno_ckpt": "/scratch/emboulaalam/OceanLens_git/runs/v2_loggrad/cno/checkpoints/last.ckpt",
+  "fm_ckpt": "/scratch/emboulaalam/OceanLens_git/runs/v6_full_geo_phys/fm/checkpoints/v6_full_geo_phys-fm-epoch=078.ckpt",
+  "cno_parameters": 19511301,
+  "fm_parameters": 37529477,
+  "inference_seconds": 299.4355372200953,
+  "peak_gpu_allocated_mb": 1509.6689453125,
+  "npz": "/scratch/emboulaalam/OceanLens_git/results/v6_full_geo_phys_epoch078_inference/heun25_sigma10_ens1/day_2004-01-01.npz"
+}

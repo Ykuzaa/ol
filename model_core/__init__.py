@@ -1,2 +1,0 @@
-"""OceanLens package."""
-

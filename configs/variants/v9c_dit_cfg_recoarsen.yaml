@@ -1,0 +1,53 @@
+variant: v9c_dit_cfg_recoarsen
+
+use_cno: true
+cno_mode: residual
+fm_target: residual_mu
+fm_condition: [mu, lr, mask, lat, lon_sin, lon_cos]
+fm_in_channels: 19
+
+data:
+  patch_size: 128
+
+fm:
+  arch: dit_pixel
+  x_channels: 5
+  coupling: minibatch_ot
+  t_sampling: logit_normal
+  t_eps: 1.0e-5
+  cond_dropout_p: 0.15
+  num_inference_steps: 25
+
+model:
+  condition_channels: 14
+  patch_size: 4
+  embed_dim: 384
+  depth: 12
+  heads: 12
+  mlp_ratio: 4.0
+  qk_norm: true
+  norm: rmsnorm
+  adaln_zero: true
+  rope_2d: true
+  swiglu: true
+
+training:
+  fm:
+    lr: 1.0e-4
+    weight_decay: 1.0e-5
+    batch_size: 4
+    accumulate_grad_batches: 4
+    max_epochs: 100
+    warmup_epochs: 15
+    precision: bf16-mixed
+    gradient_clip_val: 1.0
+    gradient_clip_algorithm: norm
+
+loss:
+  var_weights: [1.5, 0.3, 1.0, 1.5, 1.5]
+  recoarsen:
+    enabled: true
+    weight: 0.05
+    factor: 4
+    warmup_epochs: 10
+    min_ocean_fraction: 0.5

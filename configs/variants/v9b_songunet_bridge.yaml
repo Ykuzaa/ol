@@ -1,0 +1,70 @@
+variant: v9b_songunet_bridge
+
+use_cno: true
+cno_mode: residual
+fm_target: hr_direct
+fm_condition: [mu, lr, mask, dist_coast, lat]
+fm_in_channels: 18
+
+data:
+  patch_size: 256
+
+fm:
+  arch: song_unet
+  objective: diffusion_bridge
+  x_channels: 5
+  out_channels: 5
+  time_dim: 256
+  attn_heads: 8
+  num_inference_steps: 25
+
+model:
+  condition_channels: 13
+  backbone: NCSN_pp
+  img_resolution: 256
+  model_channels: 128
+  channel_mult: [1, 2, 2, 2]
+  channel_mult_emb: 4
+  num_blocks: 4
+  attn_resolutions: [16, 32]
+  gridtype: learnable
+  N_grid_channels: 4
+
+bridge:
+  bridge_type: schrodinger
+  sigma_min: 0.01
+  sigma_max: 1.0
+  beta_min: 0.1
+  beta_max: 20.0
+  flow_path: stochastic_interpolant
+
+training:
+  fm:
+    lr: 1.5e-4
+    weight_decay: 0.0
+    batch_size: 8
+    accumulate_grad_batches: 4
+    max_epochs: 100
+    warmup_epochs: 10
+    precision: bf16-mixed
+    gradient_clip_val: 1.0
+    gradient_clip_algorithm: norm
+
+loss:
+  var_weights: [1.5, 0.3, 1.0, 1.5, 1.5]
+  recoarsen:
+    enabled: true
+    weight: 0.05
+    warmup_epochs: 0
+    min_ocean_fraction: 0.5
+  spectral:
+    enabled: true
+    weight: 0.01
+    warmup_epochs: 0
+    log_power: true
+
+sampler:
+  type: heun_stochastic
+  num_steps: 25
+  S_churn: 20.0
+  ensemble_members: 32

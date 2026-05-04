@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oceanlens"
+version = "0.2.0"
+description = "CNO + Flow Matching for ocean downscaling"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1",
+    "pytorch-lightning>=2.1",
+    "pyyaml>=6.0",
+    "xarray",
+    "netcdf4",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "tensorboard",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
