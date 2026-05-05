@@ -1,0 +1,55 @@
+---
+title: "v9a_songunet_edm"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+NCSN++/SongUNet candidate trained with an EDM denoising objective.
+This version moves away from direct FM velocity prediction and tests a CorrDiff-style diffusion objective.
+
+| Field | Value |
+|---|---|
+| Architecture | SongUNetPosEmbd / NCSN++ style U-Net |
+| Objective | EDM denoising on `HR - mu` residual |
+| Input channels | `x_t`, `mu`, `lr`, mask, distance-to-coast, latitude |
+| Patch size | 256 |
+| Model channels | 128 |
+| Sigma range | 0.002 to 80 |
+| Motivation | test a proven diffusion downscaling objective against FM |
+| Research inspiration | PhysicsNeMo SongUNet, CorrDiff, EDM |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v9a_songunet_edm/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v9a_songunet_edm/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v9a_songunet_edm/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v9a_songunet_edm/so/`
+### zos
+`assets/figures/v9a_songunet_edm/zos/`
+### uo
+`assets/figures/v9a_songunet_edm/uo/`
+### vo
+`assets/figures/v9a_songunet_edm/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v9a_songunet_edm.csv`
+

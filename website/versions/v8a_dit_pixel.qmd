@@ -1,0 +1,53 @@
+---
+title: "v8a_dit_pixel"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Pixel-space DiT experiment replacing the U-Net FM backbone with token attention.
+
+| Field | Value |
+|---|---|
+| Architecture | pixel-space DiT |
+| Patch size | 4 |
+| Embed dim | 384 |
+| Depth | 12 |
+| Objective | residual Flow Matching |
+| Motivation | test whether global attention places residual energy better |
+| Research inspiration | DiT, AdaLN-Zero, RoPE 2D, modern diffusion transformers |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v8a_dit_pixel/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v8a_dit_pixel/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v8a_dit_pixel/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v8a_dit_pixel/so/`
+### zos
+`assets/figures/v8a_dit_pixel/zos/`
+### uo
+`assets/figures/v8a_dit_pixel/uo/`
+### vo
+`assets/figures/v8a_dit_pixel/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v8a_dit_pixel.csv`
+

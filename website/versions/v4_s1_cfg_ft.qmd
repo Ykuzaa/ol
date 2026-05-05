@@ -1,0 +1,52 @@
+---
+title: "v4_s1_cfg_ft"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Fine-tuning of `v4_s1_logit_t` with condition dropout to enable classifier-free guidance.
+
+| Field | Value |
+|---|---|
+| Init checkpoint | `v4_s1_logit_t` |
+| Added training change | condition dropout |
+| Dropout probability | 0.15 |
+| Inference control | `cfg_scale` sweep |
+| Motivation | reduce under-dispersion and make FM follow conditioning more strongly |
+| Research inspiration | classifier-free guidance in diffusion and flow models |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_cfg_ft/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_cfg_ft/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_cfg_ft/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v4_s1_cfg_ft/so/`
+### zos
+`assets/figures/v4_s1_cfg_ft/zos/`
+### uo
+`assets/figures/v4_s1_cfg_ft/uo/`
+### vo
+`assets/figures/v4_s1_cfg_ft/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v4_s1_cfg_ft.csv`
+

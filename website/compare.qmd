@@ -1,0 +1,33 @@
+---
+title: "Compare"
+format:
+  html:
+    page-layout: full
+---
+
+## Summary Table
+
+This page is reserved for the cross-version comparison once the LIR outputs are synchronized.
+
+| Version | Architecture | Objective | Key change | Status |
+|---|---|---|---|---|
+| v4_s1_logit_t | U-Net FM | residual_mu | logit-normal t sampling | Pending metrics |
+| v4_s1_recoarsen_ft | U-Net FM | residual_mu | re-coarsening consistency | Pending metrics |
+| v4_s1_cfg_ft | U-Net FM | residual_mu | condition dropout and CFG | Pending metrics |
+| v4_s1_regional_ft | U-Net FM | residual_mu | weighted regional sampling | Pending metrics |
+| v7a | Swin/FM | residual_mu | local window attention | Pending metrics |
+| v8a | DiT/FM | residual_mu | global token attention | Pending metrics |
+| v9a | SongUNet/EDM | residual_mu | CorrDiff-style EDM denoising | Pending metrics |
+| v9b | SongUNet bridge | HR direct | stochastic bridge from noisy CNO | Pending metrics |
+| v9c | DiT/FM | residual_mu | CFG + recoarsening | Pending metrics |
+
+## Planned Metrics
+
+| Metric | Why it matters |
+|---|---|
+| RMSE | Deterministic error against HR |
+| Bias | Large-scale systematic offset |
+| Residual std | Whether FM restores high-frequency energy |
+| Spatial correlation | Whether residual structures are placed correctly |
+| Coarsening error | Whether generated HR is consistent with LR after pooling |
+

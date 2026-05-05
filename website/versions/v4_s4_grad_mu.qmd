@@ -1,0 +1,51 @@
+---
+title: "v4_s4_grad_mu"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Gradient-conditioning ablation for the v4 residual FM U-Net.
+
+| Field | Value |
+|---|---|
+| Architecture | CNO v2_loggrad + U-Net FM |
+| Added condition | `grad_mu` |
+| Objective | Flow Matching on `HR - mu` |
+| Motivation | expose CNO front locations and sharp gradients |
+| Research inspiration | physically informed conditioning for downscaling |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s4_grad_mu/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s4_grad_mu/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s4_grad_mu/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v4_s4_grad_mu/so/`
+### zos
+`assets/figures/v4_s4_grad_mu/zos/`
+### uo
+`assets/figures/v4_s4_grad_mu/uo/`
+### vo
+`assets/figures/v4_s4_grad_mu/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v4_s4_grad_mu.csv`
+

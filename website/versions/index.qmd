@@ -1,0 +1,109 @@
+---
+title: "Versions"
+format:
+  html:
+    page-layout: full
+---
+
+## Version Pages
+
+::: {.version-grid}
+::: {.version-card}
+### v4 overview
+First CNO-conditioned residual Flow Matching family.
+
+[Open](v4.qmd)
+:::
+
+::: {.version-card}
+### v4_s1_logit_t
+Best early U-Net FM baseline with logit-normal time sampling.
+
+[Open](v4_s1_logit_t.qmd)
+:::
+
+::: {.version-card}
+### v4_s2_independent
+Independent coupling ablation.
+
+[Open](v4_s2_independent.qmd)
+:::
+
+::: {.version-card}
+### v4_s3_no_attn
+Attention ablation.
+
+[Open](v4_s3_no_attn.qmd)
+:::
+
+::: {.version-card}
+### v4_s4_grad_mu
+Gradient conditioning ablation.
+
+[Open](v4_s4_grad_mu.qmd)
+:::
+
+::: {.version-card}
+### v4_s1_recoarsen_ft
+Fine-tuning with LR/HR consistency through re-coarsening.
+
+[Open](v4_s1_recoarsen_ft.qmd)
+:::
+
+::: {.version-card}
+### v4_s1_cfg_ft
+Fine-tuning with condition dropout for CFG.
+
+[Open](v4_s1_cfg_ft.qmd)
+:::
+
+::: {.version-card}
+### v4_s1_regional_ft
+Fine-tuning with weighted sampling for Mediterranean, Black Sea and polar regions.
+
+[Open](v4_s1_regional_ft.qmd)
+:::
+
+::: {.version-card}
+### v6_full_geo_phys
+Geography/physics-augmented variant.
+
+[Open](v6_full_geo_phys.qmd)
+:::
+
+::: {.version-card}
+### v7a_swin
+Swin/window-attention experiment.
+
+[Open](v7a_swin.qmd)
+:::
+
+::: {.version-card}
+### v8a_dit_pixel
+Pixel-space DiT experiment.
+
+[Open](v8a_dit_pixel.qmd)
+:::
+
+::: {.version-card}
+### v9a_songunet_edm
+NCSN++/SongUNet with EDM denoising.
+
+[Open](v9a_songunet_edm.qmd)
+:::
+
+::: {.version-card}
+### v9b_songunet_bridge
+Diffusion bridge from noisy CNO to HR.
+
+[Open](v9b_songunet_bridge.qmd)
+:::
+
+::: {.version-card}
+### v9c_dit_cfg_recoarsen
+DiT with CFG training and re-coarsening.
+
+[Open](v9c_dit_cfg_recoarsen.qmd)
+:::
+:::
+

@@ -1,0 +1,51 @@
+---
+title: "v4_s1_regional_ft"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Fine-tuning of `v4_s1_logit_t` with weighted patch sampling for under-represented regions.
+
+| Field | Value |
+|---|---|
+| Init checkpoint | `v4_s1_logit_t` |
+| Data change | weighted regional patch sampling |
+| Regions | Mediterranean, Black Sea, Arctic |
+| Motivation | reduce regional failures caused by under-sampling |
+| Research inspiration | curriculum and importance sampling for regional downscaling |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_regional_ft/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_regional_ft/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_regional_ft/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v4_s1_regional_ft/so/`
+### zos
+`assets/figures/v4_s1_regional_ft/zos/`
+### uo
+`assets/figures/v4_s1_regional_ft/uo/`
+### vo
+`assets/figures/v4_s1_regional_ft/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v4_s1_regional_ft.csv`
+

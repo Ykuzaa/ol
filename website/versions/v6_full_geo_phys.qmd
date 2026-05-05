@@ -1,0 +1,50 @@
+---
+title: "v6_full_geo_phys"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Geography and physics-oriented extension of the residual Flow Matching setup.
+
+| Field | Value |
+|---|---|
+| Architecture | CNO-conditioned FM |
+| Added information | geography/static fields and physical consistency terms |
+| Motivation | reduce polar, coastal and semi-enclosed sea failures |
+| Research inspiration | physics-constrained adaptive FM and geospatial downscaling |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v6_full_geo_phys/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v6_full_geo_phys/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v6_full_geo_phys/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v6_full_geo_phys/so/`
+### zos
+`assets/figures/v6_full_geo_phys/zos/`
+### uo
+`assets/figures/v6_full_geo_phys/uo/`
+### vo
+`assets/figures/v6_full_geo_phys/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v6_full_geo_phys.csv`
+

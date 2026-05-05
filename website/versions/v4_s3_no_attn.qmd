@@ -1,0 +1,50 @@
+---
+title: "v4_s3_no_attn"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Attention ablation for the v4 residual FM U-Net.
+
+| Field | Value |
+|---|---|
+| Architecture | CNO v2_loggrad + U-Net FM without bottleneck attention |
+| Objective | Flow Matching on `HR - mu` |
+| Motivation | measure whether attention helps residual structure placement |
+| Research inspiration | U-Net attention ablations in generative downscaling |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s3_no_attn/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s3_no_attn/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s3_no_attn/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v4_s3_no_attn/so/`
+### zos
+`assets/figures/v4_s3_no_attn/zos/`
+### uo
+`assets/figures/v4_s3_no_attn/uo/`
+### vo
+`assets/figures/v4_s3_no_attn/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v4_s3_no_attn.csv`
+

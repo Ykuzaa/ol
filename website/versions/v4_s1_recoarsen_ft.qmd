@@ -1,0 +1,52 @@
+---
+title: "v4_s1_recoarsen_ft"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Fine-tuning of `v4_s1_logit_t` with a re-coarsening consistency loss.
+The generated HR field is downsampled and compared to the LR input.
+
+| Field | Value |
+|---|---|
+| Init checkpoint | `v4_s1_logit_t` |
+| Added loss | re-coarsening consistency |
+| Weight | 0.05 with warmup |
+| Motivation | force HR generation to conserve LR-scale information |
+| Research inspiration | re-coarsening consistency in super-resolution/downscaling papers |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_recoarsen_ft/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_recoarsen_ft/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_recoarsen_ft/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v4_s1_recoarsen_ft/so/`
+### zos
+`assets/figures/v4_s1_recoarsen_ft/zos/`
+### uo
+`assets/figures/v4_s1_recoarsen_ft/uo/`
+### vo
+`assets/figures/v4_s1_recoarsen_ft/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v4_s1_recoarsen_ft.csv`
+

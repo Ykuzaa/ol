@@ -1,0 +1,56 @@
+---
+title: "Methods"
+format:
+  html:
+    page-layout: full
+---
+
+## Core Components
+
+::: {.version-grid}
+::: {.method-card}
+### CNO Baseline
+The deterministic branch predicts a high-resolution correction from upsampled LR fields.
+It gives the mean structure used as conditioning for the generative residual models.
+:::
+
+::: {.method-card}
+### Flow Matching
+The FM branch learns a velocity field between noise and the HR residual.
+Inference integrates the learned velocity field with Euler or Heun solvers.
+:::
+
+::: {.method-card}
+### Re-coarsening Consistency
+The generated HR field is pooled back to LR resolution and penalized if it disagrees with the LR input.
+This follows the consistency idea used in weather and ocean downscaling work.
+:::
+
+::: {.method-card}
+### Classifier-Free Guidance
+Condition dropout during training allows inference to combine conditional and unconditional velocities.
+It is used to increase how strongly the model follows the CNO/LR conditioning.
+:::
+
+::: {.method-card}
+### Swin Attention
+Windowed attention targets local ocean structures such as fronts and eddies while keeping memory manageable.
+:::
+
+::: {.method-card}
+### Pixel DiT
+The DiT replaces convolutional bottlenecks with global token attention in pixel space.
+It tests whether global spatial interaction improves residual energy placement.
+:::
+
+::: {.method-card}
+### EDM / SongUNet
+The v9a candidate uses a Song/NCSN++-style U-Net with EDM denoising, inspired by CorrDiff-style downscaling.
+:::
+
+::: {.method-card}
+### Diffusion Bridge
+The v9b candidate starts from a noisy CNO field instead of pure Gaussian noise, then learns a bridge toward HR.
+:::
+:::
+

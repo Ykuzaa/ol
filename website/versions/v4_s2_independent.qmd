@@ -1,0 +1,51 @@
+---
+title: "v4_s2_independent"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Independent-coupling ablation for residual Flow Matching.
+
+| Field | Value |
+|---|---|
+| Architecture | CNO v2_loggrad + U-Net FM |
+| Objective | Flow Matching on `HR - mu` |
+| Coupling | independent |
+| Motivation | test whether minibatch OT pairing matters |
+| Research inspiration | Conditional Flow Matching pairing ablations |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s2_independent/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s2_independent/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s2_independent/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v4_s2_independent/so/`
+### zos
+`assets/figures/v4_s2_independent/zos/`
+### uo
+`assets/figures/v4_s2_independent/uo/`
+### vo
+`assets/figures/v4_s2_independent/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v4_s2_independent.csv`
+

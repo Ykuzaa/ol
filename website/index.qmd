@@ -1,0 +1,74 @@
+---
+title: "OceanLens Experiments"
+description: "Interactive static dashboard for OceanLens super-resolution model versions."
+format:
+  html:
+    page-layout: full
+---
+
+<section class="hero">
+  <div>
+    <h1>OceanLens model versions</h1>
+    <p>
+      This website tracks the OceanLens super-resolution experiments from the first Flow Matching baselines
+      to the recent Swin, DiT, EDM and bridge variants. Each version page documents the motivation,
+      architecture, training setup, research inspiration, figures and metrics.
+    </p>
+  </div>
+  <div class="hero-panel">
+    <strong>Current scope</strong>
+    <p>Skeleton first. Figures and metrics will be pulled from LIR results in the next step.</p>
+    <div class="tag-row">
+      <span class="tag">CNO</span>
+      <span class="tag">Flow Matching</span>
+      <span class="tag">Swin</span>
+      <span class="tag">DiT</span>
+      <span class="tag">EDM</span>
+    </div>
+  </div>
+</section>
+
+## Experiment Timeline
+
+::: {.version-grid}
+::: {.version-card}
+### v4 family
+Residual Flow Matching with CNO conditioning. Main ablations: coupling, time sampling, attention, gradient conditioning.
+
+[Open v4 overview](versions/v4.qmd)
+:::
+
+::: {.version-card}
+### v4 fine-tunings
+Re-coarsening consistency, classifier-free guidance and regional sampling.
+
+[Open v4_s1_logit_t](versions/v4_s1_logit_t.qmd)
+:::
+
+::: {.version-card}
+### v6/v7/v8
+Physics/geography variants, Swin local attention, and pixel-space DiT global attention.
+
+[Open v8a DiT](versions/v8a_dit_pixel.qmd)
+:::
+
+::: {.version-card}
+### v9 candidates
+NCSN++/SongUNet EDM, diffusion bridge and CFG/recoarsened DiT.
+
+[Open v9a EDM](versions/v9a_songunet_edm.qmd)
+:::
+:::
+
+## Figure Contract
+
+Each variable page expects three figure families:
+
+| Figure | Content | Example path |
+|---|---|---|
+| Presentation | HR, CNO, CNO+FM | `assets/figures/<version>/<var>/presentation.png` |
+| Residuals | HR-LR, CNO residual, FM residual | `assets/figures/<version>/<var>/residuals.png` |
+| Errors | CNO error, FM error | `assets/figures/<version>/<var>/errors.png` |
+
+Metrics are expected as `assets/metrics/<version>.csv`.
+

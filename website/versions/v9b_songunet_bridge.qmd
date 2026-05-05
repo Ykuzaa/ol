@@ -1,0 +1,53 @@
+---
+title: "v9b_songunet_bridge"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Diffusion-bridge candidate using the same SongUNet backbone, but starting from a noisy CNO field instead of pure noise.
+
+| Field | Value |
+|---|---|
+| Architecture | SongUNetPosEmbd / NCSN++ style U-Net |
+| Objective | stochastic bridge from noisy `mu` to HR |
+| Start state | `mu + sigma(mu) * eps` |
+| Target | HR direct |
+| Patch size | 256 |
+| Motivation | keep the trajectory physically close to the deterministic CNO state |
+| Research inspiration | diffusion bridges, stochastic interpolants, AFM-style adaptive noise |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v9b_songunet_bridge/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v9b_songunet_bridge/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v9b_songunet_bridge/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v9b_songunet_bridge/so/`
+### zos
+`assets/figures/v9b_songunet_bridge/zos/`
+### uo
+`assets/figures/v9b_songunet_bridge/uo/`
+### vo
+`assets/figures/v9b_songunet_bridge/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v9b_songunet_bridge.csv`
+

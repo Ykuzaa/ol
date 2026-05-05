@@ -1,0 +1,114 @@
+---
+title: "v4_s1_logit_t"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Best early U-Net Flow Matching baseline. It keeps CNO residual conditioning and changes time sampling to logit-normal.
+
+| Field | Value |
+|---|---|
+| Architecture | CNO v2_loggrad + U-Net FM |
+| Objective | Flow Matching on `HR - mu` |
+| Coupling | minibatch OT |
+| t sampling | logit-normal |
+| Inference baseline | Heun, 25 steps, sigma 1.0 |
+| Motivation | improve training signal around informative intermediate times |
+| Research inspiration | Conditional Flow Matching, OT-CFM, weather downscaling FM |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_logit_t/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_logit_t/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_logit_t/thetao/errors.png`
+:::
+:::
+
+### so
+
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_logit_t/so/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_logit_t/so/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_logit_t/so/errors.png`
+:::
+:::
+
+### zos
+
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_logit_t/zos/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_logit_t/zos/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_logit_t/zos/errors.png`
+:::
+:::
+
+### uo
+
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_logit_t/uo/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_logit_t/uo/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_logit_t/uo/errors.png`
+:::
+:::
+
+### vo
+
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v4_s1_logit_t/vo/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v4_s1_logit_t/vo/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v4_s1_logit_t/vo/errors.png`
+:::
+:::
+:::
+
+## Metrics
+
+`assets/metrics/v4_s1_logit_t.csv`
+

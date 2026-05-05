@@ -1,0 +1,56 @@
+---
+title: "v9c_dit_cfg_recoarsen"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+DiT Flow Matching candidate with condition dropout and re-coarsening consistency.
+It combines the v8 DiT backbone with the strongest fine-tuning ideas from the v4 family.
+
+| Field | Value |
+|---|---|
+| Architecture | pixel-space DiT |
+| Objective | Flow Matching on `HR - mu` |
+| Condition dropout | 0.15 |
+| Re-coarsening weight | 0.05 |
+| Patch size | 128 |
+| Embed dim | 384 |
+| Heads | 12 |
+| Motivation | test whether DiT benefits from CFG-ready training and LR consistency |
+| Research inspiration | DiT, classifier-free guidance, re-coarsening consistency |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v9c_dit_cfg_recoarsen/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v9c_dit_cfg_recoarsen/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v9c_dit_cfg_recoarsen/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v9c_dit_cfg_recoarsen/so/`
+### zos
+`assets/figures/v9c_dit_cfg_recoarsen/zos/`
+### uo
+`assets/figures/v9c_dit_cfg_recoarsen/uo/`
+### vo
+`assets/figures/v9c_dit_cfg_recoarsen/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v9c_dit_cfg_recoarsen.csv`
+

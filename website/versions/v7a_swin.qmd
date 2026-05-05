@@ -1,0 +1,51 @@
+---
+title: "v7a_swin"
+format:
+  html:
+    page-layout: full
+---
+
+## Description
+
+Window-attention model designed to test whether local attention is better suited to ocean residuals than global attention.
+
+| Field | Value |
+|---|---|
+| Architecture | Swin-style FM backbone |
+| Objective | residual Flow Matching |
+| Attention | local windows |
+| Motivation | eddies and fronts are mostly local structures |
+| Research inspiration | Swin Transformer, local attention downscaling |
+
+## Variables
+
+::: {.panel-tabset}
+### thetao
+::: {.figure-grid}
+::: {.figure-slot}
+#### HR / CNO / CNO+FM
+`assets/figures/v7a_swin/thetao/presentation.png`
+:::
+::: {.figure-slot}
+#### HR-LR / CNO Residual / FM Residual
+`assets/figures/v7a_swin/thetao/residuals.png`
+:::
+::: {.figure-slot}
+#### CNO Error / FM Error
+`assets/figures/v7a_swin/thetao/errors.png`
+:::
+:::
+### so
+`assets/figures/v7a_swin/so/`
+### zos
+`assets/figures/v7a_swin/zos/`
+### uo
+`assets/figures/v7a_swin/uo/`
+### vo
+`assets/figures/v7a_swin/vo/`
+:::
+
+## Metrics
+
+`assets/metrics/v7a_swin.csv`
+
