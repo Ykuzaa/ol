@@ -5,49 +5,46 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v9b / diffusion bridge</span>
 
-Diffusion-bridge candidate using the same SongUNet backbone, but starting from a noisy CNO field instead of pure noise.
+# v9b_songunet_bridge
+
+This version keeps the SongUNet backbone but starts the generative trajectory from a noisy CNO field instead of pure
+Gaussian noise.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The bridge starts close to the deterministic state:
+
+$$
+\mathbf{x}_0=\boldsymbol{\mu}+\sigma(\boldsymbol{\mu})\epsilon,\qquad \mathbf{x}_1=\mathbf{x}_{HR}.
+$$
+
+This should keep sampling physically closer to the observed LR-conditioned ocean than a pure noise-to-HR path.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | SongUNetPosEmbd / NCSN++ style U-Net |
-| Objective | stochastic bridge from noisy `mu` to HR |
+| Backbone | SongUNet / NCSN++ |
+| Objective | stochastic bridge |
 | Start state | `mu + sigma(mu) * eps` |
 | Target | HR direct |
-| Patch size | 256 |
-| Motivation | keep the trajectory physically close to the deterministic CNO state |
-| Research inspiration | diffusion bridges, stochastic interpolants, AFM-style adaptive noise |
+| Patch size | `256` |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v9b_songunet_bridge/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v9b_songunet_bridge/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v9b_songunet_bridge/thetao/errors.png`
+- [Diffusion bridge](../methods/bridge.html)
+- Stochastic interpolants
 :::
 :::
-### so
-`assets/figures/v9b_songunet_bridge/so/`
-### zos
-`assets/figures/v9b_songunet_bridge/zos/`
-### uo
-`assets/figures/v9b_songunet_bridge/uo/`
-### vo
-`assets/figures/v9b_songunet_bridge/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v9b_songunet_bridge.csv`
-

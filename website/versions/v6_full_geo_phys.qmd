@@ -5,6 +5,63 @@ format:
     page-layout: full
 ---
 
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v6</span>
+
+# v6_full_geo_phys
+
+This version tests whether explicit geographic and physical context can reduce the regional failures observed near
+coasts, polar zones and semi-enclosed seas.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The baseline residual model only sees dynamic ocean fields. v6 adds stronger geographic/static context so the model
+can condition residual generation on where it is in the ocean:
+
+$$
+v_{\theta}(\mathbf{x}_t,t,c),
+\qquad
+c = [\boldsymbol{\mu}, \mathbf{x}_{LR}, \mathrm{mask}, \mathrm{geo}]
+$$
+
+The intention is to make the residual less blind to coastal and polar regimes.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
+
+| Field | Value |
+|---|---|
+| Architecture | CNO-conditioned FM |
+| Added context | static/geographic fields |
+| Physical idea | coarse consistency |
+| Target | residual generation |
+| Motivation | polar/coastal failures |
+
+## Inference Used Here
+
+| Parameter | Value |
+|---|---|
+| Solver | Heun |
+| Sigma | `1.0` |
+| Output shown | `thetao` residuals |
+
+## References
+
+- Physics-constrained downscaling
+- Geospatial conditioning
+:::
+:::
+:::
+
+::: {.old-version}
+
 ## Description
 
 Geography and physics-oriented extension of the residual Flow Matching setup.
@@ -22,16 +79,9 @@ Geography and physics-oriented extension of the residual Flow Matching setup.
 ### thetao
 ::: {.figure-grid}
 ::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v6_full_geo_phys/thetao/presentation.png`
-:::
-::: {.figure-slot}
 #### HR-LR / CNO Residual / FM Residual
-`assets/figures/v6_full_geo_phys/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v6_full_geo_phys/thetao/errors.png`
+
+![v6 geography and physics thetao residuals.](../assets/figures/v6_full_geo_phys/thetao/residuals.png)
 :::
 :::
 ### so
@@ -47,4 +97,4 @@ Geography and physics-oriented extension of the residual Flow Matching setup.
 ## Metrics
 
 `assets/metrics/v6_full_geo_phys.csv`
-
+:::

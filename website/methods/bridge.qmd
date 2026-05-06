@@ -1,0 +1,23 @@
+---
+title: "Diffusion Bridge"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Diffusion Bridge
+
+The bridge variant starts from a noisy CNO/LR-informed state instead of pure Gaussian noise:
+
+$$
+\mathbf{x}_0=\boldsymbol{\mu}+\sigma(\boldsymbol{\mu})\epsilon,
+\qquad
+\mathbf{x}_1=\mathbf{x}_{HR}.
+$$
+
+This tests whether a physically meaningful starting point makes the generative path easier than noise-to-HR. In
+OceanLens this corresponds to `v9b`.
+
+Related reference: diffusion bridges and stochastic interpolants for downscaling.
+:::

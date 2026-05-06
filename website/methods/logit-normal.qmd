@@ -1,0 +1,21 @@
+---
+title: "Logit-normal t Sampling"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Logit-normal Time Sampling
+
+Instead of sampling time uniformly, OceanLens tested:
+
+$$
+u\sim\mathcal{N}(\mu_t,\sigma_t^2),\qquad t=\sigma(u).
+$$
+
+This concentrates training on more informative intermediate states, where the sample is neither pure noise nor already
+almost the target residual. It is one of the key choices in `v4_s1_logit_t`.
+
+Reference: [Flow Matching](https://arxiv.org/abs/2210.02747).
+:::

@@ -5,47 +5,57 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 / S2</span>
 
-Independent-coupling ablation for residual Flow Matching.
+# v4_s2_independent
+
+This ablation keeps the same CNO-conditioned U-Net FM as S1, but removes minibatch OT. Noise and residual targets
+are paired independently, which tests whether optimal pairing is actually helping residual structure.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The residual target is unchanged:
+
+$$
+\mathbf{x}_1=\mathbf{x}_{HR}-\boldsymbol{\mu}.
+$$
+
+The only change is the coupling:
+
+$$
+(\mathbf{x}_0,\mathbf{x}_1)\sim p_0(\mathbf{x}_0)p_1(\mathbf{x}_1)
+$$
+
+instead of solving the [minibatch OT](../methods/minibatch-ot.html) assignment.
+
+## Available Local Plot
+
+![v4_s2 thetao residuals.](../assets/figures/v4_s2_independent/thetao/residuals.png){.full-figure}
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | CNO v2_loggrad + U-Net FM |
-| Objective | Flow Matching on `HR - mu` |
+| CNO checkpoint | `v2_loggrad` |
+| FM backbone | U-Net |
+| Target | `HR - mu` |
 | Coupling | independent |
-| Motivation | test whether minibatch OT pairing matters |
-| Research inspiration | Conditional Flow Matching pairing ablations |
+| Time sampling | logit-normal |
+| Init | from scratch |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v4_s2_independent/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v4_s2_independent/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v4_s2_independent/thetao/errors.png`
+- [Flow Matching](https://arxiv.org/abs/2210.02747)
+- Coupling ablation against [minibatch OT](../methods/minibatch-ot.html)
 :::
 :::
-### so
-`assets/figures/v4_s2_independent/so/`
-### zos
-`assets/figures/v4_s2_independent/zos/`
-### uo
-`assets/figures/v4_s2_independent/uo/`
-### vo
-`assets/figures/v4_s2_independent/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v4_s2_independent.csv`
-

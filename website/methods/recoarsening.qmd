@@ -1,0 +1,22 @@
+---
+title: "Re-coarsening Loss"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Re-coarsening Consistency
+
+The generated HR field should remain compatible with the LR information. The re-coarsening loss applies a coarse
+operator \(C(\cdot)\) to the predicted HR field:
+
+$$
+\mathcal{L}_{coarse}=\|C(\widehat{\mathbf{x}}_{HR})-\mathbf{x}_{LR}\|_2^2.
+$$
+
+In OceanLens, this was fine-tuned from `v4_s1_logit_t` to reduce large-scale drift while allowing the FM branch to add
+small-scale residual energy.
+
+Related idea: consistency losses used in generative downscaling and CorrDiff-style workflows.
+:::

@@ -5,49 +5,99 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v8 / pixel DiT</span>
 
-Pixel-space DiT experiment replacing the U-Net FM backbone with token attention.
+# v8a_dit_pixel
+
+This version replaces the U-Net FM backbone with a pixel-space Diffusion Transformer. It tests whether token attention
+can recover structures that the convolutional U-Net misses.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The HR patch is patchified into tokens. Time and conditioning modulate the transformer through AdaLN-style layers:
+
+$$
+\mathrm{block}(z,t,c)=z+\gamma(t,c)\,\mathrm{Attn}(\mathrm{LN}(z))+\beta(t,c).
+$$
+
+The goal is to test global context for residual energy placement, especially in regions where local tiling produced
+horizontal artifacts. The figures currently shown use the best local copy available: `Heun 50`, `sigma=1.0`,
+`ensemble=1`, `tile=512`, `overlap=256`.
+
+## Variable Results
+
+::: {.panel-tabset .variable-tabs}
+### thetao
+
+#### HR / CNO / CNO+FM
+
+::: {.figure-placeholder-large}
+Placeholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.
+:::
+
+#### HR-LR / CNO residual / FM residual
+
+![v8a thetao residuals.](../assets/figures/v8a_dit_pixel/thetao/residuals.png){.full-figure}
+
+#### CNO error / FM error
+
+::: {.figure-placeholder-large}
+Placeholder: thetao CNO error / FM error figure.
+:::
+
+#### Loss curve
+
+::: {.figure-placeholder-large}
+Placeholder: TensorBoard train/val loss curve.
+:::
+
+### so
+
+#### HR-LR / CNO residual / FM residual
+
+![v8a so residuals.](../assets/figures/v8a_dit_pixel/so/residuals.png){.full-figure}
+
+### zos
+
+#### HR-LR / CNO residual / FM residual
+
+![v8a zos residuals.](../assets/figures/v8a_dit_pixel/zos/residuals.png){.full-figure}
+
+### uo
+
+#### HR-LR / CNO residual / FM residual
+
+![v8a uo residuals.](../assets/figures/v8a_dit_pixel/uo/residuals.png){.full-figure}
+
+### vo
+
+#### HR-LR / CNO residual / FM residual
+
+![v8a vo residuals.](../assets/figures/v8a_dit_pixel/vo/residuals.png){.full-figure}
+:::
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | pixel-space DiT |
-| Patch size | 4 |
-| Embed dim | 384 |
-| Depth | 12 |
-| Objective | residual Flow Matching |
-| Motivation | test whether global attention places residual energy better |
-| Research inspiration | DiT, AdaLN-Zero, RoPE 2D, modern diffusion transformers |
+| CNO checkpoint | `v2_loggrad` |
+| FM backbone | pixel DiT |
+| Patch size | `4` |
+| Embed dim | `384` |
+| Depth | `12` |
+| Conditioning | concat at patch embed |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v8a_dit_pixel/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v8a_dit_pixel/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v8a_dit_pixel/thetao/errors.png`
+- [DiT](https://arxiv.org/abs/2212.09748)
+- [Flow Matching](https://arxiv.org/abs/2210.02747)
 :::
 :::
-### so
-`assets/figures/v8a_dit_pixel/so/`
-### zos
-`assets/figures/v8a_dit_pixel/zos/`
-### uo
-`assets/figures/v8a_dit_pixel/uo/`
-### vo
-`assets/figures/v8a_dit_pixel/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v8a_dit_pixel.csv`
-

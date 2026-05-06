@@ -1,0 +1,933 @@
+[
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html",
+    "href": "versions/v4_s1_cfg_ft.html",
+    "title": "v4_s1_cfg_ft",
+    "section": "",
+    "text": "v4 / fine-tuning\n\n\nThis version fine-tunes v4_s1_logit_t with condition dropout so the sampler can use classifier-free guidance at inference time.\n\n\n\n\n\n\nDuring training, the condition is randomly removed for part of the batch. At inference, conditional and unconditional velocity estimates are combined:\n\\[\nv_{guided}=v_{\\emptyset}+w(v_{cond}-v_{\\emptyset})\n\\]\nThe goal was to push the model away from under-dispersive residuals without retraining the whole architecture.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nTraining change\ncondition dropout\n\n\nDropout probability\n0.15\n\n\nInference sweep\ncfg_scale\n\n\nTarget\nHR - mu\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n50\n\n\nSigma\n1.0\n\n\nEnsemble\n1\n\n\nCFG shown\n1.0, 2.0\n\n\n\n\n\n\n\nClassifier-free guidance\nConditional Flow Matching"
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#hypothesis",
+    "href": "versions/v4_s1_cfg_ft.html#hypothesis",
+    "title": "v4_s1_cfg_ft",
+    "section": "",
+    "text": "During training, the condition is randomly removed for part of the batch. At inference, conditional and unconditional velocity estimates are combined:\n\\[\nv_{guided}=v_{\\emptyset}+w(v_{cond}-v_{\\emptyset})\n\\]\nThe goal was to push the model away from under-dispersive residuals without retraining the whole architecture."
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#variable-results",
+    "href": "versions/v4_s1_cfg_ft.html#variable-results",
+    "title": "v4_s1_cfg_ft",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#parameters",
+    "href": "versions/v4_s1_cfg_ft.html#parameters",
+    "title": "v4_s1_cfg_ft",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nTraining change\ncondition dropout\n\n\nDropout probability\n0.15\n\n\nInference sweep\ncfg_scale\n\n\nTarget\nHR - mu"
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#inference-used-here",
+    "href": "versions/v4_s1_cfg_ft.html#inference-used-here",
+    "title": "v4_s1_cfg_ft",
+    "section": "",
+    "text": "Parameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n50\n\n\nSigma\n1.0\n\n\nEnsemble\n1\n\n\nCFG shown\n1.0, 2.0"
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#references",
+    "href": "versions/v4_s1_cfg_ft.html#references",
+    "title": "v4_s1_cfg_ft",
+    "section": "",
+    "text": "Classifier-free guidance\nConditional Flow Matching"
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#description",
+    "href": "versions/v4_s1_cfg_ft.html#description",
+    "title": "v4_s1_cfg_ft",
+    "section": "Description",
+    "text": "Description\nFine-tuning of v4_s1_logit_t with condition dropout to enable classifier-free guidance.\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nAdded training change\ncondition dropout\n\n\nDropout probability\n0.15\n\n\nInference control\ncfg_scale sweep\n\n\nMotivation\nreduce under-dispersion and make FM follow conditioning more strongly\n\n\nResearch inspiration\nclassifier-free guidance in diffusion and flow models"
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#variables",
+    "href": "versions/v4_s1_cfg_ft.html#variables",
+    "title": "v4_s1_cfg_ft",
+    "section": "Variables",
+    "text": "Variables\n\nthetaoso\n\n\n\n\nCFG 1.0\n\n\n\nCFG fine-tune thetao residuals with cfg scale 1.0.\n\n\n\n\nCFG 2.0\n\n\n\nCFG fine-tune thetao residuals with cfg scale 2.0.\n\n\n\n\n\n\nassets/figures/v4_s1_cfg_ft/so/ ### zos assets/figures/v4_s1_cfg_ft/zos/ ### uo assets/figures/v4_s1_cfg_ft/uo/ ### vo assets/figures/v4_s1_cfg_ft/vo/"
+  },
+  {
+    "objectID": "versions/v4_s1_cfg_ft.html#metrics",
+    "href": "versions/v4_s1_cfg_ft.html#metrics",
+    "title": "v4_s1_cfg_ft",
+    "section": "Metrics",
+    "text": "Metrics\nassets/metrics/v4_s1_cfg_ft.csv"
+  },
+  {
+    "objectID": "versions/index.html",
+    "href": "versions/index.html",
+    "title": "Versions",
+    "section": "",
+    "text": "All experiments start from the same deterministic base: a CNO trained to predict HR - LR on GLORYS surface fields, then fine-tuned with log-absolute temperature-gradient information. The goal of the version tree is to find the best FM model after this CNO: each FM variant learns HR - mu, with mu = LR + CNO(LR). Fine-tuning branches are initialized from v4_s1_logit_t.\n\nMain training and architecture line\n\nv4 · U-Net FM v5 · FM-only v6 · geo physics v7 · Swin local v8 · pixel DiT v9 · diffusion family\n\nv4 ablations\n\nS1 · OT + logit-t S2 · independent S3 · no attention S4 · grad-mu\n\nFine-tuned from S1\n\nFT · recoarsen FT · CFG FT · regional\n\nv9 branches\n\nv9a · SongUNet EDM v9b · bridge v9c · DiT hybrid\n\n\n\n\n\n\nv4\n\nFirst CNO-conditioned residual Flow Matching family.\n\nv4_s1_logit_t\n\nBest early U-Net FM baseline, using minibatch OT and logit-normal time sampling.\n\nv4_s1_recoarsen_ft\n\nFine-tuning with re-coarsening consistency.\n\nv4_s1_cfg_ft\n\nFine-tuning with condition dropout for classifier-free guidance.\n\nv4_s1_regional_ft\n\nRegional oversampling for Mediterranean, Black Sea and polar failures.\n\nv7a_swin\n\nLocal window attention using a Swin-style backbone.\n\nv8a_dit_pixel\n\nPixel-space DiT replacing the U-Net FM backbone.\n\nv9a / v9b / v9c\n\nDiffusion alternatives: EDM, bridge, and DiT hybrid."
+  },
+  {
+    "objectID": "versions/index.html#reading-the-tree",
+    "href": "versions/index.html#reading-the-tree",
+    "title": "Versions",
+    "section": "",
+    "text": "v4\n\nFirst CNO-conditioned residual Flow Matching family.\n\nv4_s1_logit_t\n\nBest early U-Net FM baseline, using minibatch OT and logit-normal time sampling.\n\nv4_s1_recoarsen_ft\n\nFine-tuning with re-coarsening consistency.\n\nv4_s1_cfg_ft\n\nFine-tuning with condition dropout for classifier-free guidance.\n\nv4_s1_regional_ft\n\nRegional oversampling for Mediterranean, Black Sea and polar failures.\n\nv7a_swin\n\nLocal window attention using a Swin-style backbone.\n\nv8a_dit_pixel\n\nPixel-space DiT replacing the U-Net FM backbone.\n\nv9a / v9b / v9c\n\nDiffusion alternatives: EDM, bridge, and DiT hybrid."
+  },
+  {
+    "objectID": "versions/v4.html",
+    "href": "versions/v4.html",
+    "title": "v4 Family",
+    "section": "",
+    "text": "v4 family\n\n\nThe v4 family is the first stable CNO-conditioned residual Flow Matching setup. The deterministic CNO predicts the large-scale HR estimate, and the FM U-Net generates the unresolved residual.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nDeterministic model\nCNO v2_loggrad\n\n\nGenerative model\nU-Net Flow Matching\n\n\nTarget\nHR - mu residual\n\n\nMain question\nWhich FM choices recover residual energy without artifacts?\n\n\nInspired by\nConditional Flow Matching, stochastic downscaling, CorrDiff-style residual generation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVersion\nChange\nMotivation\n\n\n\n\nv4_s1_logit_t\nlogit-normal time sampling\nsample more useful intermediate times\n\n\nv4_s2_independent\nindependent coupling\ncompare pairing strategy against minibatch OT\n\n\nv4_s3_no_attn\nremove attention\nmeasure bottleneck attention effect\n\n\nv4_s4_grad_mu\nadd CNO gradient\nexpose fronts and sharp CNO structures\n\n\n\n\n\n\n\n\n\nv4 thetao residuals.\n\n\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\nThis page summarizes the v4 branch. The detailed ablations are:\n\nv4_s1_logit_t\nv4_s2_independent\nv4_s3_no_attn\nv4_s4_grad_mu"
+  },
+  {
+    "objectID": "versions/v4.html#what-changed",
+    "href": "versions/v4.html#what-changed",
+    "title": "v4 Family",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nDeterministic model\nCNO v2_loggrad\n\n\nGenerative model\nU-Net Flow Matching\n\n\nTarget\nHR - mu residual\n\n\nMain question\nWhich FM choices recover residual energy without artifacts?\n\n\nInspired by\nConditional Flow Matching, stochastic downscaling, CorrDiff-style residual generation"
+  },
+  {
+    "objectID": "versions/v4.html#ablations",
+    "href": "versions/v4.html#ablations",
+    "title": "v4 Family",
+    "section": "",
+    "text": "Version\nChange\nMotivation\n\n\n\n\nv4_s1_logit_t\nlogit-normal time sampling\nsample more useful intermediate times\n\n\nv4_s2_independent\nindependent coupling\ncompare pairing strategy against minibatch OT\n\n\nv4_s3_no_attn\nremove attention\nmeasure bottleneck attention effect\n\n\nv4_s4_grad_mu\nadd CNO gradient\nexpose fronts and sharp CNO structures"
+  },
+  {
+    "objectID": "versions/v4.html#available-local-plot",
+    "href": "versions/v4.html#available-local-plot",
+    "title": "v4 Family",
+    "section": "",
+    "text": "v4 thetao residuals."
+  },
+  {
+    "objectID": "versions/v4.html#variable-results",
+    "href": "versions/v4.html#variable-results",
+    "title": "v4 Family",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4.html#family-role",
+    "href": "versions/v4.html#family-role",
+    "title": "v4 Family",
+    "section": "",
+    "text": "This page summarizes the v4 branch. The detailed ablations are:\n\nv4_s1_logit_t\nv4_s2_independent\nv4_s3_no_attn\nv4_s4_grad_mu"
+  },
+  {
+    "objectID": "versions/v9c_dit_cfg_recoarsen.html",
+    "href": "versions/v9c_dit_cfg_recoarsen.html",
+    "title": "v9c_dit_cfg_recoarsen",
+    "section": "",
+    "text": "v9c / DiT hybrid\n\n\nThis version combines the v8 DiT backbone with the strongest v4 fine-tuning ideas: condition dropout for CFG and re-coarsening consistency.\n\n\n\n\n\n\nThe training objective combines FM with coarse consistency:\n\\[\n\\mathcal{L}=\\mathcal{L}_{FM}+\\lambda_c\\left\\|C(\\widehat{\\mathbf{x}}_{HR})-\\mathbf{x}_{LR}\\right\\|_2^2.\n\\]\nCondition dropout also makes the model CFG-ready at inference.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nBackbone\npixel DiT\n\n\nObjective\nresidual FM\n\n\nCondition dropout\n0.15\n\n\nRe-coarsening weight\n0.05\n\n\nEmbed dim\n384\n\n\nHeads\n12\n\n\n\n\n\n\n\nDiT\nCFG\nRe-coarsening"
+  },
+  {
+    "objectID": "versions/v9c_dit_cfg_recoarsen.html#hypothesis",
+    "href": "versions/v9c_dit_cfg_recoarsen.html#hypothesis",
+    "title": "v9c_dit_cfg_recoarsen",
+    "section": "",
+    "text": "The training objective combines FM with coarse consistency:\n\\[\n\\mathcal{L}=\\mathcal{L}_{FM}+\\lambda_c\\left\\|C(\\widehat{\\mathbf{x}}_{HR})-\\mathbf{x}_{LR}\\right\\|_2^2.\n\\]\nCondition dropout also makes the model CFG-ready at inference."
+  },
+  {
+    "objectID": "versions/v9c_dit_cfg_recoarsen.html#variable-results",
+    "href": "versions/v9c_dit_cfg_recoarsen.html#variable-results",
+    "title": "v9c_dit_cfg_recoarsen",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v9c_dit_cfg_recoarsen.html#parameters",
+    "href": "versions/v9c_dit_cfg_recoarsen.html#parameters",
+    "title": "v9c_dit_cfg_recoarsen",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nBackbone\npixel DiT\n\n\nObjective\nresidual FM\n\n\nCondition dropout\n0.15\n\n\nRe-coarsening weight\n0.05\n\n\nEmbed dim\n384\n\n\nHeads\n12"
+  },
+  {
+    "objectID": "versions/v9c_dit_cfg_recoarsen.html#references",
+    "href": "versions/v9c_dit_cfg_recoarsen.html#references",
+    "title": "v9c_dit_cfg_recoarsen",
+    "section": "",
+    "text": "DiT\nCFG\nRe-coarsening"
+  },
+  {
+    "objectID": "versions/v9b_songunet_bridge.html",
+    "href": "versions/v9b_songunet_bridge.html",
+    "title": "v9b_songunet_bridge",
+    "section": "",
+    "text": "v9b / diffusion bridge\n\n\nThis version keeps the SongUNet backbone but starts the generative trajectory from a noisy CNO field instead of pure Gaussian noise.\n\n\n\n\n\n\nThe bridge starts close to the deterministic state:\n\\[\n\\mathbf{x}_0=\\boldsymbol{\\mu}+\\sigma(\\boldsymbol{\\mu})\\epsilon,\\qquad \\mathbf{x}_1=\\mathbf{x}_{HR}.\n\\]\nThis should keep sampling physically closer to the observed LR-conditioned ocean than a pure noise-to-HR path.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nBackbone\nSongUNet / NCSN++\n\n\nObjective\nstochastic bridge\n\n\nStart state\nmu + sigma(mu) * eps\n\n\nTarget\nHR direct\n\n\nPatch size\n256\n\n\n\n\n\n\n\nDiffusion bridge\nStochastic interpolants"
+  },
+  {
+    "objectID": "versions/v9b_songunet_bridge.html#hypothesis",
+    "href": "versions/v9b_songunet_bridge.html#hypothesis",
+    "title": "v9b_songunet_bridge",
+    "section": "",
+    "text": "The bridge starts close to the deterministic state:\n\\[\n\\mathbf{x}_0=\\boldsymbol{\\mu}+\\sigma(\\boldsymbol{\\mu})\\epsilon,\\qquad \\mathbf{x}_1=\\mathbf{x}_{HR}.\n\\]\nThis should keep sampling physically closer to the observed LR-conditioned ocean than a pure noise-to-HR path."
+  },
+  {
+    "objectID": "versions/v9b_songunet_bridge.html#variable-results",
+    "href": "versions/v9b_songunet_bridge.html#variable-results",
+    "title": "v9b_songunet_bridge",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v9b_songunet_bridge.html#parameters",
+    "href": "versions/v9b_songunet_bridge.html#parameters",
+    "title": "v9b_songunet_bridge",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nBackbone\nSongUNet / NCSN++\n\n\nObjective\nstochastic bridge\n\n\nStart state\nmu + sigma(mu) * eps\n\n\nTarget\nHR direct\n\n\nPatch size\n256"
+  },
+  {
+    "objectID": "versions/v9b_songunet_bridge.html#references",
+    "href": "versions/v9b_songunet_bridge.html#references",
+    "title": "v9b_songunet_bridge",
+    "section": "",
+    "text": "Diffusion bridge\nStochastic interpolants"
+  },
+  {
+    "objectID": "versions/v7a_swin.html",
+    "href": "versions/v7a_swin.html",
+    "title": "v7a_swin",
+    "section": "",
+    "text": "v7 / local transformer\n\n\nThis architecture replaces the U-Net FM backbone with Swin-style local window attention. The question is whether ocean residuals are better modeled by local attention than by global token mixing.\n\n\n\n\n\n\nMost energetic submesoscale structures are local: fronts, eddies and coastal gradients. Swin attention restricts attention to windows:\n\\[\n\\mathrm{Attn}(Q,K,V)=\\mathrm{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d}}\\right)V\n\\]\nbut applies it locally, reducing compute while still letting nearby ocean tokens communicate.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\n\n\nv7a thetao residuals.\n\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\nPlaceholder: so figures will be exported from LIR.\n\n\n\n\nPlaceholder: zos figures will be exported from LIR.\n\n\n\n\nPlaceholder: uo figures will be exported from LIR.\n\n\n\n\nPlaceholder: vo figures will be exported from LIR.\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nSwin-style\n\n\nAttention\nlocal windows\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal\n\n\n\n\n\n\n\nSwin Transformer\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v7a_swin.html#hypothesis",
+    "href": "versions/v7a_swin.html#hypothesis",
+    "title": "v7a_swin",
+    "section": "",
+    "text": "Most energetic submesoscale structures are local: fronts, eddies and coastal gradients. Swin attention restricts attention to windows:\n\\[\n\\mathrm{Attn}(Q,K,V)=\\mathrm{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d}}\\right)V\n\\]\nbut applies it locally, reducing compute while still letting nearby ocean tokens communicate."
+  },
+  {
+    "objectID": "versions/v7a_swin.html#variable-results",
+    "href": "versions/v7a_swin.html#variable-results",
+    "title": "v7a_swin",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\n\n\nv7a thetao residuals.\n\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\nPlaceholder: so figures will be exported from LIR.\n\n\n\n\nPlaceholder: zos figures will be exported from LIR.\n\n\n\n\nPlaceholder: uo figures will be exported from LIR.\n\n\n\n\nPlaceholder: vo figures will be exported from LIR."
+  },
+  {
+    "objectID": "versions/v7a_swin.html#parameters",
+    "href": "versions/v7a_swin.html#parameters",
+    "title": "v7a_swin",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nSwin-style\n\n\nAttention\nlocal windows\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal"
+  },
+  {
+    "objectID": "versions/v7a_swin.html#references",
+    "href": "versions/v7a_swin.html#references",
+    "title": "v7a_swin",
+    "section": "",
+    "text": "Swin Transformer\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v9a_songunet_edm.html",
+    "href": "versions/v9a_songunet_edm.html",
+    "title": "v9a_songunet_edm",
+    "section": "",
+    "text": "v9a / EDM diffusion\n\n\nThis version tests a CorrDiff-style diffusion objective with a SongUNet/NCSN++ backbone instead of direct FM velocity prediction.\n\n\n\n\n\n\nEDM trains a denoiser over a wide noise range:\n\\[\n\\mathcal{L}_{EDM}=\\lambda(\\sigma)\\left\\|D_\\theta(\\mathbf{x}+\\sigma\\epsilon,\\sigma,c)-\\mathbf{x}\\right\\|_2^2.\n\\]\nThe goal is to compare a proven diffusion downscaling objective against residual Flow Matching.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nBackbone\nSongUNet / NCSN++\n\n\nObjective\nEDM denoising\n\n\nTarget\nHR - mu residual\n\n\nPatch size\n256\n\n\nModel channels\n128\n\n\nSigma range\n0.002 to 80\n\n\n\n\n\n\n\nEDM\nCorrDiff-style generative downscaling"
+  },
+  {
+    "objectID": "versions/v9a_songunet_edm.html#hypothesis",
+    "href": "versions/v9a_songunet_edm.html#hypothesis",
+    "title": "v9a_songunet_edm",
+    "section": "",
+    "text": "EDM trains a denoiser over a wide noise range:\n\\[\n\\mathcal{L}_{EDM}=\\lambda(\\sigma)\\left\\|D_\\theta(\\mathbf{x}+\\sigma\\epsilon,\\sigma,c)-\\mathbf{x}\\right\\|_2^2.\n\\]\nThe goal is to compare a proven diffusion downscaling objective against residual Flow Matching."
+  },
+  {
+    "objectID": "versions/v9a_songunet_edm.html#variable-results",
+    "href": "versions/v9a_songunet_edm.html#variable-results",
+    "title": "v9a_songunet_edm",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v9a_songunet_edm.html#parameters",
+    "href": "versions/v9a_songunet_edm.html#parameters",
+    "title": "v9a_songunet_edm",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nBackbone\nSongUNet / NCSN++\n\n\nObjective\nEDM denoising\n\n\nTarget\nHR - mu residual\n\n\nPatch size\n256\n\n\nModel channels\n128\n\n\nSigma range\n0.002 to 80"
+  },
+  {
+    "objectID": "versions/v9a_songunet_edm.html#references",
+    "href": "versions/v9a_songunet_edm.html#references",
+    "title": "v9a_songunet_edm",
+    "section": "",
+    "text": "EDM\nCorrDiff-style generative downscaling"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html",
+    "href": "versions/v4_s1_regional_ft.html",
+    "title": "v4_s1_regional_ft",
+    "section": "",
+    "text": "v4 / fine-tuning\n\n\nThis version keeps the same architecture but changes the sampling distribution. It oversamples regions that were visually weak: Mediterranean, Black Sea and Arctic patches.\n\n\n\n\n\n\nUniform patch sampling gives too much probability mass to open-ocean patches. I changed the patch probability:\n\\[\np(\\text{patch}) \\propto w_{region}\\,\\mathbb{1}(f_{ocean}&gt;\\tau)\n\\]\nso small or difficult regions appear more often during fine-tuning.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nData change\nweighted patch sampling\n\n\nRegions\nMed, Black Sea, Arctic\n\n\nRegion ocean threshold\n0.3\n\n\nDefault weight\n1.0\n\n\nMed/Black weight\n5.0\n\n\nArctic weight\n3.0\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n50\n\n\nSigma\n1.0\n\n\nEnsemble\n1\n\n\n\n\n\n\n\nImportance sampling for regional failures\nResidual Flow Matching"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#hypothesis",
+    "href": "versions/v4_s1_regional_ft.html#hypothesis",
+    "title": "v4_s1_regional_ft",
+    "section": "",
+    "text": "Uniform patch sampling gives too much probability mass to open-ocean patches. I changed the patch probability:\n\\[\np(\\text{patch}) \\propto w_{region}\\,\\mathbb{1}(f_{ocean}&gt;\\tau)\n\\]\nso small or difficult regions appear more often during fine-tuning."
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#variable-results",
+    "href": "versions/v4_s1_regional_ft.html#variable-results",
+    "title": "v4_s1_regional_ft",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#parameters",
+    "href": "versions/v4_s1_regional_ft.html#parameters",
+    "title": "v4_s1_regional_ft",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nData change\nweighted patch sampling\n\n\nRegions\nMed, Black Sea, Arctic\n\n\nRegion ocean threshold\n0.3\n\n\nDefault weight\n1.0\n\n\nMed/Black weight\n5.0\n\n\nArctic weight\n3.0"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#inference-used-here",
+    "href": "versions/v4_s1_regional_ft.html#inference-used-here",
+    "title": "v4_s1_regional_ft",
+    "section": "",
+    "text": "Parameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n50\n\n\nSigma\n1.0\n\n\nEnsemble\n1"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#references",
+    "href": "versions/v4_s1_regional_ft.html#references",
+    "title": "v4_s1_regional_ft",
+    "section": "",
+    "text": "Importance sampling for regional failures\nResidual Flow Matching"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#description",
+    "href": "versions/v4_s1_regional_ft.html#description",
+    "title": "v4_s1_regional_ft",
+    "section": "Description",
+    "text": "Description\nFine-tuning of v4_s1_logit_t with weighted patch sampling for under-represented regions.\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nData change\nweighted regional patch sampling\n\n\nRegions\nMediterranean, Black Sea, Arctic\n\n\nMotivation\nreduce regional failures caused by under-sampling\n\n\nResearch inspiration\ncurriculum and importance sampling for regional downscaling"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#variables",
+    "href": "versions/v4_s1_regional_ft.html#variables",
+    "title": "v4_s1_regional_ft",
+    "section": "Variables",
+    "text": "Variables\n\nthetaoso\n\n\n\n\nHR-LR / CNO Residual / FM Residual\n\n\n\nRegional fine-tune thetao residuals.\n\n\n\n\n\n\nassets/figures/v4_s1_regional_ft/so/ ### zos assets/figures/v4_s1_regional_ft/zos/ ### uo assets/figures/v4_s1_regional_ft/uo/ ### vo assets/figures/v4_s1_regional_ft/vo/"
+  },
+  {
+    "objectID": "versions/v4_s1_regional_ft.html#metrics",
+    "href": "versions/v4_s1_regional_ft.html#metrics",
+    "title": "v4_s1_regional_ft",
+    "section": "Metrics",
+    "text": "Metrics\nassets/metrics/v4_s1_regional_ft.csv"
+  },
+  {
+    "objectID": "flow-matching.html",
+    "href": "flow-matching.html",
+    "title": "Flow Matching Branch",
+    "section": "",
+    "text": "Flow Matching models the unresolved residual after the CNO mean:\n\\[\n\\mathbf{x}_1 = \\mathbf{x}_{HR} - \\boldsymbol{\\mu}\n\\]\nThe model starts from noise:\n\\[\n\\mathbf{x}_0 \\sim \\mathcal{N}(0, I)\n\\]\nand learns a velocity field that moves from noise to the residual:\n\\[\n\\mathbf{x}_t = (1-t)\\mathbf{x}_0 + t\\mathbf{x}_1\n\\]\nFor the linear path used in the v4 family, the target velocity is:\n\\[\n\\mathbf{v}^{*} = \\mathbf{x}_1 - \\mathbf{x}_0\n\\]\nThe training objective is:\n\\[\n\\mathcal{L}_{FM} =\n\\mathbb{E}_{t,\\mathbf{x}_0,\\mathbf{x}_1}\n\\left[\n\\left\\| v_{\\phi}(\\mathbf{x}_t, t, \\boldsymbol{\\mu}, \\mathbf{x}_{LR})\n- (\\mathbf{x}_1 - \\mathbf{x}_0) \\right\\|_2^2\n\\right]\n\\]"
+  },
+  {
+    "objectID": "flow-matching.html#role-in-oceanlens",
+    "href": "flow-matching.html#role-in-oceanlens",
+    "title": "Flow Matching Branch",
+    "section": "",
+    "text": "Flow Matching models the unresolved residual after the CNO mean:\n\\[\n\\mathbf{x}_1 = \\mathbf{x}_{HR} - \\boldsymbol{\\mu}\n\\]\nThe model starts from noise:\n\\[\n\\mathbf{x}_0 \\sim \\mathcal{N}(0, I)\n\\]\nand learns a velocity field that moves from noise to the residual:\n\\[\n\\mathbf{x}_t = (1-t)\\mathbf{x}_0 + t\\mathbf{x}_1\n\\]\nFor the linear path used in the v4 family, the target velocity is:\n\\[\n\\mathbf{v}^{*} = \\mathbf{x}_1 - \\mathbf{x}_0\n\\]\nThe training objective is:\n\\[\n\\mathcal{L}_{FM} =\n\\mathbb{E}_{t,\\mathbf{x}_0,\\mathbf{x}_1}\n\\left[\n\\left\\| v_{\\phi}(\\mathbf{x}_t, t, \\boldsymbol{\\mu}, \\mathbf{x}_{LR})\n- (\\mathbf{x}_1 - \\mathbf{x}_0) \\right\\|_2^2\n\\right]\n\\]"
+  },
+  {
+    "objectID": "flow-matching.html#inference",
+    "href": "flow-matching.html#inference",
+    "title": "Flow Matching Branch",
+    "section": "Inference",
+    "text": "Inference\nAt inference time the model samples a new residual by solving an ODE:\n\\[\n\\frac{d\\mathbf{x}}{dt} = v_{\\phi}(\\mathbf{x}_t, t, \\boldsymbol{\\mu}, \\mathbf{x}_{LR})\n\\]\nThe generated field is:\n\\[\n\\widehat{\\mathbf{x}}_{HR} = \\boldsymbol{\\mu} + \\widehat{\\mathbf{r}}_{FM}\n\\]\nThat is why solver choices matter. Euler, Heun, number of steps, noise temperature and tiling affect the final residual map even when the trained weights are fixed.\n\n\nMain paper\nFlow Matching for Generative Modeling\n\n\nUseful code reference\ng4vrel/CFM\n\n\nOceanLens implementation\nsrc/oceanlens/losses/fm.py and src/oceanlens/models/fm_unet.py"
+  },
+  {
+    "objectID": "flow-matching.html#oceanlens-choices",
+    "href": "flow-matching.html#oceanlens-choices",
+    "title": "Flow Matching Branch",
+    "section": "OceanLens Choices",
+    "text": "OceanLens Choices\n\n\n\n\n\n\n\nChoice\nWhy it matters\n\n\n\n\nResidual target HR - mu\nFM only learns what CNO missed\n\n\nMinibatch OT\nBetter matching between noise samples and residual targets\n\n\nLogit-normal t sampling\nSamples more useful intermediate times\n\n\nHeun inference\nMore accurate ODE integration than Euler\n\n\nCFG fine-tuning\nAllows stronger conditioning at inference\n\n\nRe-coarsening loss\nKeeps generated HR consistent with LR after pooling"
+  },
+  {
+    "objectID": "cno.html",
+    "href": "cno.html",
+    "title": "CNO Branch",
+    "section": "",
+    "text": "The CNO branch is the deterministic part of the decomposition:\n\\[\n\\mathbf{x}_{HR} = \\boldsymbol{\\mu}(\\mathbf{x}_{LR}) + \\mathbf{r}\n\\]\nIt estimates the large-scale high-resolution field:\n\\[\n\\boldsymbol{\\mu} =\n\\mathbf{x}_{LR} + f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n\\]\nIn this project the CNO is trained as a residual super-resolution model:\n\\[\n\\mathcal{L}_{CNO} =\n\\left\\| f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n- (\\mathbf{x}_{HR} - \\mathbf{x}_{LR}) \\right\\|_2^2\n\\]\nThe motivation is pragmatic: CNO should explain the deterministic, stable part of the correction, while the generative model is reserved for the uncertain residual."
+  },
+  {
+    "objectID": "cno.html#role-in-oceanlens",
+    "href": "cno.html#role-in-oceanlens",
+    "title": "CNO Branch",
+    "section": "",
+    "text": "The CNO branch is the deterministic part of the decomposition:\n\\[\n\\mathbf{x}_{HR} = \\boldsymbol{\\mu}(\\mathbf{x}_{LR}) + \\mathbf{r}\n\\]\nIt estimates the large-scale high-resolution field:\n\\[\n\\boldsymbol{\\mu} =\n\\mathbf{x}_{LR} + f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n\\]\nIn this project the CNO is trained as a residual super-resolution model:\n\\[\n\\mathcal{L}_{CNO} =\n\\left\\| f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n- (\\mathbf{x}_{HR} - \\mathbf{x}_{LR}) \\right\\|_2^2\n\\]\nThe motivation is pragmatic: CNO should explain the deterministic, stable part of the correction, while the generative model is reserved for the uncertain residual."
+  },
+  {
+    "objectID": "cno.html#why-cno",
+    "href": "cno.html#why-cno",
+    "title": "CNO Branch",
+    "section": "Why CNO",
+    "text": "Why CNO\nCNO is a neural-operator-inspired architecture. The useful idea for OceanLens is that it treats the input and output as spatial fields rather than isolated pixels. That is closer to what ocean downscaling needs: a mapping between functions on a grid.\n\n\nPaper\nConvolutional Neural Operators for robust and accurate learning of PDEs\n\n\nOfficial repository\ncamlab-ethz/ConvolutionalNeuralOperator\n\n\nOceanLens implementation\nsrc/oceanlens/models/cno.py"
+  },
+  {
+    "objectID": "cno.html#inputs-and-outputs",
+    "href": "cno.html#inputs-and-outputs",
+    "title": "CNO Branch",
+    "section": "Inputs And Outputs",
+    "text": "Inputs And Outputs\n\n\n\nItem\nMeaning\n\n\n\n\nInput\nUpsampled LR field on the HR grid\n\n\nChannels\nthetao, so, zos, uo, vo\n\n\nTarget\nHR - LR\n\n\nOutput\nDeterministic residual correction\n\n\nFinal mean\nmu = LR + CNO(LR)"
+  },
+  {
+    "objectID": "cno.html#interpretation",
+    "href": "cno.html#interpretation",
+    "title": "CNO Branch",
+    "section": "Interpretation",
+    "text": "Interpretation\nIf CNO is good, mu should be smooth, stable and physically plausible at large scale. It should not be expected to sample all possible eddy-level details. That is why the second branch exists."
+  },
+  {
+    "objectID": "methods/bridge.html",
+    "href": "methods/bridge.html",
+    "title": "Diffusion Bridge",
+    "section": "",
+    "text": "Diffusion Bridge\nThe bridge variant starts from a noisy CNO/LR-informed state instead of pure Gaussian noise:\n\\[\n\\mathbf{x}_0=\\boldsymbol{\\mu}+\\sigma(\\boldsymbol{\\mu})\\epsilon,\n\\qquad\n\\mathbf{x}_1=\\mathbf{x}_{HR}.\n\\]\nThis tests whether a physically meaningful starting point makes the generative path easier than noise-to-HR. In OceanLens this corresponds to v9b.\nRelated reference: diffusion bridges and stochastic interpolants for downscaling."
+  },
+  {
+    "objectID": "methods/logit-normal.html",
+    "href": "methods/logit-normal.html",
+    "title": "Logit-normal t Sampling",
+    "section": "",
+    "text": "Logit-normal Time Sampling\nInstead of sampling time uniformly, OceanLens tested:\n\\[\nu\\sim\\mathcal{N}(\\mu_t,\\sigma_t^2),\\qquad t=\\sigma(u).\n\\]\nThis concentrates training on more informative intermediate states, where the sample is neither pure noise nor already almost the target residual. It is one of the key choices in v4_s1_logit_t.\nReference: Flow Matching."
+  },
+  {
+    "objectID": "methods/recoarsening.html",
+    "href": "methods/recoarsening.html",
+    "title": "Re-coarsening Loss",
+    "section": "",
+    "text": "Re-coarsening Consistency\nThe generated HR field should remain compatible with the LR information. The re-coarsening loss applies a coarse operator (C()) to the predicted HR field:\n\\[\n\\mathcal{L}_{coarse}=\\|C(\\widehat{\\mathbf{x}}_{HR})-\\mathbf{x}_{LR}\\|_2^2.\n\\]\nIn OceanLens, this was fine-tuned from v4_s1_logit_t to reduce large-scale drift while allowing the FM branch to add small-scale residual energy.\nRelated idea: consistency losses used in generative downscaling and CorrDiff-style workflows."
+  },
+  {
+    "objectID": "methods/minibatch-ot.html",
+    "href": "methods/minibatch-ot.html",
+    "title": "Minibatch OT",
+    "section": "",
+    "text": "Minibatch Optimal Transport\nIn the baseline Flow Matching setup, the source noise samples and target residual patches can be paired independently. Minibatch OT improves this by matching noise samples to target residuals with a lower transport cost:\n\\[\n\\pi^\\star=\\arg\\min_{\\pi}\\sum_{i,j}\\pi_{ij}\\|\\mathbf{x}_0^i-\\mathbf{x}_1^j\\|_2^2.\n\\]\nIn OceanLens, this is used in v4_s1_logit_t to make the training path less arbitrary and to expose the U-Net to more coherent transitions between noise and ocean residuals.\nReference: Optimal Transport Conditional Flow Matching."
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods And Architectures",
+    "section": "",
+    "text": "This page is the glossary of the project. It explains the methods and architectures used in OceanLens, why they were tested, and which references motivated them.\n\n\n\nRole. Deterministic super-resolution branch. It predicts the stable correction from LR to HR.\n\\[\n\\boldsymbol{\\mu} = \\mathbf{x}_{LR} + f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n\\]\nWhy used. It gives a strong deterministic baseline and separates predictable large-scale structure from uncertain high-frequency residuals.\nReferences. Paper · Repository · OceanLens page\n\n\n\nRole. Generative residual model. It learns a velocity field from noise to HR - mu.\n\\[\n\\mathbf{x}_t = (1-t)\\mathbf{x}_0 + t\\mathbf{x}_1,\n\\qquad\n\\mathbf{v}^{*} = \\mathbf{x}_1 - \\mathbf{x}_0\n\\]\nWhy used. It samples plausible unresolved structures instead of forcing a single deterministic residual.\nReferences. Paper · Reference implementation · OceanLens page\n\n\n\nRole. Pairs Gaussian noise samples with residual targets using a small optimal-transport matching inside each batch.\nFor a batch of noises \\(\\{\\mathbf{x}_0^i\\}\\) and residual targets \\(\\{\\mathbf{x}_1^j\\}\\), the matching solves:\n\\[\n\\pi^{*} =\n\\arg\\min_{\\pi}\n\\sum_{i,j} \\pi_{ij}\n\\left\\| \\mathbf{x}_0^i - \\mathbf{x}_1^j \\right\\|_2^2\n\\]\nWhy used. It makes the path from noise to target less arbitrary than independent random pairing, which helped make v4_s1_logit_t the strongest early baseline.\n\n\n\nRole. Samples more training times around the useful middle of the path instead of treating all t uniformly.\nInstead of \\(t \\sim \\mathcal{U}(0,1)\\), I sample:\n\\[\nu \\sim \\mathcal{N}(\\mu, \\sigma^2),\n\\qquad\nt = \\mathrm{sigmoid}(u)\n\\]\nWhy used. The network sees more informative mixed states, where both noise and data structure are present.\n\n\n\nRole. Penalizes generated HR if it does not return the LR field after downsampling.\n\\[\n\\mathcal{L}_{coarse} =\n\\left\\| C(\\widehat{\\mathbf{x}}_{HR}) - \\mathbf{x}_{LR}^{native} \\right\\|_2^2\n\\]\nWhy used. It is a physical consistency guardrail: the generated fine-scale field should not contradict the coarse observation.\n\n\n\nRole. Trains the model with condition dropout, then amplifies the conditional signal at inference:\n\\[\nv_{guided} = v_{\\emptyset} + w (v_{cond} - v_{\\emptyset})\n\\]\nWhy used. It targets the under-dispersive residual problem: FM produced structures in the right places but often with too little amplitude.\n\n\n\nRole. Oversamples difficult geographic regions such as the Mediterranean, Black Sea and polar zones.\nPatch candidates receive a region-dependent sampling weight:\n\\[\np(\\text{patch}) \\propto\nw_{region} \\cdot \\mathbb{1}(\\text{ocean fraction} &gt; \\tau)\n\\]\nWhy used. Uniform patch sampling overrepresents open-ocean regions and underrepresents small enclosed seas and ice-edge regimes.\n\n\n\nRole. Local transformer architecture tested in v7a.\nSelf-attention is restricted to local windows:\n\\[\n\\mathrm{Attention}(Q,K,V)\n= \\mathrm{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d}}\\right)V\n\\]\nbut \\(Q,K,V\\) only interact inside a spatial window before shifted-window mixing.\nWhy used. Ocean fronts and mesoscale residuals are often local. Window attention can focus compute on nearby structures instead of spending everything on global attention.\nReference. Swin Transformer\n\n\n\nRole. Transformer replacement for the U-Net FM backbone, tested in v8a.\nThe image is split into tokens, then each block uses attention with time/condition modulation:\n\\[\n\\mathbf{h}_{l+1}\n= \\mathbf{h}_{l}\n+ \\mathrm{Attn}(\\mathrm{AdaLN}(\\mathbf{h}_{l}; t, c))\n\\]\nThe conditioning \\(c\\) contains LR/CNO/geographic information depending on the variant.\nWhy used. Tests whether global token attention and AdaLN-style conditioning help place residual energy better than convolutional bottlenecks.\nReference. Scalable Diffusion Models with Transformers\n\n\n\nRole. Diffusion-style denoising architecture tested in v9a.\nThe denoising objective trains the network to recover the clean target from a noisy state:\n\\[\n\\mathbf{y}_{\\sigma} = \\mathbf{y} + \\sigma \\boldsymbol{\\epsilon},\n\\qquad\n\\mathcal{L}_{EDM}\n= \\lambda(\\sigma)\n\\left\\| D_{\\theta}(\\mathbf{y}_{\\sigma}, \\sigma, c) - \\mathbf{y} \\right\\|_2^2\n\\]\nWhy used. CorrDiff-style downscaling uses strong diffusion backbones and stochastic samplers; this tests a more classical score/diffusion route against FM.\nReferences. EDM paper · NVIDIA PhysicsNeMo\n\n\n\nRole. Starts from a noisy CNO/LR-informed state instead of pure Gaussian noise.\nInstead of a pure-noise start, the path is conditioned around the coarse estimate:\n\\[\n\\mathbf{x}_0 = \\boldsymbol{\\mu} + \\sigma(\\boldsymbol{\\mu})\\boldsymbol{\\epsilon},\n\\qquad\n\\mathbf{x}_1 = \\mathbf{x}_{HR}\n\\]\nThe learned dynamics bridge a physically informed noisy state toward HR.\nWhy used. The generative path begins closer to the physically conditioned solution, which may reduce useless sampling variance and improve regional stability.\n\n\n\nRole. Tests the sampler after training, without changing the weights.\nFor ODE-based FM inference:\n\\[\n\\frac{d\\mathbf{x}}{dt} = v_{\\theta}(\\mathbf{x}_t,t,c)\n\\]\nEuler uses one slope per step:\n\\[\n\\mathbf{x}_{n+1}=\\mathbf{x}_n+\\Delta t\\,v_{\\theta}(\\mathbf{x}_n,t_n,c)\n\\]\nHeun predicts once, corrects once, then averages both slopes:\n\\[\n\\mathbf{x}^{p}_{n+1}=\\mathbf{x}_n+\\Delta t\\,v_n,\n\\qquad\n\\mathbf{x}_{n+1}=\\mathbf{x}_n+\\frac{\\Delta t}{2}(v_n+v^{p}_{n+1})\n\\]\nParameters tested.\n\nSolver: Euler versus Heun.\nSteps: fast 20 step runs versus heavier 25/50 step runs.\nNoise temperature: sigma=1.0, 1.1, 1.2.\nEnsemble size: ens=1 for quick inspection, ens=16/32 for spread.\nTiling: tile_size, tile_overlap, and blending to reduce stitching artifacts.\nCFG scale: stronger or weaker conditioning after condition-dropout fine-tuning.\n\nWhy used. Some observed failures were not only training failures. Under-dispersive residuals, blue artifacts and horizontal seams can also come from numerical integration, stochastic sampling or patch stitching."
+  },
+  {
+    "objectID": "methods.html#purpose",
+    "href": "methods.html#purpose",
+    "title": "Methods And Architectures",
+    "section": "",
+    "text": "This page is the glossary of the project. It explains the methods and architectures used in OceanLens, why they were tested, and which references motivated them.\n\n\n\nRole. Deterministic super-resolution branch. It predicts the stable correction from LR to HR.\n\\[\n\\boldsymbol{\\mu} = \\mathbf{x}_{LR} + f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n\\]\nWhy used. It gives a strong deterministic baseline and separates predictable large-scale structure from uncertain high-frequency residuals.\nReferences. Paper · Repository · OceanLens page\n\n\n\nRole. Generative residual model. It learns a velocity field from noise to HR - mu.\n\\[\n\\mathbf{x}_t = (1-t)\\mathbf{x}_0 + t\\mathbf{x}_1,\n\\qquad\n\\mathbf{v}^{*} = \\mathbf{x}_1 - \\mathbf{x}_0\n\\]\nWhy used. It samples plausible unresolved structures instead of forcing a single deterministic residual.\nReferences. Paper · Reference implementation · OceanLens page\n\n\n\nRole. Pairs Gaussian noise samples with residual targets using a small optimal-transport matching inside each batch.\nFor a batch of noises \\(\\{\\mathbf{x}_0^i\\}\\) and residual targets \\(\\{\\mathbf{x}_1^j\\}\\), the matching solves:\n\\[\n\\pi^{*} =\n\\arg\\min_{\\pi}\n\\sum_{i,j} \\pi_{ij}\n\\left\\| \\mathbf{x}_0^i - \\mathbf{x}_1^j \\right\\|_2^2\n\\]\nWhy used. It makes the path from noise to target less arbitrary than independent random pairing, which helped make v4_s1_logit_t the strongest early baseline.\n\n\n\nRole. Samples more training times around the useful middle of the path instead of treating all t uniformly.\nInstead of \\(t \\sim \\mathcal{U}(0,1)\\), I sample:\n\\[\nu \\sim \\mathcal{N}(\\mu, \\sigma^2),\n\\qquad\nt = \\mathrm{sigmoid}(u)\n\\]\nWhy used. The network sees more informative mixed states, where both noise and data structure are present.\n\n\n\nRole. Penalizes generated HR if it does not return the LR field after downsampling.\n\\[\n\\mathcal{L}_{coarse} =\n\\left\\| C(\\widehat{\\mathbf{x}}_{HR}) - \\mathbf{x}_{LR}^{native} \\right\\|_2^2\n\\]\nWhy used. It is a physical consistency guardrail: the generated fine-scale field should not contradict the coarse observation.\n\n\n\nRole. Trains the model with condition dropout, then amplifies the conditional signal at inference:\n\\[\nv_{guided} = v_{\\emptyset} + w (v_{cond} - v_{\\emptyset})\n\\]\nWhy used. It targets the under-dispersive residual problem: FM produced structures in the right places but often with too little amplitude.\n\n\n\nRole. Oversamples difficult geographic regions such as the Mediterranean, Black Sea and polar zones.\nPatch candidates receive a region-dependent sampling weight:\n\\[\np(\\text{patch}) \\propto\nw_{region} \\cdot \\mathbb{1}(\\text{ocean fraction} &gt; \\tau)\n\\]\nWhy used. Uniform patch sampling overrepresents open-ocean regions and underrepresents small enclosed seas and ice-edge regimes.\n\n\n\nRole. Local transformer architecture tested in v7a.\nSelf-attention is restricted to local windows:\n\\[\n\\mathrm{Attention}(Q,K,V)\n= \\mathrm{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d}}\\right)V\n\\]\nbut \\(Q,K,V\\) only interact inside a spatial window before shifted-window mixing.\nWhy used. Ocean fronts and mesoscale residuals are often local. Window attention can focus compute on nearby structures instead of spending everything on global attention.\nReference. Swin Transformer\n\n\n\nRole. Transformer replacement for the U-Net FM backbone, tested in v8a.\nThe image is split into tokens, then each block uses attention with time/condition modulation:\n\\[\n\\mathbf{h}_{l+1}\n= \\mathbf{h}_{l}\n+ \\mathrm{Attn}(\\mathrm{AdaLN}(\\mathbf{h}_{l}; t, c))\n\\]\nThe conditioning \\(c\\) contains LR/CNO/geographic information depending on the variant.\nWhy used. Tests whether global token attention and AdaLN-style conditioning help place residual energy better than convolutional bottlenecks.\nReference. Scalable Diffusion Models with Transformers\n\n\n\nRole. Diffusion-style denoising architecture tested in v9a.\nThe denoising objective trains the network to recover the clean target from a noisy state:\n\\[\n\\mathbf{y}_{\\sigma} = \\mathbf{y} + \\sigma \\boldsymbol{\\epsilon},\n\\qquad\n\\mathcal{L}_{EDM}\n= \\lambda(\\sigma)\n\\left\\| D_{\\theta}(\\mathbf{y}_{\\sigma}, \\sigma, c) - \\mathbf{y} \\right\\|_2^2\n\\]\nWhy used. CorrDiff-style downscaling uses strong diffusion backbones and stochastic samplers; this tests a more classical score/diffusion route against FM.\nReferences. EDM paper · NVIDIA PhysicsNeMo\n\n\n\nRole. Starts from a noisy CNO/LR-informed state instead of pure Gaussian noise.\nInstead of a pure-noise start, the path is conditioned around the coarse estimate:\n\\[\n\\mathbf{x}_0 = \\boldsymbol{\\mu} + \\sigma(\\boldsymbol{\\mu})\\boldsymbol{\\epsilon},\n\\qquad\n\\mathbf{x}_1 = \\mathbf{x}_{HR}\n\\]\nThe learned dynamics bridge a physically informed noisy state toward HR.\nWhy used. The generative path begins closer to the physically conditioned solution, which may reduce useless sampling variance and improve regional stability.\n\n\n\nRole. Tests the sampler after training, without changing the weights.\nFor ODE-based FM inference:\n\\[\n\\frac{d\\mathbf{x}}{dt} = v_{\\theta}(\\mathbf{x}_t,t,c)\n\\]\nEuler uses one slope per step:\n\\[\n\\mathbf{x}_{n+1}=\\mathbf{x}_n+\\Delta t\\,v_{\\theta}(\\mathbf{x}_n,t_n,c)\n\\]\nHeun predicts once, corrects once, then averages both slopes:\n\\[\n\\mathbf{x}^{p}_{n+1}=\\mathbf{x}_n+\\Delta t\\,v_n,\n\\qquad\n\\mathbf{x}_{n+1}=\\mathbf{x}_n+\\frac{\\Delta t}{2}(v_n+v^{p}_{n+1})\n\\]\nParameters tested.\n\nSolver: Euler versus Heun.\nSteps: fast 20 step runs versus heavier 25/50 step runs.\nNoise temperature: sigma=1.0, 1.1, 1.2.\nEnsemble size: ens=1 for quick inspection, ens=16/32 for spread.\nTiling: tile_size, tile_overlap, and blending to reduce stitching artifacts.\nCFG scale: stronger or weaker conditioning after condition-dropout fine-tuning.\n\nWhy used. Some observed failures were not only training failures. Under-dispersive residuals, blue artifacts and horizontal seams can also come from numerical integration, stochastic sampling or patch stitching."
+  },
+  {
+    "objectID": "compare.html",
+    "href": "compare.html",
+    "title": "Architecture Comparison",
+    "section": "",
+    "text": "training and architecture axis\n\n\nThis page compares the models where the training objective, sampling strategy, physical constraint or architecture changed. It intentionally excludes pure inference sweeps such as solver, step count, sigma and tile overlap.\n\n\n\n\nThe final version will use one LIR-generated plot with all EKE spectra on the same axes. For now, the figure below is a placeholder so we can validate the layout before synchronizing real diagnostics.\n\n\n\nPlaceholder EKE intercomparison across OceanLens training variants.\n\n\n\n\n\n\nThe values below are placeholders. They are here to design the table and will be replaced by metrics computed from LIR outputs on the same 2004 test day and domain.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nChange\nRMSE ↓\nBias ↓\nStd ratio ↑\nEKE ↑\nStatus\n\n\n\n\nv8a DiT\npixel transformer\n0.71\n0.03\n0.82\n0.86\npromising, artifact check\n\n\nv7a Swin\nlocal window attention\n0.74\n0.04\n0.78\n0.83\nstrong candidate\n\n\nRecoarsen FT\nLR consistency\n0.79\n0.02\n0.70\n0.76\nphysical guardrail\n\n\nRegional FT\nweighted patches\n0.81\n0.05\n0.72\n0.74\nregional repair\n\n\nCFG FT\ncondition dropout\n0.84\n0.06\n0.76\n0.72\nneeds scale tuning\n\n\nv4 S1\nOT + logit-normal t\n0.88\n0.04\n0.62\n0.66\nbaseline\n\n\nCNO only\ndeterministic mean\n0.93\n0.03\n0.42\n0.51\ntoo smooth\n\n\nLR input\ncoarse reference\n1.18\n0.08\n0.18\n0.22\nreference\n\n\n\n\n\n\n\n\n\n\nDoes the model reduce RMSE against HR without simply smoothing the residual field?\n\n\n\nDoes the generated field recover the HR EKE spectrum, especially at the mesoscale and submesoscale frequencies?\n\n\n\nDoes the generated HR field remain compatible with the LR field after re-coarsening?\n\n\n\nDoes the model behave better in difficult regions such as the Mediterranean, Black Sea, Arctic and energetic western boundary currents?\n\n\n\n\n\n\nPull the finished .npz, metrics CSV and TensorBoard curves from LIR.\nGenerate one EKE spectrum figure for thetao, with HR, LR, CNO and all architecture variants.\nReplace placeholder metrics with measured RMSE, bias, residual std ratio, EKE score and re-coarsening error.\nKeep inference-only sweeps in version pages, not in this architecture table."
+  },
+  {
+    "objectID": "compare.html#eke-spectral-view",
+    "href": "compare.html#eke-spectral-view",
+    "title": "Architecture Comparison",
+    "section": "",
+    "text": "The final version will use one LIR-generated plot with all EKE spectra on the same axes. For now, the figure below is a placeholder so we can validate the layout before synchronizing real diagnostics.\n\n\n\nPlaceholder EKE intercomparison across OceanLens training variants."
+  },
+  {
+    "objectID": "compare.html#benchmark-matrix",
+    "href": "compare.html#benchmark-matrix",
+    "title": "Architecture Comparison",
+    "section": "",
+    "text": "The values below are placeholders. They are here to design the table and will be replaced by metrics computed from LIR outputs on the same 2004 test day and domain.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nChange\nRMSE ↓\nBias ↓\nStd ratio ↑\nEKE ↑\nStatus\n\n\n\n\nv8a DiT\npixel transformer\n0.71\n0.03\n0.82\n0.86\npromising, artifact check\n\n\nv7a Swin\nlocal window attention\n0.74\n0.04\n0.78\n0.83\nstrong candidate\n\n\nRecoarsen FT\nLR consistency\n0.79\n0.02\n0.70\n0.76\nphysical guardrail\n\n\nRegional FT\nweighted patches\n0.81\n0.05\n0.72\n0.74\nregional repair\n\n\nCFG FT\ncondition dropout\n0.84\n0.06\n0.76\n0.72\nneeds scale tuning\n\n\nv4 S1\nOT + logit-normal t\n0.88\n0.04\n0.62\n0.66\nbaseline\n\n\nCNO only\ndeterministic mean\n0.93\n0.03\n0.42\n0.51\ntoo smooth\n\n\nLR input\ncoarse reference\n1.18\n0.08\n0.18\n0.22\nreference"
+  },
+  {
+    "objectID": "compare.html#what-this-table-should-answer",
+    "href": "compare.html#what-this-table-should-answer",
+    "title": "Architecture Comparison",
+    "section": "",
+    "text": "Does the model reduce RMSE against HR without simply smoothing the residual field?\n\n\n\nDoes the generated field recover the HR EKE spectrum, especially at the mesoscale and submesoscale frequencies?\n\n\n\nDoes the generated HR field remain compatible with the LR field after re-coarsening?\n\n\n\nDoes the model behave better in difficult regions such as the Mediterranean, Black Sea, Arctic and energetic western boundary currents?"
+  },
+  {
+    "objectID": "compare.html#replacement-plan",
+    "href": "compare.html#replacement-plan",
+    "title": "Architecture Comparison",
+    "section": "",
+    "text": "Pull the finished .npz, metrics CSV and TensorBoard curves from LIR.\nGenerate one EKE spectrum figure for thetao, with HR, LR, CNO and all architecture variants.\nReplace placeholder metrics with measured RMSE, bias, residual std ratio, EKE score and re-coarsening error.\nKeep inference-only sweeps in version pages, not in this architecture table."
+  },
+  {
+    "objectID": "methods/swin.html",
+    "href": "methods/swin.html",
+    "title": "Swin Attention",
+    "section": "",
+    "text": "Swin / Window Attention\nSwin attention restricts self-attention to local windows and shifts the windows between layers. For ocean residuals, this tests whether local attention is better matched to fronts, eddies and coastal structures than global attention:\n\\[\n\\mathrm{Attention}(Q,K,V)=\\mathrm{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d}}\\right)V.\n\\]\nOceanLens v7a uses this hypothesis: local windows may recover mesoscale patterns with less computation than global DiT attention.\nReference: Swin Transformer."
+  },
+  {
+    "objectID": "methods/cfg.html",
+    "href": "methods/cfg.html",
+    "title": "Classifier-free Guidance",
+    "section": "",
+    "text": "Classifier-free Guidance\nCondition dropout trains the model to predict both with and without the conditioning. At inference:\n\\[\nv_{guided}=v_\\emptyset + w\\left(v_c-v_\\emptyset\\right).\n\\]\nThe scale (w) controls how strongly the FM trajectory follows the CNO/LR conditioning. In OceanLens this was tested to fight under-dispersive residuals and increase generated contrast.\nReference: Classifier-Free Diffusion Guidance."
+  },
+  {
+    "objectID": "methods/dit.html",
+    "href": "methods/dit.html",
+    "title": "Diffusion Transformer",
+    "section": "",
+    "text": "Pixel DiT\nThe DiT variant replaces the convolutional U-Net with token attention. A patch embedding turns the field into tokens, then time and conditioning modulate transformer blocks, often with AdaLN-style conditioning:\n\\[\n\\mathbf{h}_{l+1}=\\mathbf{h}_l+\\mathrm{Attention}(\\mathrm{AdaLN}(\\mathbf{h}_l,t,c)).\n\\]\nOceanLens v8a_dit_pixel tests whether global token interactions can better place residual energy in connected ocean regions.\nReferences: DiT, Stable Diffusion 3 / Rectified Flow."
+  },
+  {
+    "objectID": "methods/edm.html",
+    "href": "methods/edm.html",
+    "title": "EDM / SongUNet",
+    "section": "",
+    "text": "EDM and SongUNet\nThe EDM-style branch changes the generative objective from direct Flow Matching to denoising across noise levels:\n\\[\n\\mathcal{L}_{EDM}=\\lambda(\\sigma)\\|D_\\theta(\\mathbf{x}+\\sigma\\epsilon,\\sigma,c)-\\mathbf{x}\\|_2^2.\n\\]\nOceanLens v9a uses this CorrDiff-inspired idea with a Song/NCSN++ U-Net family to test whether diffusion-style preconditioning gives more stable high-frequency residuals.\nReferences: EDM, NCSN++, NVIDIA CorrDiff papers."
+  },
+  {
+    "objectID": "index.html#residual-decomposition",
+    "href": "index.html#residual-decomposition",
+    "title": "OceanLens",
+    "section": "Residual Decomposition",
+    "text": "Residual Decomposition\nThe project is organized around a Reynolds-like decomposition of the high-resolution ocean state:\n\nxHR = mu(xLR) + runresolved\n\nwhere the deterministic component is learned by a CNO and the residual component is modeled generatively.\n\n\nHigh-resolution state\nx_HR\nFive surface variables on the GLORYS-like HR grid.\n\n\n→\n\n\nDeterministic branch: CNO\nmu = x_LR + f_CNO(x_LR)\nLearns the stable large-scale correction and produces the conditional mean field.\n\n\n\n\n\n\n\nGenerative branch: Flow Matching\nr = FM(z, t, mu, x_LR)\nLearns the unresolved residual that the deterministic branch cannot recover."
+  },
+  {
+    "objectID": "index.html#data-construction",
+    "href": "index.html#data-construction",
+    "title": "OceanLens",
+    "section": "Data Construction",
+    "text": "Data Construction\n\n\n01\n\nGLORYS12 HR: 1/12°\nDaily surface fields from 1994–2003 are used for training and 2004 for validation. The variables are thetao, so, zos, uo, and vo.\n\n\n\ncoarsenoffline degraded product\n\n\n02\n\nCoarse product: 1.5°\nThe training pipeline reads the already degraded 1.5° product from disk. This is the coarse ocean state before any HR-grid alignment.\n\n\n\ninterpolatePyTorch nearest\n\n\n03\n\nLR input: 1/4° grid\nThe 1.5° field is aligned with the 1/4° tensors using torch.nn.functional.interpolate(mode=\"nearest\"). This gives the model a coarse, HR-shaped condition.\n\n\n\nlearn\n\n\n04\n\nLearning targets: HR grid\nCNO learns HR - LR. Flow Matching learns HR - mu, where mu = LR + CNO(LR)."
+  },
+  {
+    "objectID": "index.html#training-logic",
+    "href": "index.html#training-logic",
+    "title": "OceanLens",
+    "section": "Training Logic",
+    "text": "Training Logic\n\n\nCNO baseline\n\nLCNO = || fCNO(xLR) - (xHR - xLR) ||22\n\nThe CNO is the deterministic baseline. Its output is added to LR to form:\n\nmu = xLR + fCNO(xLR)\n\n\n\nFlow Matching residual\n\nx1 = xHR - mu ; x0 ~ N(0, I)\n\nFM learns a velocity field along the path from noise to residual:\n\nxt = (1 - t)x0 + tx1 ; v* = x1 - x0"
+  },
+  {
+    "objectID": "index.html#version-timeline",
+    "href": "index.html#version-timeline",
+    "title": "OceanLens",
+    "section": "Version Timeline",
+    "text": "Version Timeline\n\n\nv4 · U-Net FM v5 · FM-only v6 · geo physics v7 · Swin local v8 · pixel DiT v9 · diffusion family\n\nv4 ablations\n\nS1 · OT + logit-t S2 · independent S3 · no attention S4 · grad-mu\n\nFine-tuned from S1\n\nFT · recoarsen FT · CFG FT · regional"
+  },
+  {
+    "objectID": "index.html#architecture-intercomparison",
+    "href": "index.html#architecture-intercomparison",
+    "title": "OceanLens",
+    "section": "Architecture Intercomparison",
+    "text": "Architecture Intercomparison\nThis comparison is only for models where the training recipe or backbone changed. The EKE plot is a placeholder until the final LIR figure is exported.\n\n\n\n\n\nPlaceholder EKE intercomparison across OceanLens training variants.\n\n\nOpen the full comparison"
+  },
+  {
+    "objectID": "index.html#inference-experiments",
+    "href": "index.html#inference-experiments",
+    "title": "OceanLens",
+    "section": "Inference Experiments",
+    "text": "Inference Experiments\nInference has two stages. First, CNO gives a deterministic estimate:\n\nmu = xLR + fCNO(xLR)\n\nThen FM samples the residual by integrating a learned velocity field from noise to the residual space:\n\ndxt/dt = vFM(xt, t, mu, xLR) ; x̂HR = mu + xt=1\n\n\nInitial noise: sigma ODE solver: Euler / Heun Steps: 20 / 25 / 50 Conditioning: CFG scale Sampling: ensemble Map stitching: tile + overlap\n\n\nv4_s1 inference sweeps CFG inference v8 tiling tests"
+  },
+  {
+    "objectID": "versions/v5_fm_only.html",
+    "href": "versions/v5_fm_only.html",
+    "title": "v5_fm_only",
+    "section": "",
+    "text": "v5 / FM-only\n\n\nThis version removes the deterministic CNO branch from the generative path and tests how far Flow Matching can go without the strong CNO mean field. It is a stress test: if FM-only fails, it confirms that the CNO decomposition is necessary.\n\n\n\n\n\n\nThe v4 setup decomposes:\n\\[\n\\mathbf{x}_{HR}=\\boldsymbol{\\mu}+\\mathbf{r}.\n\\]\nv5 asks whether the generative model can learn the missing field with weaker deterministic support. This is useful as a baseline against the CNO-conditioned FM family.\n\n\n\n\n\n\nv5 FM-only thetao residuals.\n\n\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nFamily\nFM-only ablation\n\n\nDeterministic CNO\nremoved from main residual path\n\n\nObjective\nFlow Matching\n\n\nPurpose\ntest need for CNO decomposition\n\n\nStatus\ncomparison baseline\n\n\n\n\n\n\nIf v5 is worse than CNO+FM, the decomposition is justified: CNO handles the stable large-scale mean and FM focuses on the unresolved residual."
+  },
+  {
+    "objectID": "versions/v5_fm_only.html#hypothesis",
+    "href": "versions/v5_fm_only.html#hypothesis",
+    "title": "v5_fm_only",
+    "section": "",
+    "text": "The v4 setup decomposes:\n\\[\n\\mathbf{x}_{HR}=\\boldsymbol{\\mu}+\\mathbf{r}.\n\\]\nv5 asks whether the generative model can learn the missing field with weaker deterministic support. This is useful as a baseline against the CNO-conditioned FM family."
+  },
+  {
+    "objectID": "versions/v5_fm_only.html#available-local-plot",
+    "href": "versions/v5_fm_only.html#available-local-plot",
+    "title": "v5_fm_only",
+    "section": "",
+    "text": "v5 FM-only thetao residuals."
+  },
+  {
+    "objectID": "versions/v5_fm_only.html#variable-results",
+    "href": "versions/v5_fm_only.html#variable-results",
+    "title": "v5_fm_only",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v5_fm_only.html#parameters",
+    "href": "versions/v5_fm_only.html#parameters",
+    "title": "v5_fm_only",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nFamily\nFM-only ablation\n\n\nDeterministic CNO\nremoved from main residual path\n\n\nObjective\nFlow Matching\n\n\nPurpose\ntest need for CNO decomposition\n\n\nStatus\ncomparison baseline"
+  },
+  {
+    "objectID": "versions/v5_fm_only.html#interpretation",
+    "href": "versions/v5_fm_only.html#interpretation",
+    "title": "v5_fm_only",
+    "section": "",
+    "text": "If v5 is worse than CNO+FM, the decomposition is justified: CNO handles the stable large-scale mean and FM focuses on the unresolved residual."
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html",
+    "href": "versions/v4_s1_recoarsen_ft.html",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "",
+    "text": "v4 / fine-tuning\n\n\nThis version fine-tunes v4_s1_logit_t with a coarse-scale consistency constraint. The objective is to keep the generated HR field compatible with the LR observation after downsampling.\n\n\n\n\n\n\nThe generated field is:\n\\[\n\\widehat{\\mathbf{x}}_{HR} = \\boldsymbol{\\mu} + \\widehat{\\mathbf{r}}_{FM}\n\\]\nI add a re-coarsening loss:\n\\[\n\\mathcal{L}_{coarse}\n= \\left\\| C(\\widehat{\\mathbf{x}}_{HR}) - \\mathbf{x}_{LR}^{native} \\right\\|_2^2\n\\]\nwhere C is the mask-aware downsampling operator used in the training system with PyTorch average pooling.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nAdded loss\nre-coarsening consistency\n\n\nLoss weight\n0.05\n\n\nWarmup\nenabled\n\n\nTarget\nHR - mu\n\n\nMotivation\nconserve LR-scale information\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n50\n\n\nSigma\n1.0\n\n\nEnsemble\n1\n\n\n\n\n\n\n\nCoarse/fine consistency in generative downscaling\nFlow Matching residual formulation"
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#hypothesis",
+    "href": "versions/v4_s1_recoarsen_ft.html#hypothesis",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "",
+    "text": "The generated field is:\n\\[\n\\widehat{\\mathbf{x}}_{HR} = \\boldsymbol{\\mu} + \\widehat{\\mathbf{r}}_{FM}\n\\]\nI add a re-coarsening loss:\n\\[\n\\mathcal{L}_{coarse}\n= \\left\\| C(\\widehat{\\mathbf{x}}_{HR}) - \\mathbf{x}_{LR}^{native} \\right\\|_2^2\n\\]\nwhere C is the mask-aware downsampling operator used in the training system with PyTorch average pooling."
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#variable-results",
+    "href": "versions/v4_s1_recoarsen_ft.html#variable-results",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#parameters",
+    "href": "versions/v4_s1_recoarsen_ft.html#parameters",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nAdded loss\nre-coarsening consistency\n\n\nLoss weight\n0.05\n\n\nWarmup\nenabled\n\n\nTarget\nHR - mu\n\n\nMotivation\nconserve LR-scale information"
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#inference-used-here",
+    "href": "versions/v4_s1_recoarsen_ft.html#inference-used-here",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "",
+    "text": "Parameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n50\n\n\nSigma\n1.0\n\n\nEnsemble\n1"
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#references",
+    "href": "versions/v4_s1_recoarsen_ft.html#references",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "",
+    "text": "Coarse/fine consistency in generative downscaling\nFlow Matching residual formulation"
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#description",
+    "href": "versions/v4_s1_recoarsen_ft.html#description",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "Description",
+    "text": "Description\nFine-tuning of v4_s1_logit_t with a re-coarsening consistency loss. The generated HR field is downsampled and compared to the LR input.\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nInit checkpoint\nv4_s1_logit_t\n\n\nAdded loss\nre-coarsening consistency\n\n\nWeight\n0.05 with warmup\n\n\nMotivation\nforce HR generation to conserve LR-scale information\n\n\nResearch inspiration\nre-coarsening consistency in super-resolution/downscaling papers"
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#variables",
+    "href": "versions/v4_s1_recoarsen_ft.html#variables",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "Variables",
+    "text": "Variables\n\nthetaoso\n\n\n\n\nHR-LR / CNO Residual / FM Residual\n\n\n\nRecoarsening fine-tune thetao residuals.\n\n\n\n\n\n\nassets/figures/v4_s1_recoarsen_ft/so/ ### zos assets/figures/v4_s1_recoarsen_ft/zos/ ### uo assets/figures/v4_s1_recoarsen_ft/uo/ ### vo assets/figures/v4_s1_recoarsen_ft/vo/"
+  },
+  {
+    "objectID": "versions/v4_s1_recoarsen_ft.html#metrics",
+    "href": "versions/v4_s1_recoarsen_ft.html#metrics",
+    "title": "v4_s1_recoarsen_ft",
+    "section": "Metrics",
+    "text": "Metrics\nassets/metrics/v4_s1_recoarsen_ft.csv"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html",
+    "href": "versions/v6_full_geo_phys.html",
+    "title": "v6_full_geo_phys",
+    "section": "",
+    "text": "v6\n\n\nThis version tests whether explicit geographic and physical context can reduce the regional failures observed near coasts, polar zones and semi-enclosed seas.\n\n\n\n\n\n\nThe baseline residual model only sees dynamic ocean fields. v6 adds stronger geographic/static context so the model can condition residual generation on where it is in the ocean:\n\\[\nv_{\\theta}(\\mathbf{x}_t,t,c),\n\\qquad\nc = [\\boldsymbol{\\mu}, \\mathbf{x}_{LR}, \\mathrm{mask}, \\mathrm{geo}]\n\\]\nThe intention is to make the residual less blind to coastal and polar regimes.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nArchitecture\nCNO-conditioned FM\n\n\nAdded context\nstatic/geographic fields\n\n\nPhysical idea\ncoarse consistency\n\n\nTarget\nresidual generation\n\n\nMotivation\npolar/coastal failures\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSigma\n1.0\n\n\nOutput shown\nthetao residuals\n\n\n\n\n\n\n\nPhysics-constrained downscaling\nGeospatial conditioning"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#hypothesis",
+    "href": "versions/v6_full_geo_phys.html#hypothesis",
+    "title": "v6_full_geo_phys",
+    "section": "",
+    "text": "The baseline residual model only sees dynamic ocean fields. v6 adds stronger geographic/static context so the model can condition residual generation on where it is in the ocean:\n\\[\nv_{\\theta}(\\mathbf{x}_t,t,c),\n\\qquad\nc = [\\boldsymbol{\\mu}, \\mathbf{x}_{LR}, \\mathrm{mask}, \\mathrm{geo}]\n\\]\nThe intention is to make the residual less blind to coastal and polar regimes."
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#variable-results",
+    "href": "versions/v6_full_geo_phys.html#variable-results",
+    "title": "v6_full_geo_phys",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#parameters",
+    "href": "versions/v6_full_geo_phys.html#parameters",
+    "title": "v6_full_geo_phys",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nArchitecture\nCNO-conditioned FM\n\n\nAdded context\nstatic/geographic fields\n\n\nPhysical idea\ncoarse consistency\n\n\nTarget\nresidual generation\n\n\nMotivation\npolar/coastal failures"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#inference-used-here",
+    "href": "versions/v6_full_geo_phys.html#inference-used-here",
+    "title": "v6_full_geo_phys",
+    "section": "",
+    "text": "Parameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSigma\n1.0\n\n\nOutput shown\nthetao residuals"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#references",
+    "href": "versions/v6_full_geo_phys.html#references",
+    "title": "v6_full_geo_phys",
+    "section": "",
+    "text": "Physics-constrained downscaling\nGeospatial conditioning"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#description",
+    "href": "versions/v6_full_geo_phys.html#description",
+    "title": "v6_full_geo_phys",
+    "section": "Description",
+    "text": "Description\nGeography and physics-oriented extension of the residual Flow Matching setup.\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nArchitecture\nCNO-conditioned FM\n\n\nAdded information\ngeography/static fields and physical consistency terms\n\n\nMotivation\nreduce polar, coastal and semi-enclosed sea failures\n\n\nResearch inspiration\nphysics-constrained adaptive FM and geospatial downscaling"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#variables",
+    "href": "versions/v6_full_geo_phys.html#variables",
+    "title": "v6_full_geo_phys",
+    "section": "Variables",
+    "text": "Variables\n\nthetaoso\n\n\n\n\nHR-LR / CNO Residual / FM Residual\n\n\n\nv6 geography and physics thetao residuals.\n\n\n\n\n\n\nassets/figures/v6_full_geo_phys/so/ ### zos assets/figures/v6_full_geo_phys/zos/ ### uo assets/figures/v6_full_geo_phys/uo/ ### vo assets/figures/v6_full_geo_phys/vo/"
+  },
+  {
+    "objectID": "versions/v6_full_geo_phys.html#metrics",
+    "href": "versions/v6_full_geo_phys.html#metrics",
+    "title": "v6_full_geo_phys",
+    "section": "Metrics",
+    "text": "Metrics\nassets/metrics/v6_full_geo_phys.csv"
+  },
+  {
+    "objectID": "versions/v4_s2_independent.html",
+    "href": "versions/v4_s2_independent.html",
+    "title": "v4_s2_independent",
+    "section": "",
+    "text": "v4 / S2\n\n\nThis ablation keeps the same CNO-conditioned U-Net FM as S1, but removes minibatch OT. Noise and residual targets are paired independently, which tests whether optimal pairing is actually helping residual structure.\n\n\n\n\n\n\nThe residual target is unchanged:\n\\[\n\\mathbf{x}_1=\\mathbf{x}_{HR}-\\boldsymbol{\\mu}.\n\\]\nThe only change is the coupling:\n\\[\n(\\mathbf{x}_0,\\mathbf{x}_1)\\sim p_0(\\mathbf{x}_0)p_1(\\mathbf{x}_1)\n\\]\ninstead of solving the minibatch OT assignment.\n\n\n\n\n\n\nv4_s2 thetao residuals.\n\n\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nTarget\nHR - mu\n\n\nCoupling\nindependent\n\n\nTime sampling\nlogit-normal\n\n\nInit\nfrom scratch\n\n\n\n\n\n\n\nFlow Matching\nCoupling ablation against minibatch OT"
+  },
+  {
+    "objectID": "versions/v4_s2_independent.html#hypothesis",
+    "href": "versions/v4_s2_independent.html#hypothesis",
+    "title": "v4_s2_independent",
+    "section": "",
+    "text": "The residual target is unchanged:\n\\[\n\\mathbf{x}_1=\\mathbf{x}_{HR}-\\boldsymbol{\\mu}.\n\\]\nThe only change is the coupling:\n\\[\n(\\mathbf{x}_0,\\mathbf{x}_1)\\sim p_0(\\mathbf{x}_0)p_1(\\mathbf{x}_1)\n\\]\ninstead of solving the minibatch OT assignment."
+  },
+  {
+    "objectID": "versions/v4_s2_independent.html#available-local-plot",
+    "href": "versions/v4_s2_independent.html#available-local-plot",
+    "title": "v4_s2_independent",
+    "section": "",
+    "text": "v4_s2 thetao residuals."
+  },
+  {
+    "objectID": "versions/v4_s2_independent.html#variable-results",
+    "href": "versions/v4_s2_independent.html#variable-results",
+    "title": "v4_s2_independent",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4_s2_independent.html#parameters",
+    "href": "versions/v4_s2_independent.html#parameters",
+    "title": "v4_s2_independent",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nTarget\nHR - mu\n\n\nCoupling\nindependent\n\n\nTime sampling\nlogit-normal\n\n\nInit\nfrom scratch"
+  },
+  {
+    "objectID": "versions/v4_s2_independent.html#references",
+    "href": "versions/v4_s2_independent.html#references",
+    "title": "v4_s2_independent",
+    "section": "",
+    "text": "Flow Matching\nCoupling ablation against minibatch OT"
+  },
+  {
+    "objectID": "versions/v4_s4_grad_mu.html",
+    "href": "versions/v4_s4_grad_mu.html",
+    "title": "v4_s4_grad_mu",
+    "section": "",
+    "text": "v4 / S4\n\n\nThis conditioning ablation adds gradients of the deterministic CNO field. The goal is to expose fronts and sharp structures already detected by CNO to the FM residual model.\n\n\n\n\n\n\nThe condition becomes richer:\n\\[\nc=[\\boldsymbol{\\mu},\\mathbf{x}_{LR},\\nabla\\boldsymbol{\\mu}]\n\\]\ninstead of only using the coarse/deterministic fields. If FM needs front locations to place residual energy, this variant should improve coastal and current-front structure.\n\n\n\n\n\n\nv4_s4 thetao residuals.\n\n\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nAdded condition\ngrad_mu\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal\n\n\n\n\n\n\n\nGradient-informed conditioning\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v4_s4_grad_mu.html#hypothesis",
+    "href": "versions/v4_s4_grad_mu.html#hypothesis",
+    "title": "v4_s4_grad_mu",
+    "section": "",
+    "text": "The condition becomes richer:\n\\[\nc=[\\boldsymbol{\\mu},\\mathbf{x}_{LR},\\nabla\\boldsymbol{\\mu}]\n\\]\ninstead of only using the coarse/deterministic fields. If FM needs front locations to place residual energy, this variant should improve coastal and current-front structure."
+  },
+  {
+    "objectID": "versions/v4_s4_grad_mu.html#available-local-plot",
+    "href": "versions/v4_s4_grad_mu.html#available-local-plot",
+    "title": "v4_s4_grad_mu",
+    "section": "",
+    "text": "v4_s4 thetao residuals."
+  },
+  {
+    "objectID": "versions/v4_s4_grad_mu.html#variable-results",
+    "href": "versions/v4_s4_grad_mu.html#variable-results",
+    "title": "v4_s4_grad_mu",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4_s4_grad_mu.html#parameters",
+    "href": "versions/v4_s4_grad_mu.html#parameters",
+    "title": "v4_s4_grad_mu",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nAdded condition\ngrad_mu\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal"
+  },
+  {
+    "objectID": "versions/v4_s4_grad_mu.html#references",
+    "href": "versions/v4_s4_grad_mu.html#references",
+    "title": "v4_s4_grad_mu",
+    "section": "",
+    "text": "Gradient-informed conditioning\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html",
+    "href": "versions/v4_s1_logit_t.html",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "v4 / S1\n\n\nThis is the strongest early residual Flow Matching baseline. I kept the CNO-conditioned U-Net FM setup, but changed the coupling and time sampling so the model sees more informative training pairs and more useful intermediate times.\n\n\n\n\n\n\nThe deterministic CNO gives:\n\\[\n\\boldsymbol{\\mu} = \\mathbf{x}_{LR} + f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n\\]\nThe FM model learns only the missing residual:\n\\[\n\\mathbf{x}_1 = \\mathbf{x}_{HR} - \\boldsymbol{\\mu}\n\\]\nFor S1, I use minibatch OT to pair noise and targets:\n\\[\n\\pi^{*}=\\arg\\min_{\\pi}\\sum_{i,j}\\pi_{ij}\n\\left\\|\\mathbf{x}_0^i-\\mathbf{x}_1^j\\right\\|_2^2\n\\]\nand logit-normal time sampling:\n\\[\nu \\sim \\mathcal{N}(\\mu_t,\\sigma_t^2),\n\\qquad\nt=\\mathrm{sigmoid}(u)\n\\]\nThe goal was to improve the training signal around the mixed states where both noise and ocean structure are present.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\n\n\nv4_s1_logit_t thetao residuals.\n\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\n\n\nTensorBoard loss curves will be extracted from LIR and placed here:\nwebsite/assets/losses/v4_s1_logit_t/\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal\n\n\nVariables\nthetao, so, zos, uo, vo\n\n\nTrain years\n1994-2003\n\n\nValidation\n2004\n\n\nBatch size\n8\n\n\nAccumulation\n4\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n25 and 50\n\n\nSigma\n1.0\n\n\nEnsemble\n1\n\n\nOutput shown\nthetao residual maps\n\n\n\n\n\n\n\nFlow Matching\nConditional Flow Matching reference code\nOT-CFM / minibatch optimal transport idea"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#hypothesis",
+    "href": "versions/v4_s1_logit_t.html#hypothesis",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "The deterministic CNO gives:\n\\[\n\\boldsymbol{\\mu} = \\mathbf{x}_{LR} + f_{\\theta}^{CNO}(\\mathbf{x}_{LR})\n\\]\nThe FM model learns only the missing residual:\n\\[\n\\mathbf{x}_1 = \\mathbf{x}_{HR} - \\boldsymbol{\\mu}\n\\]\nFor S1, I use minibatch OT to pair noise and targets:\n\\[\n\\pi^{*}=\\arg\\min_{\\pi}\\sum_{i,j}\\pi_{ij}\n\\left\\|\\mathbf{x}_0^i-\\mathbf{x}_1^j\\right\\|_2^2\n\\]\nand logit-normal time sampling:\n\\[\nu \\sim \\mathcal{N}(\\mu_t,\\sigma_t^2),\n\\qquad\nt=\\mathrm{sigmoid}(u)\n\\]\nThe goal was to improve the training signal around the mixed states where both noise and ocean structure are present."
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#variable-results",
+    "href": "versions/v4_s1_logit_t.html#variable-results",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\n\n\nv4_s1_logit_t thetao residuals.\n\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve for v4_s1_logit_t."
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#loss-curves",
+    "href": "versions/v4_s1_logit_t.html#loss-curves",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "TensorBoard loss curves will be extracted from LIR and placed here:\nwebsite/assets/losses/v4_s1_logit_t/"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#parameters",
+    "href": "versions/v4_s1_logit_t.html#parameters",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal\n\n\nVariables\nthetao, so, zos, uo, vo\n\n\nTrain years\n1994-2003\n\n\nValidation\n2004\n\n\nBatch size\n8\n\n\nAccumulation\n4"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#inference-used-here",
+    "href": "versions/v4_s1_logit_t.html#inference-used-here",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "Parameter\nValue\n\n\n\n\nSolver\nHeun\n\n\nSteps\n25 and 50\n\n\nSigma\n1.0\n\n\nEnsemble\n1\n\n\nOutput shown\nthetao residual maps"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#references",
+    "href": "versions/v4_s1_logit_t.html#references",
+    "title": "v4_s1_logit_t",
+    "section": "",
+    "text": "Flow Matching\nConditional Flow Matching reference code\nOT-CFM / minibatch optimal transport idea"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#description",
+    "href": "versions/v4_s1_logit_t.html#description",
+    "title": "v4_s1_logit_t",
+    "section": "Description",
+    "text": "Description\nBest early U-Net Flow Matching baseline. It keeps CNO residual conditioning and changes time sampling to logit-normal.\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nArchitecture\nCNO v2_loggrad + U-Net FM\n\n\nObjective\nFlow Matching on HR - mu\n\n\nCoupling\nminibatch OT\n\n\nt sampling\nlogit-normal\n\n\nInference baseline\nHeun, 25 steps, sigma 1.0\n\n\nMotivation\nimprove training signal around informative intermediate times\n\n\nResearch inspiration\nConditional Flow Matching, OT-CFM, weather downscaling FM"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#variables",
+    "href": "versions/v4_s1_logit_t.html#variables",
+    "title": "v4_s1_logit_t",
+    "section": "Variables",
+    "text": "Variables\n\nthetaosozosuovo\n\n\n\n\nBaseline residual map\n\n\n\nv4_s1_logit_t thetao residuals.\n\n\n\n\nHeun 25, sigma 1.0, ens 1\n\n\n\nv4_s1_logit_t Heun 25 inference.\n\n\n\n\nHeun 50, sigma 1.0, ens 1\n\n\n\nv4_s1_logit_t Heun 50 inference.\n\n\n\n\n\n\n\n\nHR / CNO / CNO+FM\nassets/figures/v4_s1_logit_t/so/presentation.png\n\n\nHR-LR / CNO Residual / FM Residual\nassets/figures/v4_s1_logit_t/so/residuals.png\n\n\nCNO Error / FM Error\nassets/figures/v4_s1_logit_t/so/errors.png\n\n\n\n\n\n\nHR / CNO / CNO+FM\nassets/figures/v4_s1_logit_t/zos/presentation.png\n\n\nHR-LR / CNO Residual / FM Residual\nassets/figures/v4_s1_logit_t/zos/residuals.png\n\n\nCNO Error / FM Error\nassets/figures/v4_s1_logit_t/zos/errors.png\n\n\n\n\n\n\nHR / CNO / CNO+FM\nassets/figures/v4_s1_logit_t/uo/presentation.png\n\n\nHR-LR / CNO Residual / FM Residual\nassets/figures/v4_s1_logit_t/uo/residuals.png\n\n\nCNO Error / FM Error\nassets/figures/v4_s1_logit_t/uo/errors.png\n\n\n\n\n\n\nHR / CNO / CNO+FM\nassets/figures/v4_s1_logit_t/vo/presentation.png\n\n\nHR-LR / CNO Residual / FM Residual\nassets/figures/v4_s1_logit_t/vo/residuals.png\n\n\nCNO Error / FM Error\nassets/figures/v4_s1_logit_t/vo/errors.png"
+  },
+  {
+    "objectID": "versions/v4_s1_logit_t.html#metrics",
+    "href": "versions/v4_s1_logit_t.html#metrics",
+    "title": "v4_s1_logit_t",
+    "section": "Metrics",
+    "text": "Metrics\nassets/metrics/v4_s1_logit_t.csv"
+  },
+  {
+    "objectID": "versions/v8a_dit_pixel.html",
+    "href": "versions/v8a_dit_pixel.html",
+    "title": "v8a_dit_pixel",
+    "section": "",
+    "text": "v8 / pixel DiT\n\n\nThis version replaces the U-Net FM backbone with a pixel-space Diffusion Transformer. It tests whether token attention can recover structures that the convolutional U-Net misses.\n\n\n\n\n\n\nThe HR patch is patchified into tokens. Time and conditioning modulate the transformer through AdaLN-style layers:\n\\[\n\\mathrm{block}(z,t,c)=z+\\gamma(t,c)\\,\\mathrm{Attn}(\\mathrm{LN}(z))+\\beta(t,c).\n\\]\nThe goal is to test global context for residual energy placement, especially in regions where local tiling produced horizontal artifacts. The figures currently shown use the best local copy available: Heun 50, sigma=1.0, ensemble=1, tile=512, overlap=256.\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\n\n\nv8a thetao residuals.\n\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\nv8a so residuals.\n\n\n\n\n\n\n\n\n\n\nv8a zos residuals.\n\n\n\n\n\n\n\n\n\n\nv8a uo residuals.\n\n\n\n\n\n\n\n\n\n\nv8a vo residuals.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\npixel DiT\n\n\nPatch size\n4\n\n\nEmbed dim\n384\n\n\nDepth\n12\n\n\nConditioning\nconcat at patch embed\n\n\n\n\n\n\n\nDiT\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v8a_dit_pixel.html#hypothesis",
+    "href": "versions/v8a_dit_pixel.html#hypothesis",
+    "title": "v8a_dit_pixel",
+    "section": "",
+    "text": "The HR patch is patchified into tokens. Time and conditioning modulate the transformer through AdaLN-style layers:\n\\[\n\\mathrm{block}(z,t,c)=z+\\gamma(t,c)\\,\\mathrm{Attn}(\\mathrm{LN}(z))+\\beta(t,c).\n\\]\nThe goal is to test global context for residual energy placement, especially in regions where local tiling produced horizontal artifacts. The figures currently shown use the best local copy available: Heun 50, sigma=1.0, ensemble=1, tile=512, overlap=256."
+  },
+  {
+    "objectID": "versions/v8a_dit_pixel.html#variable-results",
+    "href": "versions/v8a_dit_pixel.html#variable-results",
+    "title": "v8a_dit_pixel",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\n\n\nv8a thetao residuals.\n\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\nv8a so residuals.\n\n\n\n\n\n\n\n\n\n\nv8a zos residuals.\n\n\n\n\n\n\n\n\n\n\nv8a uo residuals.\n\n\n\n\n\n\n\n\n\n\nv8a vo residuals."
+  },
+  {
+    "objectID": "versions/v8a_dit_pixel.html#parameters",
+    "href": "versions/v8a_dit_pixel.html#parameters",
+    "title": "v8a_dit_pixel",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\npixel DiT\n\n\nPatch size\n4\n\n\nEmbed dim\n384\n\n\nDepth\n12\n\n\nConditioning\nconcat at patch embed"
+  },
+  {
+    "objectID": "versions/v8a_dit_pixel.html#references",
+    "href": "versions/v8a_dit_pixel.html#references",
+    "title": "v8a_dit_pixel",
+    "section": "",
+    "text": "DiT\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v4_s3_no_attn.html",
+    "href": "versions/v4_s3_no_attn.html",
+    "title": "v4_s3_no_attn",
+    "section": "",
+    "text": "v4 / S3\n\n\nThis ablation removes the bottleneck attention from the v4 U-Net FM. It tests whether attention is needed to place the residual energy, or whether convolution alone is enough.\n\n\n\n\n\n\nThe FM objective is unchanged:\n\\[\n\\mathcal{L}_{FM}=\\left\\|v_\\theta(\\mathbf{x}_t,t,\\boldsymbol{\\mu},\\mathbf{x}_{LR})-(\\mathbf{x}_1-\\mathbf{x}_0)\\right\\|_2^2.\n\\]\nOnly the attention block is removed. If the maps lose coherent fronts or eddy placement, the bottleneck attention was contributing useful spatial coordination.\n\n\n\n\n\n\nv4_s3 thetao residuals.\n\n\n\n\n\n\nthetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\nField\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nAblation\nno bottleneck attention\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal\n\n\n\n\n\n\n\nU-Net attention ablations\nFlow Matching"
+  },
+  {
+    "objectID": "versions/v4_s3_no_attn.html#hypothesis",
+    "href": "versions/v4_s3_no_attn.html#hypothesis",
+    "title": "v4_s3_no_attn",
+    "section": "",
+    "text": "The FM objective is unchanged:\n\\[\n\\mathcal{L}_{FM}=\\left\\|v_\\theta(\\mathbf{x}_t,t,\\boldsymbol{\\mu},\\mathbf{x}_{LR})-(\\mathbf{x}_1-\\mathbf{x}_0)\\right\\|_2^2.\n\\]\nOnly the attention block is removed. If the maps lose coherent fronts or eddy placement, the bottleneck attention was contributing useful spatial coordination."
+  },
+  {
+    "objectID": "versions/v4_s3_no_attn.html#available-local-plot",
+    "href": "versions/v4_s3_no_attn.html#available-local-plot",
+    "title": "v4_s3_no_attn",
+    "section": "",
+    "text": "v4_s3 thetao residuals."
+  },
+  {
+    "objectID": "versions/v4_s3_no_attn.html#variable-results",
+    "href": "versions/v4_s3_no_attn.html#variable-results",
+    "title": "v4_s3_no_attn",
+    "section": "",
+    "text": "thetaosozosuovo\n\n\n\n\n\nPlaceholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.\n\n\n\n\n\nPlaceholder: thetao HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: thetao CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: so HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: so HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: so CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: zos HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: zos HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: zos CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: uo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: uo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: uo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve.\n\n\n\n\n\n\n\nPlaceholder: vo HR / CNO / CNO+FM figure.\n\n\n\n\n\nPlaceholder: vo HR-LR / CNO residual / FM residual figure.\n\n\n\n\n\nPlaceholder: vo CNO error / FM error figure.\n\n\n\n\n\nPlaceholder: TensorBoard train/val loss curve."
+  },
+  {
+    "objectID": "versions/v4_s3_no_attn.html#parameters",
+    "href": "versions/v4_s3_no_attn.html#parameters",
+    "title": "v4_s3_no_attn",
+    "section": "",
+    "text": "Field\nValue\n\n\n\n\nCNO checkpoint\nv2_loggrad\n\n\nFM backbone\nU-Net\n\n\nAblation\nno bottleneck attention\n\n\nTarget\nHR - mu\n\n\nCoupling\nminibatch OT\n\n\nTime sampling\nlogit-normal"
+  },
+  {
+    "objectID": "versions/v4_s3_no_attn.html#references",
+    "href": "versions/v4_s3_no_attn.html#references",
+    "title": "v4_s3_no_attn",
+    "section": "",
+    "text": "U-Net attention ablations\nFlow Matching"
+  }
+]

@@ -5,51 +5,47 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v9a / EDM diffusion</span>
 
-NCSN++/SongUNet candidate trained with an EDM denoising objective.
-This version moves away from direct FM velocity prediction and tests a CorrDiff-style diffusion objective.
+# v9a_songunet_edm
+
+This version tests a CorrDiff-style diffusion objective with a SongUNet/NCSN++ backbone instead of direct FM velocity
+prediction.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+EDM trains a denoiser over a wide noise range:
+
+$$
+\mathcal{L}_{EDM}=\lambda(\sigma)\left\|D_\theta(\mathbf{x}+\sigma\epsilon,\sigma,c)-\mathbf{x}\right\|_2^2.
+$$
+
+The goal is to compare a proven diffusion downscaling objective against residual Flow Matching.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | SongUNetPosEmbd / NCSN++ style U-Net |
-| Objective | EDM denoising on `HR - mu` residual |
-| Input channels | `x_t`, `mu`, `lr`, mask, distance-to-coast, latitude |
-| Patch size | 256 |
-| Model channels | 128 |
-| Sigma range | 0.002 to 80 |
-| Motivation | test a proven diffusion downscaling objective against FM |
-| Research inspiration | PhysicsNeMo SongUNet, CorrDiff, EDM |
+| Backbone | SongUNet / NCSN++ |
+| Objective | EDM denoising |
+| Target | `HR - mu` residual |
+| Patch size | `256` |
+| Model channels | `128` |
+| Sigma range | `0.002` to `80` |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v9a_songunet_edm/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v9a_songunet_edm/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v9a_songunet_edm/thetao/errors.png`
+- [EDM](../methods/edm.html)
+- CorrDiff-style generative downscaling
 :::
 :::
-### so
-`assets/figures/v9a_songunet_edm/so/`
-### zos
-`assets/figures/v9a_songunet_edm/zos/`
-### uo
-`assets/figures/v9a_songunet_edm/uo/`
-### vo
-`assets/figures/v9a_songunet_edm/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v9a_songunet_edm.csv`
-

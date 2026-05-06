@@ -1,0 +1,21 @@
+---
+title: "EDM / SongUNet"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# EDM and SongUNet
+
+The EDM-style branch changes the generative objective from direct Flow Matching to denoising across noise levels:
+
+$$
+\mathcal{L}_{EDM}=\lambda(\sigma)\|D_\theta(\mathbf{x}+\sigma\epsilon,\sigma,c)-\mathbf{x}\|_2^2.
+$$
+
+OceanLens `v9a` uses this CorrDiff-inspired idea with a Song/NCSN++ U-Net family to test whether diffusion-style
+preconditioning gives more stable high-frequency residuals.
+
+References: [EDM](https://arxiv.org/abs/2206.00364), [NCSN++](https://arxiv.org/abs/2011.13456), NVIDIA CorrDiff papers.
+:::

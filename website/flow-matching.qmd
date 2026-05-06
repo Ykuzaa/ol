@@ -1,0 +1,91 @@
+---
+title: "Flow Matching Branch"
+format:
+  html:
+    page-layout: full
+---
+
+## Role In OceanLens
+
+Flow Matching models the unresolved residual after the CNO mean:
+
+$$
+\mathbf{x}_1 = \mathbf{x}_{HR} - \boldsymbol{\mu}
+$$
+
+The model starts from noise:
+
+$$
+\mathbf{x}_0 \sim \mathcal{N}(0, I)
+$$
+
+and learns a velocity field that moves from noise to the residual:
+
+$$
+\mathbf{x}_t = (1-t)\mathbf{x}_0 + t\mathbf{x}_1
+$$
+
+For the linear path used in the v4 family, the target velocity is:
+
+$$
+\mathbf{v}^{*} = \mathbf{x}_1 - \mathbf{x}_0
+$$
+
+The training objective is:
+
+$$
+\mathcal{L}_{FM} =
+\mathbb{E}_{t,\mathbf{x}_0,\mathbf{x}_1}
+\left[
+\left\| v_{\phi}(\mathbf{x}_t, t, \boldsymbol{\mu}, \mathbf{x}_{LR})
+- (\mathbf{x}_1 - \mathbf{x}_0) \right\|_2^2
+\right]
+$$
+
+## Inference
+
+At inference time the model samples a new residual by solving an ODE:
+
+$$
+\frac{d\mathbf{x}}{dt} = v_{\phi}(\mathbf{x}_t, t, \boldsymbol{\mu}, \mathbf{x}_{LR})
+$$
+
+The generated field is:
+
+$$
+\widehat{\mathbf{x}}_{HR} = \boldsymbol{\mu} + \widehat{\mathbf{r}}_{FM}
+$$
+
+That is why solver choices matter. Euler, Heun, number of steps, noise temperature and tiling affect the final
+residual map even when the trained weights are fixed.
+
+::: {.reference-grid}
+::: {.reference-card}
+### Main paper
+
+[Flow Matching for Generative Modeling](https://arxiv.org/abs/2210.02747)
+:::
+
+::: {.reference-card}
+### Useful code reference
+
+[g4vrel/CFM](https://github.com/g4vrel/CFM)
+:::
+
+::: {.reference-card}
+### OceanLens implementation
+
+`src/oceanlens/losses/fm.py` and `src/oceanlens/models/fm_unet.py`
+:::
+:::
+
+## OceanLens Choices
+
+| Choice | Why it matters |
+|---|---|
+| Residual target `HR - mu` | FM only learns what CNO missed |
+| Minibatch OT | Better matching between noise samples and residual targets |
+| Logit-normal `t` sampling | Samples more useful intermediate times |
+| Heun inference | More accurate ODE integration than Euler |
+| CFG fine-tuning | Allows stronger conditioning at inference |
+| Re-coarsening loss | Keeps generated HR consistent with LR after pooling |

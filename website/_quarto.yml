@@ -3,10 +3,10 @@ project:
 
 website:
   title: "OceanLens"
-  favicon: assets/logos/oceanlens-favicon.png
+  favicon: assets/logos/oceanlens-logo.jpeg
   open-graph: true
   navbar:
-    logo: assets/logos/oceanlens-favicon.png
+    logo: assets/logos/oceanlens-logo.jpeg
     logo-alt: "OceanLens logo."
     left:
       - href: index.qmd
@@ -15,8 +15,30 @@ website:
         text: Versions
       - href: compare.qmd
         text: Compare
-      - href: methods.qmd
-        text: Methods
+      - text: Methods
+        menu:
+          - href: cno.qmd
+            text: CNO
+          - href: flow-matching.qmd
+            text: Flow Matching
+          - href: methods/minibatch-ot.qmd
+            text: Minibatch OT
+          - href: methods/logit-normal.qmd
+            text: Logit-normal t
+          - href: methods/recoarsening.qmd
+            text: Re-coarsening loss
+          - href: methods/cfg.qmd
+            text: CFG
+          - href: methods/swin.qmd
+            text: Swin
+          - href: methods/dit.qmd
+            text: DiT
+          - href: methods/edm.qmd
+            text: EDM / SongUNet
+          - href: methods/bridge.qmd
+            text: Diffusion bridge
+          - href: methods.qmd
+            text: Full Method Notes
   page-footer: |
     OceanLens experimental super-resolution dashboard.
 
@@ -26,6 +48,8 @@ format:
       light: [flatly, theme-light.scss]
       dark: [darkly, theme-dark.scss]
     css: styles.css
-    toc: true
+    include-after-body:
+      - text: |
+          <script src="/assets/js/plot-zoom.js"></script>
+    toc: false
     page-layout: full
-

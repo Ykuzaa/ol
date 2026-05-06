@@ -5,105 +5,80 @@ format:
     page-layout: full
 ---
 
-## Version Pages
+::: {.versions-page}
 
-::: {.version-grid}
-::: {.version-card}
-### v4 overview
-First CNO-conditioned residual Flow Matching family.
+# Every Version Is A Hypothesis
 
-[Open](v4.qmd)
+All experiments start from the same deterministic base: a CNO trained to predict `HR - LR` on GLORYS surface fields,
+then fine-tuned with log-absolute temperature-gradient information. The goal of the version tree is to find the
+best FM model after this CNO: each FM variant learns `HR - mu`, with `mu = LR + CNO(LR)`. Fine-tuning branches are
+initialized from `v4_s1_logit_t`.
+
+::: {.version-matrix}
+**Main training and architecture line**
+
+::: {.matrix-main}
+[v4 · U-Net FM](v4.html){.version-card-node .root}
+[v5 · FM-only](v5_fm_only.html){.version-card-node}
+[v6 · geo physics](v6_full_geo_phys.html){.version-card-node}
+[v7 · Swin local](v7a_swin.html){.version-card-node}
+[v8 · pixel DiT](v8a_dit_pixel.html){.version-card-node}
+[v9 · diffusion family](v9a_songunet_edm.html){.version-card-node}
 :::
 
-::: {.version-card}
-### v4_s1_logit_t
-Best early U-Net FM baseline with logit-normal time sampling.
+**v4 ablations**
 
-[Open](v4_s1_logit_t.qmd)
+::: {.matrix-branches}
+[S1 · OT + logit-t](v4_s1_logit_t.html){.version-card-node .best}
+[S2 · independent](v4_s2_independent.html){.version-card-node}
+[S3 · no attention](v4_s3_no_attn.html){.version-card-node}
+[S4 · grad-mu](v4_s4_grad_mu.html){.version-card-node}
 :::
 
-::: {.version-card}
-### v4_s2_independent
-Independent coupling ablation.
+**Fine-tuned from S1**
 
-[Open](v4_s2_independent.qmd)
+::: {.matrix-finetunes}
+[FT · recoarsen](v4_s1_recoarsen_ft.html){.version-card-node}
+[FT · CFG](v4_s1_cfg_ft.html){.version-card-node}
+[FT · regional](v4_s1_regional_ft.html){.version-card-node}
 :::
 
-::: {.version-card}
-### v4_s3_no_attn
-Attention ablation.
+**v9 branches**
 
-[Open](v4_s3_no_attn.qmd)
-:::
-
-::: {.version-card}
-### v4_s4_grad_mu
-Gradient conditioning ablation.
-
-[Open](v4_s4_grad_mu.qmd)
-:::
-
-::: {.version-card}
-### v4_s1_recoarsen_ft
-Fine-tuning with LR/HR consistency through re-coarsening.
-
-[Open](v4_s1_recoarsen_ft.qmd)
-:::
-
-::: {.version-card}
-### v4_s1_cfg_ft
-Fine-tuning with condition dropout for CFG.
-
-[Open](v4_s1_cfg_ft.qmd)
-:::
-
-::: {.version-card}
-### v4_s1_regional_ft
-Fine-tuning with weighted sampling for Mediterranean, Black Sea and polar regions.
-
-[Open](v4_s1_regional_ft.qmd)
-:::
-
-::: {.version-card}
-### v6_full_geo_phys
-Geography/physics-augmented variant.
-
-[Open](v6_full_geo_phys.qmd)
-:::
-
-::: {.version-card}
-### v7a_swin
-Swin/window-attention experiment.
-
-[Open](v7a_swin.qmd)
-:::
-
-::: {.version-card}
-### v8a_dit_pixel
-Pixel-space DiT experiment.
-
-[Open](v8a_dit_pixel.qmd)
-:::
-
-::: {.version-card}
-### v9a_songunet_edm
-NCSN++/SongUNet with EDM denoising.
-
-[Open](v9a_songunet_edm.qmd)
-:::
-
-::: {.version-card}
-### v9b_songunet_bridge
-Diffusion bridge from noisy CNO to HR.
-
-[Open](v9b_songunet_bridge.qmd)
-:::
-
-::: {.version-card}
-### v9c_dit_cfg_recoarsen
-DiT with CFG training and re-coarsening.
-
-[Open](v9c_dit_cfg_recoarsen.qmd)
+::: {.matrix-v9}
+[v9a · SongUNet EDM](v9a_songunet_edm.html){.version-card-node}
+[v9b · bridge](v9b_songunet_bridge.html){.version-card-node}
+[v9c · DiT hybrid](v9c_dit_cfg_recoarsen.html){.version-card-node}
 :::
 :::
 
+## Reading The Tree
+
+::: {.compact-version-list}
+[v4](v4.html)
+: First CNO-conditioned residual Flow Matching family.
+
+[v4_s1_logit_t](v4_s1_logit_t.html)
+: Best early U-Net FM baseline, using [minibatch OT](../methods/minibatch-ot.html) and
+[logit-normal time sampling](../methods/logit-normal.html).
+
+[v4_s1_recoarsen_ft](v4_s1_recoarsen_ft.html)
+: Fine-tuning with [re-coarsening consistency](../methods/recoarsening.html).
+
+[v4_s1_cfg_ft](v4_s1_cfg_ft.html)
+: Fine-tuning with condition dropout for [classifier-free guidance](../methods/cfg.html).
+
+[v4_s1_regional_ft](v4_s1_regional_ft.html)
+: Regional oversampling for Mediterranean, Black Sea and polar failures.
+
+[v7a_swin](v7a_swin.html)
+: Local window attention using a [Swin-style](../methods/swin.html) backbone.
+
+[v8a_dit_pixel](v8a_dit_pixel.html)
+: Pixel-space [DiT](../methods/dit.html) replacing the U-Net FM backbone.
+
+[v9a / v9b / v9c](v9a_songunet_edm.html)
+: Diffusion alternatives: [EDM](../methods/edm.html), [bridge](../methods/bridge.html), and DiT hybrid.
+:::
+
+:::

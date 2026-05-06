@@ -1,0 +1,22 @@
+---
+title: "Diffusion Transformer"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Pixel DiT
+
+The DiT variant replaces the convolutional U-Net with token attention. A patch embedding turns the field into tokens,
+then time and conditioning modulate transformer blocks, often with AdaLN-style conditioning:
+
+$$
+\mathbf{h}_{l+1}=\mathbf{h}_l+\mathrm{Attention}(\mathrm{AdaLN}(\mathbf{h}_l,t,c)).
+$$
+
+OceanLens `v8a_dit_pixel` tests whether global token interactions can better place residual energy in connected ocean
+regions.
+
+References: [DiT](https://arxiv.org/abs/2212.09748), [Stable Diffusion 3 / Rectified Flow](https://arxiv.org/abs/2403.03206).
+:::

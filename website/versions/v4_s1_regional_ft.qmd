@@ -5,6 +5,63 @@ format:
     page-layout: full
 ---
 
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 / fine-tuning</span>
+
+# v4_s1_regional_ft
+
+This version keeps the same architecture but changes the sampling distribution. It oversamples regions that were
+visually weak: Mediterranean, Black Sea and Arctic patches.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+Uniform patch sampling gives too much probability mass to open-ocean patches. I changed the patch probability:
+
+$$
+p(\text{patch}) \propto w_{region}\,\mathbb{1}(f_{ocean}>\tau)
+$$
+
+so small or difficult regions appear more often during fine-tuning.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
+
+| Field | Value |
+|---|---|
+| Init checkpoint | `v4_s1_logit_t` |
+| Data change | weighted patch sampling |
+| Regions | Med, Black Sea, Arctic |
+| Region ocean threshold | `0.3` |
+| Default weight | `1.0` |
+| Med/Black weight | `5.0` |
+| Arctic weight | `3.0` |
+
+## Inference Used Here
+
+| Parameter | Value |
+|---|---|
+| Solver | Heun |
+| Steps | `50` |
+| Sigma | `1.0` |
+| Ensemble | `1` |
+
+## References
+
+- Importance sampling for regional failures
+- Residual Flow Matching
+:::
+:::
+:::
+
+::: {.old-version}
+
 ## Description
 
 Fine-tuning of `v4_s1_logit_t` with weighted patch sampling for under-represented regions.
@@ -23,16 +80,9 @@ Fine-tuning of `v4_s1_logit_t` with weighted patch sampling for under-represente
 ### thetao
 ::: {.figure-grid}
 ::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v4_s1_regional_ft/thetao/presentation.png`
-:::
-::: {.figure-slot}
 #### HR-LR / CNO Residual / FM Residual
-`assets/figures/v4_s1_regional_ft/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v4_s1_regional_ft/thetao/errors.png`
+
+![Regional fine-tune thetao residuals.](../assets/figures/v4_s1_regional_ft/thetao/residuals.png)
 :::
 :::
 ### so
@@ -48,4 +98,4 @@ Fine-tuning of `v4_s1_logit_t` with weighted patch sampling for under-represente
 ## Metrics
 
 `assets/metrics/v4_s1_regional_ft.csv`
-
+:::

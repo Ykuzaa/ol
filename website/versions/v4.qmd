@@ -5,10 +5,19 @@ format:
     page-layout: full
 ---
 
-## What Changed
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 family</span>
 
-The v4 family is the first stable CNO-conditioned residual Flow Matching setup.
-The deterministic CNO predicts the large-scale HR estimate, and the FM U-Net generates the unresolved residual.
+# v4 Family
+
+The v4 family is the first stable CNO-conditioned residual Flow Matching setup. The deterministic CNO predicts the
+large-scale HR estimate, and the FM U-Net generates the unresolved residual.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## What Changed
 
 | Field | Value |
 |---|---|
@@ -27,7 +36,22 @@ The deterministic CNO predicts the large-scale HR estimate, and the FM U-Net gen
 | v4_s3_no_attn | remove attention | measure bottleneck attention effect |
 | v4_s4_grad_mu | add CNO gradient | expose fronts and sharp CNO structures |
 
-## Figure Slots
+## Available Local Plot
 
-Use the individual pages for variable tabs and figures.
+![v4 thetao residuals.](../assets/figures/v4/thetao/residuals.png){.full-figure}
 
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Family Role
+
+This page summarizes the v4 branch. The detailed ablations are:
+
+- [v4_s1_logit_t](v4_s1_logit_t.html)
+- [v4_s2_independent](v4_s2_independent.html)
+- [v4_s3_no_attn](v4_s3_no_attn.html)
+- [v4_s4_grad_mu](v4_s4_grad_mu.html)
+:::
+:::
+:::

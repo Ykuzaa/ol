@@ -1,0 +1,89 @@
+{
+  "methods.qmd": {
+    "methods.html": "7dc73d24"
+  },
+  "compare.qmd": {
+    "compare.html": "94187923"
+  },
+  "index.qmd": {
+    "index.html": "02a9565c"
+  },
+  "versions/v4_s1_regional_ft.qmd": {
+    "v4_s1_regional_ft.html": "5cadde35"
+  },
+  "versions/v4_s1_recoarsen_ft.qmd": {
+    "v4_s1_recoarsen_ft.html": "8e646527"
+  },
+  "versions/v9a_songunet_edm.qmd": {
+    "v9a_songunet_edm.html": "84df0080"
+  },
+  "versions/v6_full_geo_phys.qmd": {
+    "v6_full_geo_phys.html": "2f6fd722"
+  },
+  "versions/v7a_swin.qmd": {
+    "v7a_swin.html": "e19f800d"
+  },
+  "versions/v4_s2_independent.qmd": {
+    "v4_s2_independent.html": "9de17703"
+  },
+  "versions/v9b_songunet_bridge.qmd": {
+    "v9b_songunet_bridge.html": "841cdd39"
+  },
+  "versions/v4_s4_grad_mu.qmd": {
+    "v4_s4_grad_mu.html": "cacd0ec4"
+  },
+  "versions/v9c_dit_cfg_recoarsen.qmd": {
+    "v9c_dit_cfg_recoarsen.html": "0003ab82"
+  },
+  "versions/v4_s1_logit_t.qmd": {
+    "v4_s1_logit_t.html": "f22511a5"
+  },
+  "versions/v4.qmd": {
+    "v4.html": "dceec374"
+  },
+  "versions/v8a_dit_pixel.qmd": {
+    "v8a_dit_pixel.html": "90bbb961"
+  },
+  "versions/index.qmd": {
+    "index.html": "64a1c6b3"
+  },
+  "versions/v4_s3_no_attn.qmd": {
+    "v4_s3_no_attn.html": "4077f547"
+  },
+  "versions/v4_s1_cfg_ft.qmd": {
+    "v4_s1_cfg_ft.html": "28fefc49"
+  },
+  "cno.qmd": {
+    "cno.html": "0b67effa"
+  },
+  "flow-matching.qmd": {
+    "flow-matching.html": "26844d0a"
+  },
+  "methods/minibatch-ot.qmd": {
+    "minibatch-ot.html": "ed798176"
+  },
+  "methods/swin.qmd": {
+    "swin.html": "c7c6a576"
+  },
+  "methods/recoarsening.qmd": {
+    "recoarsening.html": "3eb8cf54"
+  },
+  "methods/cfg.qmd": {
+    "cfg.html": "f9a0010e"
+  },
+  "methods/logit-normal.qmd": {
+    "logit-normal.html": "0176527f"
+  },
+  "methods/dit.qmd": {
+    "dit.html": "61770832"
+  },
+  "methods/bridge.qmd": {
+    "bridge.html": "6ddfe9ad"
+  },
+  "methods/edm.qmd": {
+    "edm.html": "99eccb98"
+  },
+  "versions/v5_fm_only.qmd": {
+    "v5_fm_only.html": "ca56de9f"
+  }
+}

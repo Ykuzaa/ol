@@ -5,47 +5,52 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 / S4</span>
 
-Gradient-conditioning ablation for the v4 residual FM U-Net.
+# v4_s4_grad_mu
+
+This conditioning ablation adds gradients of the deterministic CNO field. The goal is to expose fronts and sharp
+structures already detected by CNO to the FM residual model.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The condition becomes richer:
+
+$$
+c=[\boldsymbol{\mu},\mathbf{x}_{LR},\nabla\boldsymbol{\mu}]
+$$
+
+instead of only using the coarse/deterministic fields. If FM needs front locations to place residual energy, this
+variant should improve coastal and current-front structure.
+
+## Available Local Plot
+
+![v4_s4 thetao residuals.](../assets/figures/v4_s4_grad_mu/thetao/residuals.png){.full-figure}
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | CNO v2_loggrad + U-Net FM |
+| CNO checkpoint | `v2_loggrad` |
+| FM backbone | U-Net |
 | Added condition | `grad_mu` |
-| Objective | Flow Matching on `HR - mu` |
-| Motivation | expose CNO front locations and sharp gradients |
-| Research inspiration | physically informed conditioning for downscaling |
+| Target | `HR - mu` |
+| Coupling | minibatch OT |
+| Time sampling | logit-normal |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v4_s4_grad_mu/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v4_s4_grad_mu/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v4_s4_grad_mu/thetao/errors.png`
+- Gradient-informed conditioning
+- [Flow Matching](https://arxiv.org/abs/2210.02747)
 :::
 :::
-### so
-`assets/figures/v4_s4_grad_mu/so/`
-### zos
-`assets/figures/v4_s4_grad_mu/zos/`
-### uo
-`assets/figures/v4_s4_grad_mu/uo/`
-### vo
-`assets/figures/v4_s4_grad_mu/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v4_s4_grad_mu.csv`
-

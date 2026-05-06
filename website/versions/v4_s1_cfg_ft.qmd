@@ -5,6 +5,63 @@ format:
     page-layout: full
 ---
 
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 / fine-tuning</span>
+
+# v4_s1_cfg_ft
+
+This version fine-tunes `v4_s1_logit_t` with condition dropout so the sampler can use classifier-free guidance at
+inference time.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+During training, the condition is randomly removed for part of the batch. At inference, conditional and
+unconditional velocity estimates are combined:
+
+$$
+v_{guided}=v_{\emptyset}+w(v_{cond}-v_{\emptyset})
+$$
+
+The goal was to push the model away from under-dispersive residuals without retraining the whole architecture.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
+
+| Field | Value |
+|---|---|
+| Init checkpoint | `v4_s1_logit_t` |
+| Training change | condition dropout |
+| Dropout probability | `0.15` |
+| Inference sweep | `cfg_scale` |
+| Target | `HR - mu` |
+
+## Inference Used Here
+
+| Parameter | Value |
+|---|---|
+| Solver | Heun |
+| Steps | `50` |
+| Sigma | `1.0` |
+| Ensemble | `1` |
+| CFG shown | `1.0`, `2.0` |
+
+## References
+
+- Classifier-free guidance
+- Conditional Flow Matching
+:::
+:::
+:::
+
+::: {.old-version}
+
 ## Description
 
 Fine-tuning of `v4_s1_logit_t` with condition dropout to enable classifier-free guidance.
@@ -24,16 +81,14 @@ Fine-tuning of `v4_s1_logit_t` with condition dropout to enable classifier-free 
 ### thetao
 ::: {.figure-grid}
 ::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v4_s1_cfg_ft/thetao/presentation.png`
+#### CFG 1.0
+
+![CFG fine-tune thetao residuals with cfg scale 1.0.](../assets/figures/v4_s1_cfg_ft/thetao/residuals_cfg1.png)
 :::
 ::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v4_s1_cfg_ft/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v4_s1_cfg_ft/thetao/errors.png`
+#### CFG 2.0
+
+![CFG fine-tune thetao residuals with cfg scale 2.0.](../assets/figures/v4_s1_cfg_ft/thetao/residuals_cfg2.png)
 :::
 :::
 ### so
@@ -49,4 +104,4 @@ Fine-tuning of `v4_s1_logit_t` with condition dropout to enable classifier-free 
 ## Metrics
 
 `assets/metrics/v4_s1_cfg_ft.csv`
-
+:::

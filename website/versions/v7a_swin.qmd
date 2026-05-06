@@ -5,47 +5,98 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v7 / local transformer</span>
 
-Window-attention model designed to test whether local attention is better suited to ocean residuals than global attention.
+# v7a_swin
+
+This architecture replaces the U-Net FM backbone with Swin-style local window attention. The question is whether
+ocean residuals are better modeled by local attention than by global token mixing.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+Most energetic submesoscale structures are local: fronts, eddies and coastal gradients. Swin attention restricts
+attention to windows:
+
+$$
+\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V
+$$
+
+but applies it locally, reducing compute while still letting nearby ocean tokens communicate.
+
+## Variable Results
+
+::: {.panel-tabset .variable-tabs}
+### thetao
+
+#### HR / CNO / CNO+FM
+
+::: {.figure-placeholder-large}
+Placeholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.
+:::
+
+#### HR-LR / CNO residual / FM residual
+
+![v7a thetao residuals.](../assets/figures/v7a_swin/thetao/residuals.png){.full-figure}
+
+#### CNO error / FM error
+
+::: {.figure-placeholder-large}
+Placeholder: thetao CNO error / FM error figure.
+:::
+
+#### Loss curve
+
+::: {.figure-placeholder-large}
+Placeholder: TensorBoard train/val loss curve.
+:::
+
+### so
+
+::: {.figure-placeholder-large}
+Placeholder: so figures will be exported from LIR.
+:::
+
+### zos
+
+::: {.figure-placeholder-large}
+Placeholder: zos figures will be exported from LIR.
+:::
+
+### uo
+
+::: {.figure-placeholder-large}
+Placeholder: uo figures will be exported from LIR.
+:::
+
+### vo
+
+::: {.figure-placeholder-large}
+Placeholder: vo figures will be exported from LIR.
+:::
+:::
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | Swin-style FM backbone |
-| Objective | residual Flow Matching |
+| CNO checkpoint | `v2_loggrad` |
+| FM backbone | Swin-style |
 | Attention | local windows |
-| Motivation | eddies and fronts are mostly local structures |
-| Research inspiration | Swin Transformer, local attention downscaling |
+| Target | `HR - mu` |
+| Coupling | minibatch OT |
+| Time sampling | logit-normal |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v7a_swin/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v7a_swin/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v7a_swin/thetao/errors.png`
+- [Swin Transformer](https://arxiv.org/abs/2103.14030)
+- [Flow Matching](https://arxiv.org/abs/2210.02747)
 :::
 :::
-### so
-`assets/figures/v7a_swin/so/`
-### zos
-`assets/figures/v7a_swin/zos/`
-### uo
-`assets/figures/v7a_swin/uo/`
-### vo
-`assets/figures/v7a_swin/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v7a_swin.csv`
-

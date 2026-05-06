@@ -5,52 +5,48 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v9c / DiT hybrid</span>
 
-DiT Flow Matching candidate with condition dropout and re-coarsening consistency.
-It combines the v8 DiT backbone with the strongest fine-tuning ideas from the v4 family.
+# v9c_dit_cfg_recoarsen
+
+This version combines the v8 DiT backbone with the strongest v4 fine-tuning ideas: condition dropout for CFG and
+re-coarsening consistency.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The training objective combines FM with coarse consistency:
+
+$$
+\mathcal{L}=\mathcal{L}_{FM}+\lambda_c\left\|C(\widehat{\mathbf{x}}_{HR})-\mathbf{x}_{LR}\right\|_2^2.
+$$
+
+Condition dropout also makes the model CFG-ready at inference.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | pixel-space DiT |
-| Objective | Flow Matching on `HR - mu` |
-| Condition dropout | 0.15 |
-| Re-coarsening weight | 0.05 |
-| Patch size | 128 |
-| Embed dim | 384 |
-| Heads | 12 |
-| Motivation | test whether DiT benefits from CFG-ready training and LR consistency |
-| Research inspiration | DiT, classifier-free guidance, re-coarsening consistency |
+| Backbone | pixel DiT |
+| Objective | residual FM |
+| Condition dropout | `0.15` |
+| Re-coarsening weight | `0.05` |
+| Embed dim | `384` |
+| Heads | `12` |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v9c_dit_cfg_recoarsen/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v9c_dit_cfg_recoarsen/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v9c_dit_cfg_recoarsen/thetao/errors.png`
+- [DiT](../methods/dit.html)
+- [CFG](../methods/cfg.html)
+- [Re-coarsening](../methods/recoarsening.html)
 :::
 :::
-### so
-`assets/figures/v9c_dit_cfg_recoarsen/so/`
-### zos
-`assets/figures/v9c_dit_cfg_recoarsen/zos/`
-### uo
-`assets/figures/v9c_dit_cfg_recoarsen/uo/`
-### vo
-`assets/figures/v9c_dit_cfg_recoarsen/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v9c_dit_cfg_recoarsen.csv`
-

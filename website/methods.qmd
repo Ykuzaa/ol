@@ -1,56 +1,248 @@
 ---
-title: "Methods"
+title: "Methods And Architectures"
 format:
   html:
     page-layout: full
 ---
 
-## Core Components
+## Purpose
 
-::: {.version-grid}
-::: {.method-card}
-### CNO Baseline
-The deterministic branch predicts a high-resolution correction from upsampled LR fields.
-It gives the mean structure used as conditioning for the generative residual models.
+This page is the glossary of the project. It explains the methods and architectures used in OceanLens, why they
+were tested, and which references motivated them.
+
+::: {.method-catalog}
+::: {.method-entry}
+### CNO
+
+**Role.** Deterministic super-resolution branch. It predicts the stable correction from LR to HR.
+
+$$
+\boldsymbol{\mu} = \mathbf{x}_{LR} + f_{\theta}^{CNO}(\mathbf{x}_{LR})
+$$
+
+**Why used.** It gives a strong deterministic baseline and separates predictable large-scale structure from
+uncertain high-frequency residuals.
+
+**References.**
+[Paper](https://arxiv.org/abs/2302.01178) ·
+[Repository](https://github.com/camlab-ethz/ConvolutionalNeuralOperator) ·
+[OceanLens page](cno.html)
 :::
 
-::: {.method-card}
+::: {.method-entry}
 ### Flow Matching
-The FM branch learns a velocity field between noise and the HR residual.
-Inference integrates the learned velocity field with Euler or Heun solvers.
+
+**Role.** Generative residual model. It learns a velocity field from noise to `HR - mu`.
+
+$$
+\mathbf{x}_t = (1-t)\mathbf{x}_0 + t\mathbf{x}_1,
+\qquad
+\mathbf{v}^{*} = \mathbf{x}_1 - \mathbf{x}_0
+$$
+
+**Why used.** It samples plausible unresolved structures instead of forcing a single deterministic residual.
+
+**References.**
+[Paper](https://arxiv.org/abs/2210.02747) ·
+[Reference implementation](https://github.com/g4vrel/CFM) ·
+[OceanLens page](flow-matching.html)
 :::
 
-::: {.method-card}
+::: {.method-entry}
+### Minibatch OT Coupling
+
+**Role.** Pairs Gaussian noise samples with residual targets using a small optimal-transport matching inside each batch.
+
+For a batch of noises $\{\mathbf{x}_0^i\}$ and residual targets $\{\mathbf{x}_1^j\}$, the matching solves:
+
+$$
+\pi^{*} =
+\arg\min_{\pi}
+\sum_{i,j} \pi_{ij}
+\left\| \mathbf{x}_0^i - \mathbf{x}_1^j \right\|_2^2
+$$
+
+**Why used.** It makes the path from noise to target less arbitrary than independent random pairing, which helped
+make `v4_s1_logit_t` the strongest early baseline.
+:::
+
+::: {.method-entry}
+### Logit-normal Time Sampling
+
+**Role.** Samples more training times around the useful middle of the path instead of treating all `t` uniformly.
+
+Instead of $t \sim \mathcal{U}(0,1)$, I sample:
+
+$$
+u \sim \mathcal{N}(\mu, \sigma^2),
+\qquad
+t = \mathrm{sigmoid}(u)
+$$
+
+**Why used.** The network sees more informative mixed states, where both noise and data structure are present.
+:::
+
+::: {.method-entry}
 ### Re-coarsening Consistency
-The generated HR field is pooled back to LR resolution and penalized if it disagrees with the LR input.
-This follows the consistency idea used in weather and ocean downscaling work.
+
+**Role.** Penalizes generated HR if it does not return the LR field after downsampling.
+
+$$
+\mathcal{L}_{coarse} =
+\left\| C(\widehat{\mathbf{x}}_{HR}) - \mathbf{x}_{LR}^{native} \right\|_2^2
+$$
+
+**Why used.** It is a physical consistency guardrail: the generated fine-scale field should not contradict the
+coarse observation.
 :::
 
-::: {.method-card}
+::: {.method-entry}
 ### Classifier-Free Guidance
-Condition dropout during training allows inference to combine conditional and unconditional velocities.
-It is used to increase how strongly the model follows the CNO/LR conditioning.
+
+**Role.** Trains the model with condition dropout, then amplifies the conditional signal at inference:
+
+$$
+v_{guided} = v_{\emptyset} + w (v_{cond} - v_{\emptyset})
+$$
+
+**Why used.** It targets the under-dispersive residual problem: FM produced structures in the right places but
+often with too little amplitude.
 :::
 
-::: {.method-card}
-### Swin Attention
-Windowed attention targets local ocean structures such as fronts and eddies while keeping memory manageable.
+::: {.method-entry}
+### Regional Sampling
+
+**Role.** Oversamples difficult geographic regions such as the Mediterranean, Black Sea and polar zones.
+
+Patch candidates receive a region-dependent sampling weight:
+
+$$
+p(\text{patch}) \propto
+w_{region} \cdot \mathbb{1}(\text{ocean fraction} > \tau)
+$$
+
+**Why used.** Uniform patch sampling overrepresents open-ocean regions and underrepresents small enclosed seas
+and ice-edge regimes.
 :::
 
-::: {.method-card}
+::: {.method-entry}
+### Swin / Window Attention
+
+**Role.** Local transformer architecture tested in `v7a`.
+
+Self-attention is restricted to local windows:
+
+$$
+\mathrm{Attention}(Q,K,V)
+= \mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V
+$$
+
+but $Q,K,V$ only interact inside a spatial window before shifted-window mixing.
+
+**Why used.** Ocean fronts and mesoscale residuals are often local. Window attention can focus compute on nearby
+structures instead of spending everything on global attention.
+
+**Reference.** [Swin Transformer](https://arxiv.org/abs/2103.14030)
+:::
+
+::: {.method-entry}
 ### Pixel DiT
-The DiT replaces convolutional bottlenecks with global token attention in pixel space.
-It tests whether global spatial interaction improves residual energy placement.
+
+**Role.** Transformer replacement for the U-Net FM backbone, tested in `v8a`.
+
+The image is split into tokens, then each block uses attention with time/condition modulation:
+
+$$
+\mathbf{h}_{l+1}
+= \mathbf{h}_{l}
++ \mathrm{Attn}(\mathrm{AdaLN}(\mathbf{h}_{l}; t, c))
+$$
+
+The conditioning $c$ contains LR/CNO/geographic information depending on the variant.
+
+**Why used.** Tests whether global token attention and AdaLN-style conditioning help place residual energy better
+than convolutional bottlenecks.
+
+**Reference.** [Scalable Diffusion Models with Transformers](https://arxiv.org/abs/2212.09748)
 :::
 
-::: {.method-card}
+::: {.method-entry}
 ### EDM / SongUNet
-The v9a candidate uses a Song/NCSN++-style U-Net with EDM denoising, inspired by CorrDiff-style downscaling.
+
+**Role.** Diffusion-style denoising architecture tested in `v9a`.
+
+The denoising objective trains the network to recover the clean target from a noisy state:
+
+$$
+\mathbf{y}_{\sigma} = \mathbf{y} + \sigma \boldsymbol{\epsilon},
+\qquad
+\mathcal{L}_{EDM}
+= \lambda(\sigma)
+\left\| D_{\theta}(\mathbf{y}_{\sigma}, \sigma, c) - \mathbf{y} \right\|_2^2
+$$
+
+**Why used.** CorrDiff-style downscaling uses strong diffusion backbones and stochastic samplers; this tests a
+more classical score/diffusion route against FM.
+
+**References.**
+[EDM paper](https://arxiv.org/abs/2206.00364) ·
+[NVIDIA PhysicsNeMo](https://github.com/NVIDIA/physicsnemo)
 :::
 
-::: {.method-card}
+::: {.method-entry}
 ### Diffusion Bridge
-The v9b candidate starts from a noisy CNO field instead of pure Gaussian noise, then learns a bridge toward HR.
-:::
+
+**Role.** Starts from a noisy CNO/LR-informed state instead of pure Gaussian noise.
+
+Instead of a pure-noise start, the path is conditioned around the coarse estimate:
+
+$$
+\mathbf{x}_0 = \boldsymbol{\mu} + \sigma(\boldsymbol{\mu})\boldsymbol{\epsilon},
+\qquad
+\mathbf{x}_1 = \mathbf{x}_{HR}
+$$
+
+The learned dynamics bridge a physically informed noisy state toward HR.
+
+**Why used.** The generative path begins closer to the physically conditioned solution, which may reduce useless
+sampling variance and improve regional stability.
 :::
 
+::: {.method-entry}
+### Inference Ablations
+
+**Role.** Tests the sampler after training, without changing the weights.
+
+For ODE-based FM inference:
+
+$$
+\frac{d\mathbf{x}}{dt} = v_{\theta}(\mathbf{x}_t,t,c)
+$$
+
+Euler uses one slope per step:
+
+$$
+\mathbf{x}_{n+1}=\mathbf{x}_n+\Delta t\,v_{\theta}(\mathbf{x}_n,t_n,c)
+$$
+
+Heun predicts once, corrects once, then averages both slopes:
+
+$$
+\mathbf{x}^{p}_{n+1}=\mathbf{x}_n+\Delta t\,v_n,
+\qquad
+\mathbf{x}_{n+1}=\mathbf{x}_n+\frac{\Delta t}{2}(v_n+v^{p}_{n+1})
+$$
+
+**Parameters tested.**
+
+- Solver: Euler versus Heun.
+- Steps: fast `20` step runs versus heavier `25/50` step runs.
+- Noise temperature: `sigma=1.0`, `1.1`, `1.2`.
+- Ensemble size: `ens=1` for quick inspection, `ens=16/32` for spread.
+- Tiling: `tile_size`, `tile_overlap`, and blending to reduce stitching artifacts.
+- CFG scale: stronger or weaker conditioning after condition-dropout fine-tuning.
+
+**Why used.** Some observed failures were not only training failures. Under-dispersive residuals, blue artifacts
+and horizontal seams can also come from numerical integration, stochastic sampling or patch stitching.
+:::
+:::

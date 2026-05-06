@@ -1,0 +1,22 @@
+---
+title: "Swin Attention"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Swin / Window Attention
+
+Swin attention restricts self-attention to local windows and shifts the windows between layers. For ocean residuals,
+this tests whether local attention is better matched to fronts, eddies and coastal structures than global attention:
+
+$$
+\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V.
+$$
+
+OceanLens `v7a` uses this hypothesis: local windows may recover mesoscale patterns with less computation than global
+DiT attention.
+
+Reference: [Swin Transformer](https://arxiv.org/abs/2103.14030).
+:::

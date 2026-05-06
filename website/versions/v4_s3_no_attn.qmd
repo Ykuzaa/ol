@@ -5,46 +5,52 @@ format:
     page-layout: full
 ---
 
-## Description
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 / S3</span>
 
-Attention ablation for the v4 residual FM U-Net.
+# v4_s3_no_attn
+
+This ablation removes the bottleneck attention from the v4 U-Net FM. It tests whether attention is needed to place
+the residual energy, or whether convolution alone is enough.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The FM objective is unchanged:
+
+$$
+\mathcal{L}_{FM}=\left\|v_\theta(\mathbf{x}_t,t,\boldsymbol{\mu},\mathbf{x}_{LR})-(\mathbf{x}_1-\mathbf{x}_0)\right\|_2^2.
+$$
+
+Only the attention block is removed. If the maps lose coherent fronts or eddy placement, the bottleneck attention
+was contributing useful spatial coordination.
+
+## Available Local Plot
+
+![v4_s3 thetao residuals.](../assets/figures/v4_s3_no_attn/thetao/residuals.png){.full-figure}
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
 
 | Field | Value |
 |---|---|
-| Architecture | CNO v2_loggrad + U-Net FM without bottleneck attention |
-| Objective | Flow Matching on `HR - mu` |
-| Motivation | measure whether attention helps residual structure placement |
-| Research inspiration | U-Net attention ablations in generative downscaling |
+| CNO checkpoint | `v2_loggrad` |
+| FM backbone | U-Net |
+| Ablation | no bottleneck attention |
+| Target | `HR - mu` |
+| Coupling | minibatch OT |
+| Time sampling | logit-normal |
 
-## Variables
+## References
 
-::: {.panel-tabset}
-### thetao
-::: {.figure-grid}
-::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v4_s3_no_attn/thetao/presentation.png`
-:::
-::: {.figure-slot}
-#### HR-LR / CNO Residual / FM Residual
-`assets/figures/v4_s3_no_attn/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v4_s3_no_attn/thetao/errors.png`
+- U-Net attention ablations
+- [Flow Matching](https://arxiv.org/abs/2210.02747)
 :::
 :::
-### so
-`assets/figures/v4_s3_no_attn/so/`
-### zos
-`assets/figures/v4_s3_no_attn/zos/`
-### uo
-`assets/figures/v4_s3_no_attn/uo/`
-### vo
-`assets/figures/v4_s3_no_attn/vo/`
 :::
-
-## Metrics
-
-`assets/metrics/v4_s3_no_attn.csv`
-

@@ -1,0 +1,22 @@
+---
+title: "Minibatch OT"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Minibatch Optimal Transport
+
+In the baseline Flow Matching setup, the source noise samples and target residual patches can be paired independently.
+Minibatch OT improves this by matching noise samples to target residuals with a lower transport cost:
+
+$$
+\pi^\star=\arg\min_{\pi}\sum_{i,j}\pi_{ij}\|\mathbf{x}_0^i-\mathbf{x}_1^j\|_2^2.
+$$
+
+In OceanLens, this is used in `v4_s1_logit_t` to make the training path less arbitrary and to expose the U-Net to more
+coherent transitions between noise and ocean residuals.
+
+Reference: [Optimal Transport Conditional Flow Matching](https://arxiv.org/abs/2302.00482).
+:::

@@ -1,74 +1,235 @@
 ---
-title: "OceanLens Experiments"
-description: "Interactive static dashboard for OceanLens super-resolution model versions."
+title: "OceanLens"
+description: "Research logbook for OceanLens ocean super-resolution experiments."
 format:
   html:
     page-layout: full
+    title-block-style: none
 ---
 
-<section class="hero">
-  <div>
-    <h1>OceanLens model versions</h1>
-    <p>
-      This website tracks the OceanLens super-resolution experiments from the first Flow Matching baselines
-      to the recent Swin, DiT, EDM and bridge variants. Each version page documents the motivation,
-      architecture, training setup, research inspiration, figures and metrics.
-    </p>
-  </div>
-  <div class="hero-panel">
-    <strong>Current scope</strong>
-    <p>Skeleton first. Figures and metrics will be pulled from LIR results in the next step.</p>
-    <div class="tag-row">
-      <span class="tag">CNO</span>
-      <span class="tag">Flow Matching</span>
-      <span class="tag">Swin</span>
-      <span class="tag">DiT</span>
-      <span class="tag">EDM</span>
-    </div>
-  </div>
-</section>
+::: {.research-home}
+::: {.research-hero}
+<img class="research-logo" src="assets/logos/oceanlens-logo.jpeg" alt="OceanLens logo">
 
-## Experiment Timeline
-
-::: {.version-grid}
-::: {.version-card}
-### v4 family
-Residual Flow Matching with CNO conditioning. Main ablations: coupling, time sampling, attention, gradient conditioning.
-
-[Open v4 overview](versions/v4.qmd)
+<p class="research-subtitle">
+These pages document the experiments I ran to identify a reliable architecture for ocean super-resolution:
+from a deterministic CNO baseline to residual Flow Matching, fine-tuning strategies, transformers and
+diffusion-style alternatives.
+</p>
 :::
 
-::: {.version-card}
-### v4 fine-tunings
-Re-coarsening consistency, classifier-free guidance and regional sampling.
+## Residual Decomposition
 
-[Open v4_s1_logit_t](versions/v4_s1_logit_t.qmd)
+The project is organized around a Reynolds-like decomposition of the high-resolution ocean state:
+
+::: {.formula-strip}
+<span>x<sub>HR</sub></span>
+<strong>=</strong>
+<span>mu(x<sub>LR</sub>)</span>
+<strong>+</strong>
+<span>r<sub>unresolved</sub></span>
 :::
 
-::: {.version-card}
-### v6/v7/v8
-Physics/geography variants, Swin local attention, and pixel-space DiT global attention.
+where the deterministic component is learned by a CNO and the residual component is modeled generatively.
 
-[Open v8a DiT](versions/v8a_dit_pixel.qmd)
+::: {.decomposition}
+::: {.decomp-source}
+### High-resolution state
+
+`x_HR`
+
+Five surface variables on the GLORYS-like HR grid.
 :::
 
-::: {.version-card}
-### v9 candidates
-NCSN++/SongUNet EDM, diffusion bridge and CFG/recoarsened DiT.
+::: {.decomp-arrow}
+→
+:::
 
-[Open v9a EDM](versions/v9a_songunet_edm.qmd)
+::: {.decomp-branch .deterministic}
+### [Deterministic branch: CNO](cno.html)
+
+`mu = x_LR + f_CNO(x_LR)`
+
+Learns the stable large-scale correction and produces the conditional mean field.
+:::
+
+::: {.decomp-plus}
++
+:::
+
+::: {.decomp-branch .stochastic}
+### [Generative branch: Flow Matching](flow-matching.html)
+
+`r = FM(z, t, mu, x_LR)`
+
+Learns the unresolved residual that the deterministic branch cannot recover.
 :::
 :::
 
-## Figure Contract
+## Data Construction
 
-Each variable page expects three figure families:
+::: {.data-flow}
+::: {.data-step}
+<span>01</span>
 
-| Figure | Content | Example path |
-|---|---|---|
-| Presentation | HR, CNO, CNO+FM | `assets/figures/<version>/<var>/presentation.png` |
-| Residuals | HR-LR, CNO residual, FM residual | `assets/figures/<version>/<var>/residuals.png` |
-| Errors | CNO error, FM error | `assets/figures/<version>/<var>/errors.png` |
+### GLORYS12 HR: 1/12°
 
-Metrics are expected as `assets/metrics/<version>.csv`.
+Daily surface fields from `1994–2003` are used for training and `2004` for validation.
+The variables are `thetao`, `so`, `zos`, `uo`, and `vo`.
+:::
 
+::: {.data-operator}
+coarsen<br><small>offline degraded product</small>
+:::
+
+::: {.data-step}
+<span>02</span>
+
+### Coarse product: 1.5°
+
+The training pipeline reads the already degraded 1.5° product from disk. This is the coarse ocean state before
+any HR-grid alignment.
+:::
+
+::: {.data-operator}
+interpolate<br><small>PyTorch nearest</small>
+:::
+
+::: {.data-step}
+<span>03</span>
+
+### LR input: 1/4° grid
+
+The 1.5° field is aligned with the 1/4° tensors using `torch.nn.functional.interpolate(mode="nearest")`.
+This gives the model a coarse, HR-shaped condition.
+:::
+
+::: {.data-operator}
+learn
+:::
+
+::: {.data-step}
+<span>04</span>
+
+### Learning targets: HR grid
+
+CNO learns `HR - LR`. Flow Matching learns `HR - mu`, where `mu = LR + CNO(LR)`.
+:::
+:::
+
+## Training Logic
+
+::: {.training-logic}
+::: {.logic-panel}
+### CNO baseline
+
+::: {.formula-strip .small-formula}
+<span>L<sub>CNO</sub></span>
+<strong>=</strong>
+<span>|| f<sub>CNO</sub>(x<sub>LR</sub>) - (x<sub>HR</sub> - x<sub>LR</sub>) ||<sub>2</sub><sup>2</sup></span>
+:::
+
+The CNO is the deterministic baseline. Its output is added to LR to form:
+
+::: {.formula-strip .small-formula}
+<span>mu</span>
+<strong>=</strong>
+<span>x<sub>LR</sub> + f<sub>CNO</sub>(x<sub>LR</sub>)</span>
+:::
+:::
+
+::: {.logic-panel}
+### Flow Matching residual
+
+::: {.formula-strip .small-formula}
+<span>x<sub>1</sub> = x<sub>HR</sub> - mu</span>
+<strong>;</strong>
+<span>x<sub>0</sub> ~ N(0, I)</span>
+:::
+
+FM learns a velocity field along the path from noise to residual:
+
+::: {.formula-strip .small-formula}
+<span>x<sub>t</sub> = (1 - t)x<sub>0</sub> + tx<sub>1</sub></span>
+<strong>;</strong>
+<span>v* = x<sub>1</sub> - x<sub>0</sub></span>
+:::
+:::
+:::
+
+## Version Timeline
+
+::: {.version-matrix}
+::: {.matrix-main}
+[v4 · U-Net FM](versions/v4.html){.version-card-node .root}
+[v5 · FM-only](versions/v5_fm_only.html){.version-card-node}
+[v6 · geo physics](versions/v6_full_geo_phys.html){.version-card-node}
+[v7 · Swin local](versions/v7a_swin.html){.version-card-node}
+[v8 · pixel DiT](versions/v8a_dit_pixel.html){.version-card-node}
+[v9 · diffusion family](versions/v9a_songunet_edm.html){.version-card-node}
+:::
+
+**v4 ablations**
+
+::: {.matrix-branches}
+[S1 · OT + logit-t](versions/v4_s1_logit_t.html){.version-card-node .best}
+[S2 · independent](versions/v4_s2_independent.html){.version-card-node}
+[S3 · no attention](versions/v4_s3_no_attn.html){.version-card-node}
+[S4 · grad-mu](versions/v4_s4_grad_mu.html){.version-card-node}
+:::
+
+**Fine-tuned from S1**
+
+::: {.matrix-finetunes}
+[FT · recoarsen](versions/v4_s1_recoarsen_ft.html){.version-card-node}
+[FT · CFG](versions/v4_s1_cfg_ft.html){.version-card-node}
+[FT · regional](versions/v4_s1_regional_ft.html){.version-card-node}
+:::
+:::
+
+## Architecture Intercomparison
+
+This comparison is only for models where the training recipe or backbone changed. The EKE plot is a placeholder
+until the final LIR figure is exported.
+
+::: {.home-compare}
+::: {.home-compare-figure}
+![Placeholder EKE intercomparison across OceanLens training variants.](assets/figures/compare/eke_intercomparison_placeholder.svg){.wide-figure}
+
+[Open the full comparison](compare.html){.lens-button .center-button}
+:::
+:::
+
+## Inference Experiments
+
+Inference has two stages. First, CNO gives a deterministic estimate:
+
+::: {.formula-strip .small-formula}
+<span>mu</span>
+<strong>=</strong>
+<span>x<sub>LR</sub> + f<sub>CNO</sub>(x<sub>LR</sub>)</span>
+:::
+
+Then FM samples the residual by integrating a learned velocity field from noise to the residual space:
+
+::: {.formula-strip .small-formula}
+<span>dx<sub>t</sub>/dt = v<sub>FM</sub>(x<sub>t</sub>, t, mu, x<sub>LR</sub>)</span>
+<strong>;</strong>
+<span>x̂<sub>HR</sub> = mu + x<sub>t=1</sub></span>
+:::
+
+::: {.inference-controls}
+[Initial noise: sigma](versions/v4_s2_independent.html){.control-chip}
+[ODE solver: Euler / Heun](versions/v4_s1_logit_t.html){.control-chip}
+[Steps: 20 / 25 / 50](versions/v4_s1_logit_t.html){.control-chip}
+[Conditioning: CFG scale](versions/v4_s1_cfg_ft.html){.control-chip}
+[Sampling: ensemble](versions/v4_s1_cfg_ft.html){.control-chip}
+[Map stitching: tile + overlap](versions/v8a_dit_pixel.html){.control-chip}
+:::
+
+::: {.inference-links}
+[v4_s1 inference sweeps](versions/v4_s1_logit_t.html){.control-chip}
+[CFG inference](versions/v4_s1_cfg_ft.html){.control-chip}
+[v8 tiling tests](versions/v8a_dit_pixel.html){.control-chip}
+:::
+:::

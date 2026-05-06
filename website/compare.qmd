@@ -1,33 +1,80 @@
 ---
-title: "Compare"
+title: "Architecture Comparison"
 format:
   html:
     page-layout: full
 ---
 
-## Summary Table
+::: {.compare-page}
+::: {.compare-hero}
+<span class="version-label">training and architecture axis</span>
 
-This page is reserved for the cross-version comparison once the LIR outputs are synchronized.
+# Model Intercomparison
 
-| Version | Architecture | Objective | Key change | Status |
-|---|---|---|---|---|
-| v4_s1_logit_t | U-Net FM | residual_mu | logit-normal t sampling | Pending metrics |
-| v4_s1_recoarsen_ft | U-Net FM | residual_mu | re-coarsening consistency | Pending metrics |
-| v4_s1_cfg_ft | U-Net FM | residual_mu | condition dropout and CFG | Pending metrics |
-| v4_s1_regional_ft | U-Net FM | residual_mu | weighted regional sampling | Pending metrics |
-| v7a | Swin/FM | residual_mu | local window attention | Pending metrics |
-| v8a | DiT/FM | residual_mu | global token attention | Pending metrics |
-| v9a | SongUNet/EDM | residual_mu | CorrDiff-style EDM denoising | Pending metrics |
-| v9b | SongUNet bridge | HR direct | stochastic bridge from noisy CNO | Pending metrics |
-| v9c | DiT/FM | residual_mu | CFG + recoarsening | Pending metrics |
+This page compares the models where the **training objective, sampling strategy, physical constraint or architecture**
+changed. It intentionally excludes pure inference sweeps such as solver, step count, sigma and tile overlap.
+:::
 
-## Planned Metrics
+## EKE Spectral View
 
-| Metric | Why it matters |
-|---|---|
-| RMSE | Deterministic error against HR |
-| Bias | Large-scale systematic offset |
-| Residual std | Whether FM restores high-frequency energy |
-| Spatial correlation | Whether residual structures are placed correctly |
-| Coarsening error | Whether generated HR is consistent with LR after pooling |
+The final version will use one LIR-generated plot with all EKE spectra on the same axes. For now, the figure below is
+a placeholder so we can validate the layout before synchronizing real diagnostics.
 
+![Placeholder EKE intercomparison across OceanLens training variants.](assets/figures/compare/eke_intercomparison_placeholder.svg){.wide-figure}
+
+## Benchmark Matrix
+
+::: {.metric-disclaimer}
+The values below are placeholders. They are here to design the table and will be replaced by metrics computed from LIR
+outputs on the same 2004 test day and domain.
+:::
+
+::: {.scoreboard}
+| Model | Change | RMSE ↓ | Bias ↓ | Std ratio ↑ | EKE ↑ | Status |
+|---|---|---:|---:|---:|---:|---|
+| v8a DiT | pixel transformer | <span class="score good">0.71</span> | <span class="score good">0.03</span> | <span class="score good">0.82</span> | <span class="score good">0.86</span> | <span class="badge watch">promising, artifact check</span> |
+| v7a Swin | local window attention | <span class="score good">0.74</span> | <span class="score good">0.04</span> | <span class="score good">0.78</span> | <span class="score good">0.83</span> | <span class="badge good">strong candidate</span> |
+| Recoarsen FT | LR consistency | <span class="score mid">0.79</span> | <span class="score good">0.02</span> | <span class="score mid">0.70</span> | <span class="score mid">0.76</span> | <span class="badge good">physical guardrail</span> |
+| Regional FT | weighted patches | <span class="score mid">0.81</span> | <span class="score mid">0.05</span> | <span class="score mid">0.72</span> | <span class="score mid">0.74</span> | <span class="badge watch">regional repair</span> |
+| CFG FT | condition dropout | <span class="score mid">0.84</span> | <span class="score mid">0.06</span> | <span class="score good">0.76</span> | <span class="score mid">0.72</span> | <span class="badge watch">needs scale tuning</span> |
+| v4 S1 | OT + logit-normal t | <span class="score mid">0.88</span> | <span class="score good">0.04</span> | <span class="score low">0.62</span> | <span class="score low">0.66</span> | <span class="badge base">baseline</span> |
+| CNO only | deterministic mean | <span class="score low">0.93</span> | <span class="score good">0.03</span> | <span class="score low">0.42</span> | <span class="score low">0.51</span> | <span class="badge base">too smooth</span> |
+| LR input | coarse reference | <span class="score low">1.18</span> | <span class="score low">0.08</span> | <span class="score low">0.18</span> | <span class="score low">0.22</span> | <span class="badge base">reference</span> |
+:::
+
+## What This Table Should Answer
+
+::: {.comparison-grid}
+::: {.comparison-card}
+### Accuracy
+
+Does the model reduce RMSE against HR without simply smoothing the residual field?
+:::
+
+::: {.comparison-card}
+### Energy
+
+Does the generated field recover the HR EKE spectrum, especially at the mesoscale and submesoscale frequencies?
+:::
+
+::: {.comparison-card}
+### Physical consistency
+
+Does the generated HR field remain compatible with the LR field after re-coarsening?
+:::
+
+::: {.comparison-card}
+### Regional robustness
+
+Does the model behave better in difficult regions such as the Mediterranean, Black Sea, Arctic and energetic western
+boundary currents?
+:::
+:::
+
+## Replacement Plan
+
+1. Pull the finished `.npz`, metrics CSV and TensorBoard curves from LIR.
+2. Generate one EKE spectrum figure for `thetao`, with HR, LR, CNO and all architecture variants.
+3. Replace placeholder metrics with measured RMSE, bias, residual std ratio, EKE score and re-coarsening error.
+4. Keep inference-only sweeps in version pages, not in this architecture table.
+:::

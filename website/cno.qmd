@@ -1,0 +1,73 @@
+---
+title: "CNO Branch"
+format:
+  html:
+    page-layout: full
+---
+
+## Role In OceanLens
+
+The CNO branch is the deterministic part of the decomposition:
+
+$$
+\mathbf{x}_{HR} = \boldsymbol{\mu}(\mathbf{x}_{LR}) + \mathbf{r}
+$$
+
+It estimates the large-scale high-resolution field:
+
+$$
+\boldsymbol{\mu} =
+\mathbf{x}_{LR} + f_{\theta}^{CNO}(\mathbf{x}_{LR})
+$$
+
+In this project the CNO is trained as a residual super-resolution model:
+
+$$
+\mathcal{L}_{CNO} =
+\left\| f_{\theta}^{CNO}(\mathbf{x}_{LR})
+- (\mathbf{x}_{HR} - \mathbf{x}_{LR}) \right\|_2^2
+$$
+
+The motivation is pragmatic: CNO should explain the deterministic, stable part of the correction, while the
+generative model is reserved for the uncertain residual.
+
+## Why CNO
+
+CNO is a neural-operator-inspired architecture. The useful idea for OceanLens is that it treats the input and output
+as spatial fields rather than isolated pixels. That is closer to what ocean downscaling needs: a mapping between
+functions on a grid.
+
+::: {.reference-grid}
+::: {.reference-card}
+### Paper
+
+[Convolutional Neural Operators for robust and accurate learning of PDEs](https://arxiv.org/abs/2302.01178)
+:::
+
+::: {.reference-card}
+### Official repository
+
+[camlab-ethz/ConvolutionalNeuralOperator](https://github.com/camlab-ethz/ConvolutionalNeuralOperator)
+:::
+
+::: {.reference-card}
+### OceanLens implementation
+
+`src/oceanlens/models/cno.py`
+:::
+:::
+
+## Inputs And Outputs
+
+| Item | Meaning |
+|---|---|
+| Input | Upsampled LR field on the HR grid |
+| Channels | `thetao`, `so`, `zos`, `uo`, `vo` |
+| Target | `HR - LR` |
+| Output | Deterministic residual correction |
+| Final mean | `mu = LR + CNO(LR)` |
+
+## Interpretation
+
+If CNO is good, `mu` should be smooth, stable and physically plausible at large scale. It should not be expected
+to sample all possible eddy-level details. That is why the second branch exists.

@@ -5,6 +5,69 @@ format:
     page-layout: full
 ---
 
+::: {.version-page}
+::: {.version-hero}
+<span class="version-label">v4 / fine-tuning</span>
+
+# v4_s1_recoarsen_ft
+
+This version fine-tunes `v4_s1_logit_t` with a coarse-scale consistency constraint. The objective is to keep the
+generated HR field compatible with the LR observation after downsampling.
+:::
+
+::: {.version-layout}
+::: {.version-main}
+## Hypothesis
+
+The generated field is:
+
+$$
+\widehat{\mathbf{x}}_{HR} = \boldsymbol{\mu} + \widehat{\mathbf{r}}_{FM}
+$$
+
+I add a re-coarsening loss:
+
+$$
+\mathcal{L}_{coarse}
+= \left\| C(\widehat{\mathbf{x}}_{HR}) - \mathbf{x}_{LR}^{native} \right\|_2^2
+$$
+
+where `C` is the mask-aware downsampling operator used in the training system with PyTorch average pooling.
+
+{{< include _variable-results.qmd >}}
+:::
+
+::: {.version-side}
+## Parameters
+
+| Field | Value |
+|---|---|
+| Init checkpoint | `v4_s1_logit_t` |
+| Added loss | re-coarsening consistency |
+| Loss weight | `0.05` |
+| Warmup | enabled |
+| Target | `HR - mu` |
+| Motivation | conserve LR-scale information |
+
+## Inference Used Here
+
+| Parameter | Value |
+|---|---|
+| Solver | Heun |
+| Steps | `50` |
+| Sigma | `1.0` |
+| Ensemble | `1` |
+
+## References
+
+- Coarse/fine consistency in generative downscaling
+- Flow Matching residual formulation
+:::
+:::
+:::
+
+::: {.old-version}
+
 ## Description
 
 Fine-tuning of `v4_s1_logit_t` with a re-coarsening consistency loss.
@@ -24,16 +87,9 @@ The generated HR field is downsampled and compared to the LR input.
 ### thetao
 ::: {.figure-grid}
 ::: {.figure-slot}
-#### HR / CNO / CNO+FM
-`assets/figures/v4_s1_recoarsen_ft/thetao/presentation.png`
-:::
-::: {.figure-slot}
 #### HR-LR / CNO Residual / FM Residual
-`assets/figures/v4_s1_recoarsen_ft/thetao/residuals.png`
-:::
-::: {.figure-slot}
-#### CNO Error / FM Error
-`assets/figures/v4_s1_recoarsen_ft/thetao/errors.png`
+
+![Recoarsening fine-tune thetao residuals.](../assets/figures/v4_s1_recoarsen_ft/thetao/residuals.png)
 :::
 :::
 ### so
@@ -49,4 +105,4 @@ The generated HR field is downsampled and compared to the LR input.
 ## Metrics
 
 `assets/metrics/v4_s1_recoarsen_ft.csv`
-
+:::

@@ -1,0 +1,93 @@
+## Variable Results
+
+::: {.panel-tabset .variable-tabs}
+### thetao
+
+#### HR / CNO / CNO+FM
+
+<div class="figure-placeholder-large">Placeholder: thetao HR / CNO / CNO+FM figure. Final PNG will be exported from LIR.</div>
+
+#### HR-LR / CNO residual / FM residual
+
+<div class="figure-placeholder-large">Placeholder: thetao HR-LR / CNO residual / FM residual figure.</div>
+
+#### CNO error / FM error
+
+<div class="figure-placeholder-large">Placeholder: thetao CNO error / FM error figure.</div>
+
+#### Loss curve
+
+<div class="figure-placeholder-large">Placeholder: TensorBoard train/val loss curve.</div>
+
+### so
+
+#### HR / CNO / CNO+FM
+
+<div class="figure-placeholder-large">Placeholder: so HR / CNO / CNO+FM figure.</div>
+
+#### HR-LR / CNO residual / FM residual
+
+<div class="figure-placeholder-large">Placeholder: so HR-LR / CNO residual / FM residual figure.</div>
+
+#### CNO error / FM error
+
+<div class="figure-placeholder-large">Placeholder: so CNO error / FM error figure.</div>
+
+#### Loss curve
+
+<div class="figure-placeholder-large">Placeholder: TensorBoard train/val loss curve.</div>
+
+### zos
+
+#### HR / CNO / CNO+FM
+
+<div class="figure-placeholder-large">Placeholder: zos HR / CNO / CNO+FM figure.</div>
+
+#### HR-LR / CNO residual / FM residual
+
+<div class="figure-placeholder-large">Placeholder: zos HR-LR / CNO residual / FM residual figure.</div>
+
+#### CNO error / FM error
+
+<div class="figure-placeholder-large">Placeholder: zos CNO error / FM error figure.</div>
+
+#### Loss curve
+
+<div class="figure-placeholder-large">Placeholder: TensorBoard train/val loss curve.</div>
+
+### uo
+
+#### HR / CNO / CNO+FM
+
+<div class="figure-placeholder-large">Placeholder: uo HR / CNO / CNO+FM figure.</div>
+
+#### HR-LR / CNO residual / FM residual
+
+<div class="figure-placeholder-large">Placeholder: uo HR-LR / CNO residual / FM residual figure.</div>
+
+#### CNO error / FM error
+
+<div class="figure-placeholder-large">Placeholder: uo CNO error / FM error figure.</div>
+
+#### Loss curve
+
+<div class="figure-placeholder-large">Placeholder: TensorBoard train/val loss curve.</div>
+
+### vo
+
+#### HR / CNO / CNO+FM
+
+<div class="figure-placeholder-large">Placeholder: vo HR / CNO / CNO+FM figure.</div>
+
+#### HR-LR / CNO residual / FM residual
+
+<div class="figure-placeholder-large">Placeholder: vo HR-LR / CNO residual / FM residual figure.</div>
+
+#### CNO error / FM error
+
+<div class="figure-placeholder-large">Placeholder: vo CNO error / FM error figure.</div>
+
+#### Loss curve
+
+<div class="figure-placeholder-large">Placeholder: TensorBoard train/val loss curve.</div>
+:::

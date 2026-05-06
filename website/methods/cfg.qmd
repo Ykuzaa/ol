@@ -1,0 +1,21 @@
+---
+title: "Classifier-free Guidance"
+format:
+  html:
+    page-layout: full
+---
+
+::: {.method-page}
+# Classifier-free Guidance
+
+Condition dropout trains the model to predict both with and without the conditioning. At inference:
+
+$$
+v_{guided}=v_\emptyset + w\left(v_c-v_\emptyset\right).
+$$
+
+The scale \(w\) controls how strongly the FM trajectory follows the CNO/LR conditioning. In OceanLens this was tested
+to fight under-dispersive residuals and increase generated contrast.
+
+Reference: [Classifier-Free Diffusion Guidance](https://arxiv.org/abs/2207.12598).
+:::
